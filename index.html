@@ -10,7 +10,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Montserrat',sans-serif;background:#f9f9f9;color:#222;}
-#login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;background:#f9f9f9;}
+#login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
 .login-box{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.10);padding:48px 40px 40px;max-width:420px;width:100%;text-align:center;}
 .login-logo{max-width:160px;margin-bottom:24px;}
 .login-title{color:#fa345e;font-size:22px;font-weight:700;margin-bottom:8px;}
@@ -76,7 +76,6 @@ tbody tr:hover td{background:#fafafa;}
 .p-pe{background:#fef2f3;color:#c0143c;}
 .p-co{background:#fff8e1;color:#7a5900;}
 .av{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:#fef2f3;color:#fa345e;border:1px solid #fdd;vertical-align:middle;margin-right:3px;}
-.sec-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
 .kam-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:1.25rem;}
 .kam-card{background:#fff;border:1px solid #eee;border-radius:12px;padding:11px 13px;}
 .kam-name{font-size:12px;font-weight:700;color:#222;margin-bottom:1px;}
@@ -89,12 +88,39 @@ tbody tr:hover td{background:#fafafa;}
 .alerta-box{background:#fff5f7;border:1px solid #fdd;border-radius:10px;padding:11px 13px;margin-bottom:10px;}
 .alerta-title{font-weight:700;font-size:11px;color:#fa345e;margin-bottom:3px;}
 .alerta-body{font-size:10px;color:#666;line-height:1.5;}
-/* IA */
+
+/* ── IA PANEL ── */
 .ia-panel{background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;margin-top:1.5rem;}
-.ia-header{background:#fa345e;padding:12px 16px;}
+.ia-header{background:#fa345e;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.ia-header-left{display:flex;flex-direction:column;}
 .ia-header-title{color:#fff;font-size:12px;font-weight:700;}
-.ia-header-sub{color:rgba(255,255,255,0.75);font-size:10px;margin-top:2px;}
+.ia-header-sub{color:rgba(255,255,255,0.78);font-size:10px;margin-top:2px;}
+.ia-status-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0;}
+.ia-status-dot.off{background:#fca5a5;}
+.ia-status-row{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,0.85);}
 .ia-body{padding:14px 16px;}
+
+/* Config Ollama */
+.ia-config{background:#fef2f3;border:1px solid #fdd;border-radius:10px;padding:12px 14px;margin-bottom:14px;}
+.ia-config-title{font-size:10px;font-weight:700;color:#fa345e;margin-bottom:10px;letter-spacing:0.04em;text-transform:uppercase;}
+.ia-config-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+.ia-config-row:last-child{margin-bottom:0;}
+.ia-config label{font-size:10px;font-weight:700;color:#888;white-space:nowrap;min-width:80px;}
+.ia-config input,.ia-config select{flex:1;padding:6px 10px;border:1px solid #fdd;border-radius:6px;font-size:10px;font-family:'Montserrat',sans-serif;min-width:140px;background:#fff;outline:none;}
+.ia-config input:focus,.ia-config select:focus{border-color:#fa345e;}
+.ia-config-btns{display:flex;gap:6px;flex-wrap:wrap;}
+.ia-cfg-btn{padding:5px 12px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;border:1px solid #fa345e;}
+.ia-cfg-btn.primary{background:#fa345e;color:#fff;border-color:#fa345e;}
+.ia-cfg-btn.primary:hover{opacity:0.9;}
+.ia-cfg-btn.secondary{background:#fff;color:#fa345e;}
+.ia-cfg-btn.secondary:hover{background:#fef2f3;}
+.ia-mode-toggle{display:flex;gap:6px;margin-bottom:4px;}
+.ia-mode-btn{flex:1;padding:6px;border:1px solid #fa345e;border-radius:7px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;background:#fff;color:#fa345e;text-align:center;}
+.ia-mode-btn.active{background:#fa345e;color:#fff;}
+.ia-hint{font-size:9px;color:#aaa;margin-top:6px;line-height:1.5;}
+.ia-hint code{background:#f5f5f5;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:9px;color:#fa345e;}
+
+/* Chat */
 .ia-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
 .ia-chip{padding:5px 11px;border:1px solid #fa345e;border-radius:20px;font-size:10px;font-weight:700;color:#fa345e;cursor:pointer;background:#fff;font-family:'Montserrat',sans-serif;}
 .ia-chip:hover{background:#fef2f3;}
@@ -104,22 +130,17 @@ tbody tr:hover td{background:#fafafa;}
 .ia-send{background:#fa345e;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;white-space:nowrap;}
 .ia-send:hover{opacity:0.9;}
 .ia-send:disabled{background:#ccc;cursor:not-allowed;}
-.ia-messages{margin-top:12px;display:flex;flex-direction:column;gap:10px;max-height:400px;overflow-y:auto;}
+.ia-messages{margin-top:12px;display:flex;flex-direction:column;gap:10px;max-height:420px;overflow-y:auto;}
 .ia-msg{padding:10px 13px;border-radius:10px;font-size:11px;line-height:1.6;}
 .ia-msg.user{background:#fef2f3;color:#5a0010;align-self:flex-end;max-width:80%;border:1px solid #fdd;}
 .ia-msg.assistant{background:#f5f5f5;color:#333;align-self:flex-start;max-width:90%;border:1px solid #eee;white-space:pre-wrap;}
 .ia-msg.thinking{background:#f5f5f5;color:#aaa;align-self:flex-start;font-style:italic;}
-.ia-empty{text-align:center;padding:20px;color:#bbb;font-size:11px;}
-/* API key config */
-.ia-config{background:#fef2f3;border:1px solid #fdd;border-radius:8px;padding:10px 13px;margin-bottom:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-.ia-config label{font-size:10px;font-weight:700;color:#fa345e;white-space:nowrap;}
-.ia-config input{flex:1;padding:6px 10px;border:1px solid #fdd;border-radius:6px;font-size:10px;font-family:'Montserrat',sans-serif;min-width:200px;background:#fff;}
-.ia-config input:focus{outline:none;border-color:#fa345e;}
-.ia-config-save{background:#fa345e;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;white-space:nowrap;}
+.ia-empty{text-align:center;padding:24px;color:#bbb;font-size:11px;}
+
 .loading{text-align:center;padding:30px;color:#fa345e;font-size:12px;font-weight:600;}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid #fdd;border-top-color:#fa345e;border-radius:50%;animation:spin 0.7s linear infinite;margin-right:6px;vertical-align:middle;}
 @keyframes spin{to{transform:rotate(360deg);}}
-@media(max-width:600px){.charts-row{grid-template-columns:1fr;}.kpi-grid{grid-template-columns:1fr 1fr;}.login-box{padding:32px 20px 28px;}.ia-input-row{flex-direction:column;}}
+@media(max-width:600px){.charts-row{grid-template-columns:1fr;}.kpi-grid{grid-template-columns:1fr 1fr;}.login-box{padding:32px 20px 28px;}.ia-input-row{flex-direction:column;}.ia-header{flex-direction:column;align-items:flex-start;}}
 </style>
 </head>
 <body>
@@ -184,7 +205,7 @@ tbody tr:hover td{background:#fafafa;}
           <div style="position:relative;height:160px;"><canvas id="cPais" role="img" aria-label="Subtotal por país"></canvas></div>
         </div>
         <div class="ccard">
-          <div class="sec-lbl">Distribución por gift card (cantidad de unidades)</div>
+          <div class="sec-lbl">Gift cards por cantidad de unidades</div>
           <div class="legend" id="leg-gc"></div>
           <div style="position:relative;height:160px;"><canvas id="cGC" role="img" aria-label="Cantidad de unidades por marca de GC"></canvas></div>
         </div>
@@ -262,29 +283,78 @@ tbody tr:hover td{background:#fafafa;}
     <!-- PANEL IA -->
     <div class="ia-panel">
       <div class="ia-header">
-        <div class="ia-header-title">Análisis con IA — Asistente Apprecio</div>
-        <div class="ia-header-sub">Consulta patrones, motivos y recomendaciones sobre los datos del panel</div>
+        <div class="ia-header-left">
+          <div class="ia-header-title">Análisis con IA — Ollama llama3.3</div>
+          <div class="ia-header-sub">Análisis local gratuito · los datos no salen de tu red</div>
+        </div>
+        <div class="ia-status-row">
+          <div class="ia-status-dot off" id="ia-dot"></div>
+          <span id="ia-status-txt">Sin conectar</span>
+        </div>
       </div>
       <div class="ia-body">
+
+        <!-- Configuración -->
         <div class="ia-config">
-          <label>API Key Claude:</label>
-          <input type="password" id="ia-apikey" placeholder="sk-ant-..." oninput="guardarKey()"/>
-          <span style="font-size:9px;color:#fa345e;flex:1;">Guardada localmente en tu navegador. Nunca se envía a terceros.</span>
+          <div class="ia-config-title">Configuración de conexión</div>
+
+          <div style="margin-bottom:10px;">
+            <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:6px;">Modo</div>
+            <div class="ia-mode-toggle">
+              <button class="ia-mode-btn active" id="btn-mode-local" onclick="setMode('local')">Local (mi máquina)</button>
+              <button class="ia-mode-btn" id="btn-mode-server" onclick="setMode('server')">Servidor compartido</button>
+            </div>
+          </div>
+
+          <div id="config-local">
+            <div class="ia-hint">
+              Ollama corre en tu máquina en <code>localhost:11434</code>. Para permitir que el dashboard lo use desde el navegador, inicia Ollama con:
+              <br/><br/>
+              <code>OLLAMA_ORIGINS=* ollama serve</code>
+              <br/><br/>
+              En Windows usa PowerShell:<br/>
+              <code>$env:OLLAMA_ORIGINS="*"; ollama serve</code>
+            </div>
+          </div>
+
+          <div id="config-server" style="display:none;">
+            <div class="ia-config-row">
+              <label>URL servidor</label>
+              <input type="text" id="ia-server-url" placeholder="http://tu-servidor:11434" value=""/>
+            </div>
+            <div class="ia-hint">
+              Ingresa la URL de tu servidor Ollama. Asegúrate de que el servidor tenga CORS habilitado:<br/>
+              <code>OLLAMA_ORIGINS=* ollama serve</code>
+            </div>
+          </div>
+
+          <div class="ia-config-row" style="margin-top:10px;">
+            <label>Modelo</label>
+            <input type="text" id="ia-model" value="llama3.3:latest"/>
+          </div>
+
+          <div class="ia-config-btns" style="margin-top:10px;">
+            <button class="ia-cfg-btn primary" onclick="probarConexion()">Probar conexión</button>
+            <button class="ia-cfg-btn secondary" onclick="guardarConfig()">Guardar configuración</button>
+          </div>
         </div>
+
+        <!-- Preguntas rápidas -->
         <div class="ia-chips">
           <button class="ia-chip" onclick="pq('¿Cuál es el KAM con mayor carga operacional y qué recomendarías para balancear el equipo?')">Carga por KAM</button>
           <button class="ia-chip" onclick="pq('Analiza los motivos de migración registrados e identifica patrones para prevenirlos.')">Motivos migración</button>
           <button class="ia-chip" onclick="pq('Analiza las reversas y dime si hay riesgos operacionales o financieros que requieran atención.')">Riesgo en reversas</button>
-          <button class="ia-chip" onclick="pq('¿Qué gift cards tienen mayor demanda en cantidad de unidades y qué implica para la gestión de stock?')">Demanda de GC</button>
+          <button class="ia-chip" onclick="pq('¿Qué gift cards tienen mayor demanda en unidades y qué implica para la gestión de stock?')">Demanda de GC</button>
           <button class="ia-chip" onclick="pq('Genera un resumen ejecutivo del estado operacional actual para compartir con el equipo de liderazgo.')">Resumen ejecutivo</button>
           <button class="ia-chip" onclick="pq('¿Qué acciones prioritarias recomendarías para esta semana basándote en los datos disponibles?')">Plan de acción</button>
         </div>
+
         <div class="ia-input-row">
           <input class="ia-input" id="ia-input" type="text" placeholder="Escribe tu consulta sobre los datos del panel..." onkeydown="if(event.key==='Enter')enviarIA()"/>
           <button class="ia-send" id="ia-send-btn" onclick="enviarIA()">Consultar</button>
         </div>
         <div class="ia-messages" id="ia-messages">
-          <div class="ia-empty">Configura tu API Key de Claude e ingresa una consulta para analizar los datos.</div>
+          <div class="ia-empty">Configura y prueba la conexión con Ollama, luego haz una consulta para analizar los datos.</div>
         </div>
       </div>
     </div>
@@ -293,11 +363,16 @@ tbody tr:hover td{background:#fafafa;}
 </div>
 
 <script>
+/* ═══════════════════════════
+   CONFIG GENERAL
+═══════════════════════════ */
 const DOMINIOS=['apprecio.com','dcanje.com'];
 const SHEET_ID='1nJctpXetq2EXXFu49-kyDIbthnwon2prkQsXr67MIT8';
 const GID_GC='0', GID_MIG='716997002', GID_REV='49456582';
 const PALETA=['#fa345e','#f8848f','#f5c4b3','#fdd0d8','#e24b4a','#ffb3c1','#ffeef1'];
-const KAM_MAP={'ljamasmie':'L. Jamasmie','shernandez':'S. Hernandez','bgonzalez':'B. González','fmaya':'F. Maya','scuellar':'S. Cuellar','dvillavicencio':'D. Villavicencio','dgarcia':'D. García','rmendozat':'R. Mendoza'};
+const KAM_MAP={'ljamasmie':'L. Jamasmie','shernandez':'S. Hernandez','bgonzalez':'B. González',
+  'fmaya':'F. Maya','scuellar':'S. Cuellar','dvillavicencio':'D. Villavicencio',
+  'dgarcia':'D. García','rmendozat':'R. Mendoza'};
 
 const kamN=e=>{ if(!e) return '—'; const u=e.split('@')[0].toLowerCase(); return KAM_MAP[u]||u; };
 const kamI=e=>kamN(e).split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2);
@@ -305,10 +380,14 @@ const pPais=p=>{ const cls=p==='Chile'?'p-cl':p==='Colombia'?'p-co':'p-pe'; cons
 const fmt=n=>Number(n||0).toLocaleString('es-CL');
 const fmtM=n=>{ n=Number(n||0); return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(0)+'K':String(Math.round(n)); };
 
-/* AUTH */
+/* ═══════════════════════════
+   AUTH GOOGLE
+═══════════════════════════ */
 function onGoogleLogin(r){
   const p=JSON.parse(atob(r.credential.split('.')[1]));
-  if(!DOMINIOS.includes((p.email||'').split('@')[1]||'')){document.getElementById('login-error').style.display='block';return;}
+  if(!DOMINIOS.includes((p.email||'').split('@')[1]||'')){
+    document.getElementById('login-error').style.display='block'; return;
+  }
   localStorage.setItem('gUser',JSON.stringify({nombre:p.name,email:p.email,avatar:p.picture,expiry:Date.now()+7*864e5}));
   mostrarApp(p);
 }
@@ -318,8 +397,7 @@ function mostrarApp(u){
   document.getElementById('user-avatar').src=u.picture||u.avatar||'';
   document.getElementById('user-name').textContent=u.nombre||u.name||'';
   document.getElementById('user-email').textContent=u.email||'';
-  const savedKey=localStorage.getItem('ia_apikey')||'';
-  if(savedKey) document.getElementById('ia-apikey').value=savedKey;
+  cargarConfigIA();
   cargarTodo();
 }
 function cerrarSesion(){
@@ -332,9 +410,10 @@ window.addEventListener('load',()=>{
   const raw=localStorage.getItem('gUser');
   if(raw){const s=JSON.parse(raw);if(s.expiry&&Date.now()<s.expiry)mostrarApp(s);else localStorage.removeItem('gUser');}
 });
-function guardarKey(){ localStorage.setItem('ia_apikey',document.getElementById('ia-apikey').value.trim()); }
 
-/* TABS */
+/* ═══════════════════════════
+   TABS
+═══════════════════════════ */
 function showTab(name,el){
   document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -342,7 +421,9 @@ function showTab(name,el){
   el.classList.add('active');
 }
 
-/* FETCH CSV */
+/* ═══════════════════════════
+   FETCH CSV
+═══════════════════════════ */
 let _dp=[],_dm=[],_dr=[];
 const charts={};
 
@@ -362,15 +443,17 @@ async function cargarTodo(){
   document.getElementById('last-update').textContent='Actualizando...';
   try{
     [_dp,_dm,_dr]=await Promise.all([fetchCSV(GID_GC),fetchCSV(GID_MIG),fetchCSV(GID_REV)]);
-    renderPedidos(_dp); renderMigracion(_dm); renderReversa(_dr);
-    renderKAM(_dp,_dm,_dr); renderAlertas(_dp,_dm,_dr);
+    renderPedidos(_dp);renderMigracion(_dm);renderReversa(_dr);
+    renderKAM(_dp,_dm,_dr);renderAlertas(_dp,_dm,_dr);
     const now=new Date();
     document.getElementById('last-update').textContent='Actualizado: '+now.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'});
     document.getElementById('ap-subtitle').textContent='Pedidos GC · Migración · Reversa — '+now.toLocaleDateString('es-CL',{day:'2-digit',month:'short',year:'numeric'});
   }catch(e){document.getElementById('last-update').textContent='Error al cargar';console.error(e);}
 }
 
-/* RENDER PEDIDOS */
+/* ═══════════════════════════
+   RENDERS
+═══════════════════════════ */
 function renderPedidos(rows){
   const totalM=rows.reduce((s,r)=>s+Number(r['Subtotal']||0),0);
   const empresas=[...new Set(rows.map(r=>r['Panel / Empresa']))].filter(Boolean);
@@ -399,7 +482,6 @@ function renderPedidos(rows){
   }).join('');
 }
 
-/* RENDER MIGRACIÓN */
 function renderMigracion(rows){
   const totalP=rows.reduce((s,r)=>s+Number(r['Total Puntos a Reversar']||0),0);
   const paises=[...new Set(rows.map(r=>r['País']))].filter(Boolean);
@@ -421,7 +503,6 @@ function renderMigracion(rows){
   document.getElementById('tbody-migracion').innerHTML=rows.map(r=>`<tr><td style="font-weight:700;color:#fa345e;">#${r['Nº Ticket']||'—'}</td><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${r['Nombre Panel/Sucursal Origen']||'—'}</td><td style="text-align:center;color:#fa345e;">→</td><td>${r['Nombre Panel/Sucursal Destino']||'—'}</td><td style="font-weight:700;">${fmt(r['Total Puntos a Reversar']||0)}</td><td style="color:#888;">${(r['Motivo de la Reversa']||'').slice(0,45)}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`).join('');
 }
 
-/* RENDER REVERSA */
 function renderReversa(rows){
   const totalP=rows.reduce((s,r)=>s+Number(r['Total Puntos a Reversar']||0),0);
   const paises=[...new Set(rows.map(r=>r['País']))].filter(Boolean);
@@ -447,7 +528,6 @@ function renderReversa(rows){
   }).join('');
 }
 
-/* RENDER KAM */
 function renderKAM(p,m,r){
   const ks={};
   const add=(e,t,v)=>{if(!e)return;if(!ks[e])ks[e]={gc:0,gcM:0,mig:0,migP:0,rev:0,revP:0};if(t==='gc'){ks[e].gc++;ks[e].gcM+=v;}if(t==='mig'){ks[e].mig++;ks[e].migP+=v;}if(t==='rev'){ks[e].rev++;ks[e].revP+=v;}};
@@ -467,16 +547,15 @@ function renderKAM(p,m,r){
   drawMulti('cKAM',kL,[{label:'Pedidos',data:kGC,bg:'#fa345e'},{label:'Monto K',data:kM,bg:'#f5c4b3'}]);
 }
 
-/* RENDER ALERTAS */
 function renderAlertas(p,m,r){
   const al=[];
   r.filter(x=>Number(x['Total Puntos a Reversar']||0)>1000000).forEach(x=>al.push({t:`Reversa de ${fmtM(Number(x['Total Puntos a Reversar']))} pts — ${x['Panel / Empresa']} (${x['País']})`,b:`Ticket #${x['Nº Ticket']}: "${x['Motivo de la Anulación']||'sin motivo'}" sin N° de factura. KAM: ${kamN(x['KAM Solicitante'])}. Requiere validación urgente.`}));
   const sinOC=p.filter(x=>!x['OC']&&!x['Nº Factura']).length;
-  if(sinOC>0) al.push({t:`${sinOC} pedidos GC sin OC ni factura`,b:'Riesgo de trazabilidad financiera. Revisar antes del cierre de semana.'});
+  if(sinOC>0)al.push({t:`${sinOC} pedidos GC sin OC ni factura`,b:'Riesgo de trazabilidad financiera. Revisar antes del cierre de semana.'});
   const migKams=[...new Set(m.map(x=>x['KAM Solicitante']))];
-  if(migKams.length===1&&m.length>1) al.push({t:`${kamN(migKams[0])} concentra el 100% de migraciones`,b:`${m.length} tickets gestionados por el mismo KAM. Sin respaldo ante ausencia o aumento de volumen.`});
+  if(migKams.length===1&&m.length>1)al.push({t:`${kamN(migKams[0])} concentra el 100% de migraciones`,b:`${m.length} tickets gestionados por el mismo KAM. Sin respaldo ante ausencia o aumento de volumen.`});
   const pedR=p.filter(x=>(x['Comentario']||'').toUpperCase().includes('REVERSA'));
-  if(pedR.length>0) al.push({t:`${pedR.length} líneas con "REVERSA" en tab de Pedidos GC`,b:'Están registradas como pedidos normales. Posible inconsistencia en el flujo de datos.'});
+  if(pedR.length>0)al.push({t:`${pedR.length} líneas con "REVERSA" en tab de Pedidos GC`,b:'Registradas como pedidos normales. Posible inconsistencia en el flujo de datos.'});
   const kM={};p.forEach(x=>{const e=x['KAM Solicitante'];if(e)kM[e]=(kM[e]||0)+Number(x['Subtotal']||0);});
   const totM=Object.values(kM).reduce((a,b)=>a+b,0);
   Object.entries(kM).forEach(([e,v])=>{if(totM>0&&v/totM>0.5)al.push({t:`${kamN(e)}: ${Math.round((v/totM)*100)}% del monto total de GC`,b:`$${fmtM(v)} de $${fmtM(totM)} gestionados por un solo KAM. Considerar redistribuir carga.`});});
@@ -485,7 +564,9 @@ function renderAlertas(p,m,r){
     :al.map(a=>`<div class="alerta-box"><div class="alerta-title">${a.t}</div><div class="alerta-body">${a.b}</div></div>`).join('');
 }
 
-/* CHARTS */
+/* ═══════════════════════════
+   CHARTS
+═══════════════════════════ */
 const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
 const gcC=isDark?'rgba(255,255,255,0.07)':'rgba(0,0,0,0.06)';
 const tcC=isDark?'#bbb':'#999';
@@ -501,15 +582,82 @@ function drawMulti(id,labels,datasets){
   charts[id]=new Chart(document.getElementById(id),{type:'bar',data:{labels,datasets:datasets.map(d=>({label:d.label,data:d.data,backgroundColor:d.bg,borderRadius:4,borderWidth:0}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tcC,font:{size:9,family:'Montserrat'}},grid:{color:gcC}},y:{ticks:{color:tcC,font:{size:9,family:'Montserrat'}},grid:{color:gcC}}}}});
 }
 
-/* IA */
-const iaMsgs=[];
+/* ═══════════════════════════
+   IA — OLLAMA
+═══════════════════════════ */
+let iaMsgs=[];
+let iaMode='local';
+let iaConnected=false;
+
+function getOllamaURL(){
+  if(iaMode==='local') return 'http://localhost:11434';
+  return (document.getElementById('ia-server-url').value||'').trim().replace(/\/$/,'');
+}
+function getModel(){ return (document.getElementById('ia-model').value||'llama3.3:latest').trim(); }
+
+function setMode(mode){
+  iaMode=mode;
+  document.getElementById('btn-mode-local').classList.toggle('active',mode==='local');
+  document.getElementById('btn-mode-server').classList.toggle('active',mode==='server');
+  document.getElementById('config-local').style.display=mode==='local'?'block':'none';
+  document.getElementById('config-server').style.display=mode==='server'?'block':'none';
+  setStatus(false,'Sin conectar');
+  localStorage.setItem('ia_mode',mode);
+}
+
+function setStatus(ok,txt){
+  iaConnected=ok;
+  document.getElementById('ia-dot').className='ia-status-dot'+(ok?'':' off');
+  document.getElementById('ia-status-txt').textContent=txt;
+}
+
+function guardarConfig(){
+  localStorage.setItem('ia_mode',iaMode);
+  localStorage.setItem('ia_server_url',document.getElementById('ia-server-url').value||'');
+  localStorage.setItem('ia_model',getModel());
+  setStatus(false,'Config guardada — prueba la conexión');
+}
+
+function cargarConfigIA(){
+  const mode=localStorage.getItem('ia_mode')||'local';
+  const serverUrl=localStorage.getItem('ia_server_url')||'';
+  const model=localStorage.getItem('ia_model')||'llama3.3:latest';
+  document.getElementById('ia-server-url').value=serverUrl;
+  document.getElementById('ia-model').value=model;
+  setMode(mode);
+}
+
+async function probarConexion(){
+  const url=getOllamaURL();
+  setStatus(false,'Probando conexión...');
+  try{
+    const resp=await fetch(`${url}/api/tags`,{method:'GET',signal:AbortSignal.timeout(5000)});
+    if(resp.ok){
+      const data=await resp.json();
+      const models=(data.models||[]).map(m=>m.name);
+      const model=getModel();
+      const found=models.some(m=>m.startsWith(model.split(':')[0]));
+      if(found){
+        setStatus(true,`Conectado · ${model}`);
+        addMsg('assistant',`Conexión exitosa con Ollama en ${url}.\nModelo ${model} disponible y listo para analizar los datos del panel.`);
+      } else {
+        setStatus(false,`Conectado pero modelo no encontrado`);
+        addMsg('assistant',`Ollama responde en ${url} pero el modelo "${model}" no está instalado.\n\nModelos disponibles: ${models.join(', ')||'ninguno'}\n\nPara instalar llama3.3 ejecuta:\nollama pull llama3.3:latest`);
+      }
+    } else { setStatus(false,'Error en respuesta'); }
+  }catch(e){
+    setStatus(false,'Sin conexión');
+    addMsg('assistant',`No se pudo conectar con Ollama en ${url}.\n\nVerifica que Ollama esté corriendo con:\nOLLAMA_ORIGINS=* ollama serve\n\nEn Windows (PowerShell):\n$env:OLLAMA_ORIGINS="*"; ollama serve`);
+  }
+}
+
 function buildCtx(){
   const rp=_dp.map(r=>`[GC] ${r['País']}|${r['Panel / Empresa']}|${r['Marca / Gift Card']}|cant:${r['Cantidad']}|sub:${r['Subtotal']}|KAM:${r['KAM Solicitante']}|fecha:${r['Fecha']}|com:${r['Comentario']||''}`).join('\n');
   const rm=_dm.map(r=>`[MIG] #${r['Nº Ticket']}|${r['País']}|${r['Panel / Empresa']}|${r['Nombre Panel/Sucursal Origen']}→${r['Nombre Panel/Sucursal Destino']}|pts:${r['Total Puntos a Reversar']}|motivo:${r['Motivo de la Reversa']}|KAM:${r['KAM Solicitante']}|${r['Fecha']}`).join('\n');
   const rr=_dr.map(r=>`[REV] #${r['Nº Ticket']}|${r['País']}|${r['Panel / Empresa']}|pts:${r['Total Puntos a Reversar']}|motivo:${r['Motivo de la Anulación']}|factura:${r['N° de Factura']||'sin factura'}|KAM:${r['KAM Solicitante']}|${r['Fecha']}`).join('\n');
   return `Eres un asistente analítico experto en operaciones de fidelización para Apprecio, plataforma de loyalty en Latinoamérica. Analiza los datos operacionales del equipo KAM y responde en español de forma concisa, directa y accionable. Usa listas cuando corresponda. No repitas los datos crudos, interprétalos y da recomendaciones concretas.
 
-KAM conocidos: ljamasmie=L.Jamasmie, shernandez=S.Hernandez, bgonzalez=B.González, fmaya=F.Maya, scuellar=S.Cuellar, dvillavicencio=D.Villavicencio
+KAMs: ljamasmie=L.Jamasmie, shernandez=S.Hernandez, bgonzalez=B.González, fmaya=F.Maya, scuellar=S.Cuellar, dvillavicencio=D.Villavicencio
 
 === PEDIDOS GIFT CARDS ===
 ${rp||'Sin datos'}
@@ -517,7 +665,7 @@ ${rp||'Sin datos'}
 === MIGRACIONES DE PUNTOS ===
 ${rm||'Sin datos'}
 
-=== REVERSAS (ANULACIONES) ===
+=== REVERSAS ===
 ${rr||'Sin datos'}`;
 }
 
@@ -537,32 +685,47 @@ async function enviarIA(){
   const input=document.getElementById('ia-input');
   const q=input.value.trim();
   if(!q)return;
-  const apikey=(localStorage.getItem('ia_apikey')||'').trim();
-  if(!apikey){addMsg('assistant','Configura tu API Key de Claude en el campo de arriba para usar el análisis con IA.');return;}
-  if(_dp.length===0&&_dm.length===0&&_dr.length===0){addMsg('assistant','Primero carga los datos usando el botón "Actualizar datos".');return;}
+  if(!iaConnected){
+    addMsg('assistant','Primero prueba la conexión con Ollama usando el botón "Probar conexión".');
+    return;
+  }
+  if(_dp.length===0&&_dm.length===0&&_dr.length===0){
+    addMsg('assistant','Primero carga los datos usando el botón "Actualizar datos".');
+    return;
+  }
   input.value='';
   document.getElementById('ia-send-btn').disabled=true;
   addMsg('user',q);
-  const thinking=addMsg('thinking','Analizando datos...');
+  const thinking=addMsg('thinking','Analizando con llama3.3...');
   iaMsgs.push({role:'user',content:q});
+
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    const url=getOllamaURL();
+    const resp=await fetch(`${url}/api/chat`,{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':apikey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:buildCtx(),messages:iaMsgs})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:getModel(),
+        stream:false,
+        messages:[
+          {role:'system',content:buildCtx()},
+          ...iaMsgs
+        ]
+      })
     });
     const data=await resp.json();
-    const txt=data.content?.map(b=>b.text||'').join('')||'Sin respuesta del modelo.';
+    const txt=data.message?.content||data.error||'Sin respuesta del modelo.';
     thinking.remove();
     addMsg('assistant',txt);
     iaMsgs.push({role:'assistant',content:txt});
   }catch(e){
     thinking.remove();
-    addMsg('assistant','Error al conectar con la API. Verifica tu API Key y que tengas conexión a internet.');
+    addMsg('assistant','Error al consultar Ollama. Verifica que sigue corriendo y con OLLAMA_ORIGINS=* habilitado.');
     console.error(e);
   }
   document.getElementById('ia-send-btn').disabled=false;
 }
+
 function pq(t){document.getElementById('ia-input').value=t;enviarIA();}
 </script>
 </body>
