@@ -90,31 +90,60 @@ tbody tr:hover td{background:#fafafa;}
 
 /* ── IA PANEL ── */
 .ia-panel{background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;margin-top:1.5rem;}
-.ia-header{background:#fa345e;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.ia-header-title{color:#fff;font-size:12px;font-weight:700;}
-.ia-header-sub{color:rgba(255,255,255,0.78);font-size:10px;margin-top:2px;}
+.ia-header{background:#fa345e;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.ia-header-left{display:flex;align-items:center;gap:10px;}
+.ia-icon{width:32px;height:32px;background:rgba(255,255,255,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ia-icon svg{width:18px;height:18px;fill:#fff;}
+.ia-header-title{color:#fff;font-size:13px;font-weight:700;}
+.ia-header-sub{color:rgba(255,255,255,0.78);font-size:10px;margin-top:1px;}
 .ia-status-row{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,0.9);}
 .ia-dot{width:8px;height:8px;border-radius:50%;background:#fca5a5;flex-shrink:0;transition:background 0.3s;}
 .ia-dot.ok{background:#4ade80;}
-.ia-dot.loading{background:#fbbf24;}
-.ia-body{padding:14px 16px;}
-.ia-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
-.ia-chip{padding:5px 11px;border:1px solid #fa345e;border-radius:20px;font-size:10px;font-weight:700;color:#fa345e;cursor:pointer;background:#fff;font-family:'Montserrat',sans-serif;}
-.ia-chip:hover{background:#fef2f3;}
+.ia-dot.loading{background:#fbbf24;animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.ia-body{padding:16px;}
+
+/* Chips */
+.ia-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.ia-chip{padding:5px 12px;border:1px solid #fa345e;border-radius:20px;font-size:10px;font-weight:700;color:#fa345e;cursor:pointer;background:#fff;font-family:'Montserrat',sans-serif;transition:all 0.15s;}
+.ia-chip:hover{background:#fa345e;color:#fff;}
+
+/* Input */
 .ia-input-row{display:flex;gap:8px;}
-.ia-input{flex:1;padding:8px 12px;border:1px solid #ddd;border-radius:8px;font-size:11px;font-family:'Montserrat',sans-serif;outline:none;}
+.ia-input{flex:1;padding:9px 13px;border:1px solid #ddd;border-radius:8px;font-size:11px;font-family:'Montserrat',sans-serif;outline:none;}
 .ia-input:focus{border-color:#fa345e;}
-.ia-send{background:#fa345e;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;white-space:nowrap;}
-.ia-send:hover{opacity:0.9;}
+.ia-send{background:#fa345e;color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;white-space:nowrap;transition:opacity 0.15s;}
+.ia-send:hover{opacity:0.88;}
 .ia-send:disabled{background:#ccc;cursor:not-allowed;}
-.ia-messages{margin-top:12px;display:flex;flex-direction:column;gap:10px;max-height:420px;overflow-y:auto;}
-.ia-msg{padding:10px 13px;border-radius:10px;font-size:11px;line-height:1.6;}
-.ia-msg.user{background:#fef2f3;color:#5a0010;align-self:flex-end;max-width:80%;border:1px solid #fdd;}
-.ia-msg.assistant{background:#f5f5f5;color:#333;align-self:flex-start;max-width:90%;border:1px solid #eee;white-space:pre-wrap;}
-.ia-msg.thinking{background:#f5f5f5;color:#aaa;align-self:flex-start;font-style:italic;}
-.ia-empty{text-align:center;padding:24px;color:#bbb;font-size:11px;}
-.ia-info{background:#fef2f3;border:1px solid #fdd;border-radius:8px;padding:10px 13px;margin-bottom:12px;font-size:10px;color:#888;line-height:1.6;}
-.ia-info strong{color:#fa345e;}
+
+/* Mensajes */
+.ia-messages{margin-top:14px;display:flex;flex-direction:column;gap:12px;max-height:480px;overflow-y:auto;padding-right:2px;}
+.ia-msg-wrap{display:flex;gap:8px;align-items:flex-start;}
+.ia-msg-wrap.user{flex-direction:row-reverse;}
+.ia-avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;}
+.ia-avatar.ai{background:#fef2f3;border:1px solid #fdd;}
+.ia-avatar.ai img{width:18px;height:18px;object-fit:contain;}
+.ia-avatar.user-av{background:#fa345e;color:#fff;}
+.ia-bubble{padding:11px 14px;border-radius:12px;font-size:11px;line-height:1.65;max-width:88%;}
+.ia-bubble.user{background:#fa345e;color:#fff;border-radius:12px 2px 12px 12px;}
+.ia-bubble.assistant{background:#f7f7f7;color:#222;border:1px solid #eee;border-radius:2px 12px 12px 12px;}
+.ia-bubble.thinking{background:#f7f7f7;color:#aaa;border:1px solid #eee;border-radius:2px 12px 12px 12px;font-style:italic;}
+
+/* Markdown rendering dentro de burbuja */
+.ia-bubble.assistant h1,.ia-bubble.assistant h2,.ia-bubble.assistant h3{font-size:12px;font-weight:700;color:#fa345e;margin:10px 0 5px;}
+.ia-bubble.assistant h1{font-size:13px;}
+.ia-bubble.assistant p{margin-bottom:7px;}
+.ia-bubble.assistant p:last-child{margin-bottom:0;}
+.ia-bubble.assistant ul,.ia-bubble.assistant ol{padding-left:16px;margin-bottom:7px;}
+.ia-bubble.assistant li{margin-bottom:4px;}
+.ia-bubble.assistant strong{font-weight:700;color:#333;}
+.ia-bubble.assistant em{font-style:italic;color:#555;}
+.ia-bubble.assistant hr{border:none;border-top:1px solid #eee;margin:8px 0;}
+.ia-bubble.assistant code{background:#f0f0f0;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:10px;}
+.ia-bubble.assistant blockquote{border-left:3px solid #fa345e;padding-left:10px;color:#666;margin:6px 0;}
+
+.ia-empty{text-align:center;padding:28px 16px;color:#bbb;font-size:11px;line-height:1.7;}
+.ia-empty-icon{font-size:28px;margin-bottom:8px;opacity:0.4;}
 
 .loading{text-align:center;padding:30px;color:#fa345e;font-size:12px;font-weight:600;}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid #fdd;border-top-color:#fa345e;border-radius:50%;animation:spin 0.7s linear infinite;margin-right:6px;vertical-align:middle;}
@@ -178,16 +207,8 @@ tbody tr:hover td{background:#fafafa;}
     <div id="s-pedidos" class="tab-section active">
       <div id="kpi-pedidos" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
       <div class="charts-row">
-        <div class="ccard">
-          <div class="sec-lbl">Subtotal por país</div>
-          <div class="legend" id="leg-pais"></div>
-          <div style="position:relative;height:160px;"><canvas id="cPais" role="img" aria-label="Subtotal por país"></canvas></div>
-        </div>
-        <div class="ccard">
-          <div class="sec-lbl">Gift cards por cantidad de unidades</div>
-          <div class="legend" id="leg-gc"></div>
-          <div style="position:relative;height:160px;"><canvas id="cGC" role="img" aria-label="Cantidad de unidades por marca"></canvas></div>
-        </div>
+        <div class="ccard"><div class="sec-lbl">Subtotal por país</div><div class="legend" id="leg-pais"></div><div style="position:relative;height:160px;"><canvas id="cPais" role="img" aria-label="Subtotal por país"></canvas></div></div>
+        <div class="ccard"><div class="sec-lbl">Gift cards por cantidad de unidades</div><div class="legend" id="leg-gc"></div><div style="position:relative;height:160px;"><canvas id="cGC" role="img" aria-label="Cantidad de unidades por marca"></canvas></div></div>
       </div>
       <div class="sec-lbl">Detalle pedidos</div>
       <div class="tbl-wrap"><div class="tbl-scroll"><table>
@@ -204,15 +225,8 @@ tbody tr:hover td{background:#fafafa;}
     <div id="s-migracion" class="tab-section">
       <div id="kpi-migracion" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
       <div class="charts-row">
-        <div class="ccard">
-          <div class="sec-lbl">Puntos migrados por ticket</div>
-          <div class="legend" id="leg-mig-pts"></div>
-          <div style="position:relative;height:160px;"><canvas id="cMigPts" role="img" aria-label="Puntos por ticket de migración"></canvas></div>
-        </div>
-        <div class="ccard">
-          <div class="sec-lbl">Motivos registrados</div>
-          <ul class="motivos-list" id="motivos-mig-list"><li><span class="spinner"></span> Cargando...</li></ul>
-        </div>
+        <div class="ccard"><div class="sec-lbl">Puntos migrados por ticket</div><div class="legend" id="leg-mig-pts"></div><div style="position:relative;height:160px;"><canvas id="cMigPts" role="img" aria-label="Puntos por ticket de migración"></canvas></div></div>
+        <div class="ccard"><div class="sec-lbl">Motivos registrados</div><ul class="motivos-list" id="motivos-mig-list"><li><span class="spinner"></span> Cargando...</li></ul></div>
       </div>
       <div class="sec-lbl">Detalle migraciones</div>
       <div class="tbl-wrap"><div class="tbl-scroll"><table>
@@ -225,15 +239,8 @@ tbody tr:hover td{background:#fafafa;}
     <div id="s-reversa" class="tab-section">
       <div id="kpi-reversa" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
       <div class="charts-row">
-        <div class="ccard">
-          <div class="sec-lbl">Puntos reversados por ticket</div>
-          <div class="legend" id="leg-rev-pts"></div>
-          <div style="position:relative;height:160px;"><canvas id="cRevPts" role="img" aria-label="Puntos por ticket de reversa"></canvas></div>
-        </div>
-        <div class="ccard">
-          <div class="sec-lbl">Motivos de reversa</div>
-          <ul class="motivos-list" id="motivos-rev-list"><li><span class="spinner"></span> Cargando...</li></ul>
-        </div>
+        <div class="ccard"><div class="sec-lbl">Puntos reversados por ticket</div><div class="legend" id="leg-rev-pts"></div><div style="position:relative;height:160px;"><canvas id="cRevPts" role="img" aria-label="Puntos por ticket de reversa"></canvas></div></div>
+        <div class="ccard"><div class="sec-lbl">Motivos de reversa</div><ul class="motivos-list" id="motivos-rev-list"><li><span class="spinner"></span> Cargando...</li></ul></div>
       </div>
       <div class="sec-lbl">Detalle reversas</div>
       <div class="tbl-wrap"><div class="tbl-scroll"><table>
@@ -246,11 +253,7 @@ tbody tr:hover td{background:#fafafa;}
     <div id="s-kam" class="tab-section">
       <div class="sec-lbl">Carga total por KAM (GC + Migración + Reversa)</div>
       <div id="kam-cards" class="kam-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
-      <div class="ccard">
-        <div class="sec-lbl">Pedidos GC por KAM</div>
-        <div class="legend" id="leg-kam"></div>
-        <div style="position:relative;height:200px;"><canvas id="cKAM" role="img" aria-label="Pedidos y monto por KAM"></canvas></div>
-      </div>
+      <div class="ccard"><div class="sec-lbl">Pedidos GC por KAM</div><div class="legend" id="leg-kam"></div><div style="position:relative;height:200px;"><canvas id="cKAM" role="img" aria-label="Pedidos y monto por KAM"></canvas></div></div>
     </div>
 
     <!-- ALERTAS -->
@@ -259,12 +262,17 @@ tbody tr:hover td{background:#fafafa;}
       <div id="alertas-container"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
     </div>
 
-    <!-- PANEL IA -->
+    <!-- PANEL IA APPRECIO -->
     <div class="ia-panel">
       <div class="ia-header">
-        <div>
-          <div class="ia-header-title">Análisis con IA — llama3.3 via n8n</div>
-          <div class="ia-header-sub">Powered by Ollama · procesamiento local en tu servidor</div>
+        <div class="ia-header-left">
+          <div class="ia-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+          </div>
+          <div>
+            <div class="ia-header-title">Apprecio IA — Análisis operacional</div>
+            <div class="ia-header-sub">Analiza los datos del panel y genera recomendaciones para el equipo</div>
+          </div>
         </div>
         <div class="ia-status-row">
           <div class="ia-dot" id="ia-dot"></div>
@@ -272,10 +280,6 @@ tbody tr:hover td{background:#fafafa;}
         </div>
       </div>
       <div class="ia-body">
-        <div class="ia-info">
-          La IA analiza los datos del panel usando <strong>llama3.3:latest</strong> corriendo en tu servidor a través de n8n.
-          Gratuito · sin límite de consultas · los datos no salen de tu infraestructura.
-        </div>
         <div class="ia-chips">
           <button class="ia-chip" onclick="pq('¿Cuál es el KAM con mayor carga operacional y qué recomendarías para balancear el equipo?')">Carga por KAM</button>
           <button class="ia-chip" onclick="pq('Analiza los motivos de migración registrados e identifica patrones para prevenirlos.')">Motivos migración</button>
@@ -285,11 +289,15 @@ tbody tr:hover td{background:#fafafa;}
           <button class="ia-chip" onclick="pq('¿Qué acciones prioritarias recomendarías para esta semana basándote en los datos disponibles?')">Plan de acción</button>
         </div>
         <div class="ia-input-row">
-          <input class="ia-input" id="ia-input" type="text" placeholder="Escribe tu consulta sobre los datos del panel..." onkeydown="if(event.key==='Enter')enviarIA()"/>
-          <button class="ia-send" id="ia-send-btn" onclick="enviarIA()">Consultar</button>
+          <input class="ia-input" id="ia-input" type="text" placeholder="Consulta los datos del panel con Apprecio IA..." onkeydown="if(event.key==='Enter')enviarIA()"/>
+          <button class="ia-send" id="ia-send-btn" onclick="enviarIA()">Analizar</button>
         </div>
         <div class="ia-messages" id="ia-messages">
-          <div class="ia-empty">Selecciona una pregunta rápida o escribe tu consulta para analizar los datos con IA.</div>
+          <div class="ia-empty">
+            <div class="ia-empty-icon">◎</div>
+            Selecciona una consulta rápida o escribe tu pregunta.<br/>
+            Apprecio IA analizará los datos del panel en tiempo real.
+          </div>
         </div>
       </div>
     </div>
@@ -298,35 +306,42 @@ tbody tr:hover td{background:#fafafa;}
 </div>
 
 <script>
-/* ══════════════════════════════
-   CONFIG — cambia solo esta línea si mueves el webhook
-══════════════════════════════ */
 const WEBHOOK_IA = 'https://n8n.openip.cl/webhook/ia-apprecio';
+const DOMINIOS   = ['apprecio.com','dcanje.com'];
+const SHEET_ID   = '1nJctpXetq2EXXFu49-kyDIbthnwon2prkQsXr67MIT8';
+const GID_GC='0', GID_MIG='716997002', GID_REV='49456582';
+const PALETA=['#fa345e','#f8848f','#f5c4b3','#fdd0d8','#e24b4a','#ffb3c1','#ffeef1'];
+const KAM_MAP={'ljamasmie':'L. Jamasmie','shernandez':'S. Hernandez','bgonzalez':'B. González','fmaya':'F. Maya','scuellar':'S. Cuellar','dvillavicencio':'D. Villavicencio','dgarcia':'D. García','rmendozat':'R. Mendoza'};
 
-/* ══════════════════════════════
-   CONFIG GENERAL
-══════════════════════════════ */
-const DOMINIOS  = ['apprecio.com','dcanje.com'];
-const SHEET_ID  = '1nJctpXetq2EXXFu49-kyDIbthnwon2prkQsXr67MIT8';
-const GID_GC    = '0';
-const GID_MIG   = '716997002';
-const GID_REV   = '49456582';
-const PALETA    = ['#fa345e','#f8848f','#f5c4b3','#fdd0d8','#e24b4a','#ffb3c1','#ffeef1'];
-const KAM_MAP   = {
-  'ljamasmie':'L. Jamasmie','shernandez':'S. Hernandez','bgonzalez':'B. González',
-  'fmaya':'F. Maya','scuellar':'S. Cuellar','dvillavicencio':'D. Villavicencio',
-  'dgarcia':'D. García','rmendozat':'R. Mendoza'
-};
+const kamN=e=>{if(!e)return '—';const u=e.split('@')[0].toLowerCase();return KAM_MAP[u]||u;};
+const kamI=e=>kamN(e).split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2);
+const pPais=p=>{const cls=p==='Chile'?'p-cl':p==='Colombia'?'p-co':'p-pe';const code=p==='Chile'?'CL':p==='Colombia'?'CO':'PE';return `<span class="pill ${cls}">${code}</span>`;};
+const fmt=n=>Number(n||0).toLocaleString('es-CL');
+const fmtM=n=>{n=Number(n||0);return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(0)+'K':String(Math.round(n));};
 
-const kamN = e => { if(!e) return '—'; const u=e.split('@')[0].toLowerCase(); return KAM_MAP[u]||u; };
-const kamI = e => kamN(e).split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2);
-const pPais = p => { const cls=p==='Chile'?'p-cl':p==='Colombia'?'p-co':'p-pe'; const code=p==='Chile'?'CL':p==='Colombia'?'CO':'PE'; return `<span class="pill ${cls}">${code}</span>`; };
-const fmt  = n => Number(n||0).toLocaleString('es-CL');
-const fmtM = n => { n=Number(n||0); return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(0)+'K':String(Math.round(n)); };
+/* ── MARKDOWN RENDERER ── */
+function mdToHtml(text){
+  if(!text) return '';
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/^---$/gm,'<hr/>')
+    .replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>')
+    .replace(/`(.+?)`/g,'<code>$1</code>')
+    .replace(/^\d+\. (.+)$/gm,'<li>$1</li>')
+    .replace(/^[\*\-] (.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>.*<\/li>(\n|$))+/g, m=>`<ul>${m}</ul>`)
+    .replace(/\n\n/g,'</p><p>')
+    .replace(/^(?!<[hupb]|<li|<hr|<block)(.+)$/gm,'<p>$1</p>')
+    .replace(/<p><\/p>/g,'')
+    .trim();
+}
 
-/* ══════════════════════════════
-   AUTH
-══════════════════════════════ */
+/* AUTH */
 function onGoogleLogin(r){
   const p=JSON.parse(atob(r.credential.split('.')[1]));
   if(!DOMINIOS.includes((p.email||'').split('@')[1]||'')){document.getElementById('login-error').style.display='block';return;}
@@ -351,9 +366,7 @@ window.addEventListener('load',()=>{
   if(raw){const s=JSON.parse(raw);if(s.expiry&&Date.now()<s.expiry)mostrarApp(s);else localStorage.removeItem('gUser');}
 });
 
-/* ══════════════════════════════
-   TABS
-══════════════════════════════ */
+/* TABS */
 function showTab(name,el){
   document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -361,9 +374,7 @@ function showTab(name,el){
   el.classList.add('active');
 }
 
-/* ══════════════════════════════
-   FETCH CSV
-══════════════════════════════ */
+/* FETCH CSV */
 let _dp=[],_dm=[],_dr=[];
 const charts={};
 
@@ -391,15 +402,12 @@ async function cargarTodo(){
   }catch(e){document.getElementById('last-update').textContent='Error al cargar';console.error(e);}
 }
 
-/* ══════════════════════════════
-   RENDERS
-══════════════════════════════ */
+/* RENDERS */
 function renderPedidos(rows){
   const totalM=rows.reduce((s,r)=>s+Number(r['Subtotal']||0),0);
   const empresas=[...new Set(rows.map(r=>r['Panel / Empresa']))].filter(Boolean);
   const sinOC=rows.filter(r=>!r['OC']&&!r['Nº Factura']).length;
-  const gcCant={};
-  rows.forEach(r=>{const gc=r['Marca / Gift Card'];if(gc)gcCant[gc]=(gcCant[gc]||0)+Number(r['Cantidad']||1);});
+  const gcCant={};rows.forEach(r=>{const gc=r['Marca / Gift Card'];if(gc)gcCant[gc]=(gcCant[gc]||0)+Number(r['Cantidad']||1);});
   const topGC=Object.entries(gcCant).sort((a,b)=>b[1]-a[1])[0];
   document.getElementById('kpi-pedidos').innerHTML=`
     <div class="kpi"><div class="kpi-lbl">Líneas pedidas</div><div class="kpi-val">${rows.length}</div><div class="kpi-sub">registros activos</div></div>
@@ -504,9 +512,7 @@ function renderAlertas(p,m,r){
     :al.map(a=>`<div class="alerta-box"><div class="alerta-title">${a.t}</div><div class="alerta-body">${a.b}</div></div>`).join('');
 }
 
-/* ══════════════════════════════
-   CHARTS
-══════════════════════════════ */
+/* CHARTS */
 const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
 const gcC=isDark?'rgba(255,255,255,0.07)':'rgba(0,0,0,0.06)';
 const tcC=isDark?'#bbb':'#999';
@@ -522,12 +528,11 @@ function drawMulti(id,labels,datasets){
   charts[id]=new Chart(document.getElementById(id),{type:'bar',data:{labels,datasets:datasets.map(d=>({label:d.label,data:d.data,backgroundColor:d.bg,borderRadius:4,borderWidth:0}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tcC,font:{size:9,family:'Montserrat'}},grid:{color:gcC}},y:{ticks:{color:tcC,font:{size:9,family:'Montserrat'}},grid:{color:gcC}}}}});
 }
 
-/* ══════════════════════════════
-   IA — n8n → Ollama
-══════════════════════════════ */
+/* ── IA ── */
 const iaMsgs=[];
+let userInitials='AP';
 
-function setStatus(estado, txt){
+function setStatus(estado,txt){
   const dot=document.getElementById('ia-dot');
   dot.className='ia-dot'+(estado==='ok'?' ok':estado==='loading'?' loading':'');
   document.getElementById('ia-status-txt').textContent=txt;
@@ -537,7 +542,9 @@ function buildCtx(){
   const rp=_dp.map(r=>`[GC] ${r['País']}|${r['Panel / Empresa']}|${r['Marca / Gift Card']}|cant:${r['Cantidad']}|sub:${r['Subtotal']}|KAM:${r['KAM Solicitante']}|fecha:${r['Fecha']}|com:${r['Comentario']||''}`).join('\n');
   const rm=_dm.map(r=>`[MIG] #${r['Nº Ticket']}|${r['País']}|${r['Panel / Empresa']}|${r['Nombre Panel/Sucursal Origen']}→${r['Nombre Panel/Sucursal Destino']}|pts:${r['Total Puntos a Reversar']}|motivo:${r['Motivo de la Reversa']}|KAM:${r['KAM Solicitante']}|${r['Fecha']}`).join('\n');
   const rr=_dr.map(r=>`[REV] #${r['Nº Ticket']}|${r['País']}|${r['Panel / Empresa']}|pts:${r['Total Puntos a Reversar']}|motivo:${r['Motivo de la Anulación']}|factura:${r['N° de Factura']||'sin factura'}|KAM:${r['KAM Solicitante']}|${r['Fecha']}`).join('\n');
-  return `Eres un asistente analítico experto en operaciones de fidelización para Apprecio, plataforma de loyalty en Latinoamérica. Analiza los datos operacionales del equipo KAM y responde en español de forma concisa, directa y accionable. Usa listas cuando corresponda. No repitas los datos crudos, interprétalos y da recomendaciones concretas.
+  return `Eres el asistente de análisis operacional de Apprecio. Tu nombre es "Apprecio IA". Nunca menciones que usas llama, Ollama, modelos de lenguaje ni ninguna tecnología subyacente. Simplemente eres Apprecio IA.
+
+Analiza los datos operacionales del equipo KAM y responde en español de forma concisa, directa y accionable. Usa listas, títulos y formato markdown cuando sea útil. No repitas los datos crudos, interprétalos y da recomendaciones concretas.
 
 KAMs: ljamasmie=L.Jamasmie, shernandez=S.Hernandez, bgonzalez=B.González, fmaya=F.Maya, scuellar=S.Cuellar, dvillavicencio=D.Villavicencio
 
@@ -551,16 +558,39 @@ ${rm||'Sin datos'}
 ${rr||'Sin datos'}`;
 }
 
-function addMsg(role,text){
+function addMsg(role, text, isHtml=false){
   const div=document.getElementById('ia-messages');
   const empty=div.querySelector('.ia-empty');
   if(empty)empty.remove();
-  const msg=document.createElement('div');
-  msg.className=`ia-msg ${role}`;
-  msg.textContent=text;
-  div.appendChild(msg);
+
+  const wrap=document.createElement('div');
+  wrap.className=`ia-msg-wrap ${role==='user'?'user':''}`;
+
+  const avatar=document.createElement('div');
+  avatar.className=`ia-avatar ${role==='user'?'user-av':'ai'}`;
+
+  if(role==='user'){
+    avatar.textContent=userInitials;
+  } else if(role==='assistant'){
+    avatar.innerHTML=`<img src="https://estudios.apprecio.com/hubfs/logos/Apprecio-logo-rojo.png" alt="IA"/>`;
+  } else {
+    avatar.innerHTML=`<img src="https://estudios.apprecio.com/hubfs/logos/Apprecio-logo-rojo.png" alt="IA"/>`;
+  }
+
+  const bubble=document.createElement('div');
+  bubble.className=`ia-bubble ${role==='user'?'user':role==='thinking'?'thinking':'assistant'}`;
+
+  if(isHtml){
+    bubble.innerHTML=text;
+  } else {
+    bubble.textContent=text;
+  }
+
+  wrap.appendChild(avatar);
+  wrap.appendChild(bubble);
+  div.appendChild(wrap);
   div.scrollTop=div.scrollHeight;
-  return msg;
+  return bubble;
 }
 
 async function enviarIA(){
@@ -568,55 +598,53 @@ async function enviarIA(){
   const q=input.value.trim();
   if(!q)return;
   if(_dp.length===0&&_dm.length===0&&_dr.length===0){
-    addMsg('assistant','Primero carga los datos usando el botón "Actualizar datos".');
+    addMsg('assistant','Primero actualiza los datos usando el botón "Actualizar datos".');
     return;
   }
   input.value='';
   document.getElementById('ia-send-btn').disabled=true;
-  setStatus('loading','Consultando llama3.3...');
+  setStatus('loading','Analizando...');
   addMsg('user',q);
-  const thinking=addMsg('thinking','Analizando datos con llama3.3...');
+
+  const thinkingBubble=addMsg('thinking','Apprecio IA está analizando los datos...');
   iaMsgs.push({role:'user',content:q});
 
   try{
     const resp=await fetch(WEBHOOK_IA,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        system: buildCtx(),
-        message: q,
-        history: iaMsgs.slice(-6)  // últimos 3 turnos para contexto
-      })
+      body:JSON.stringify({system:buildCtx(),message:q,history:iaMsgs.slice(-6)})
     });
-
     if(!resp.ok) throw new Error('HTTP '+resp.status);
     const data=await resp.json();
+    const txt=data.reply||data.text||data.content||data.output||(Array.isArray(data)&&data[0]&&(data[0].reply||data[0].text||data[0].output))||JSON.stringify(data);
 
-    // Compatible con distintas estructuras de respuesta de n8n
-    const txt = data.reply
-      || data.text
-      || data.content
-      || data.message
-      || data.output
-      || (data[0]&&(data[0].reply||data[0].text||data[0].output))
-      || JSON.stringify(data);
-
-    thinking.remove();
-    addMsg('assistant', txt);
+    thinkingBubble.parentElement.remove();
+    addMsg('assistant', mdToHtml(txt), true);
     iaMsgs.push({role:'assistant',content:txt});
-    setStatus('ok','Respuesta recibida');
+    setStatus('ok','Análisis completado');
     setTimeout(()=>setStatus('ok','Listo'),3000);
 
   }catch(e){
-    thinking.remove();
+    thinkingBubble.parentElement.remove();
     setStatus('','Error de conexión');
-    addMsg('assistant',`No se pudo conectar con el webhook de n8n.\n\nVerifica que:\n• El workflow "IA Apprecio" está activo en n8n\n• La URL del webhook es: ${WEBHOOK_IA}\n• El workflow tiene el nodo Respond habilitado`);
+    addMsg('assistant','No se pudo conectar con Apprecio IA. Verifica que el workflow esté activo en n8n.');
     console.error(e);
   }
   document.getElementById('ia-send-btn').disabled=false;
 }
 
 function pq(t){document.getElementById('ia-input').value=t;enviarIA();}
+
+window.addEventListener('load',()=>{
+  const raw=localStorage.getItem('gUser');
+  if(raw){
+    const s=JSON.parse(raw);
+    if(s.nombre){
+      userInitials=s.nombre.split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2);
+    }
+  }
+});
 </script>
 </body>
 </html>
