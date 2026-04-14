@@ -50,13 +50,14 @@ body{font-family:'Montserrat',sans-serif;background:#f9f9f9;color:#222;}
 .b-warn{background:#fff3cd;color:#856404;border:1px solid #ffc107;}
 .b-ok{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;}
 .b-red{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;}
+.b-gray{background:#f0f0f0;color:#555;border:1px solid #ddd;}
 .charts-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem;}
 .ccard{background:#fff;border:1px solid #eee;border-radius:12px;padding:13px;}
 .sec-lbl{font-size:10px;font-weight:700;color:#888;margin-bottom:9px;letter-spacing:0.05em;text-transform:uppercase;}
 .legend{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px;}
 .leg{display:flex;align-items:center;gap:4px;font-size:9px;color:#888;}
 .dot{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
-.motivos-list{list-style:none;padding:0;}
+.motivos-list{list-style:none;padding:0;max-height:260px;overflow-y:auto;}
 .motivos-list li{padding:8px 10px;border-bottom:1px solid #f5f5f5;font-size:11px;color:#333;line-height:1.4;display:flex;gap:8px;align-items:flex-start;}
 .motivos-list li:last-child{border-bottom:none;}
 .mot-num{background:#fef2f3;color:#fa345e;border:1px solid #fdd;font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
@@ -84,11 +85,16 @@ tbody tr:hover td{background:#fafafa;}
 .kam-stat-val{font-weight:700;color:#222;}
 .bar-bg{height:3px;background:#eee;border-radius:2px;margin-top:7px;}
 .bar-fill{height:3px;background:#fa345e;border-radius:2px;}
-.alerta-box{background:#fff5f7;border:1px solid #fdd;border-radius:10px;padding:11px 13px;margin-bottom:10px;}
-.alerta-title{font-weight:700;font-size:11px;color:#fa345e;margin-bottom:3px;}
+.alerta-box{border-radius:10px;padding:11px 13px;margin-bottom:10px;border:1px solid;}
+.alerta-box.danger{background:#fff5f7;border-color:#fdd;}
+.alerta-box.warn{background:#fffbea;border-color:#f0c040;}
+.alerta-box.deleted{background:#f8f8f8;border-color:#ddd;}
+.alerta-title{font-weight:700;font-size:11px;margin-bottom:3px;}
+.alerta-box.danger .alerta-title{color:#fa345e;}
+.alerta-box.warn .alerta-title{color:#856404;}
+.alerta-box.deleted .alerta-title{color:#666;}
 .alerta-body{font-size:10px;color:#666;line-height:1.5;}
-
-/* ── IA PANEL ── */
+/* IA */
 .ia-panel{background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;margin-top:1.5rem;}
 .ia-header{background:#fa345e;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
 .ia-header-left{display:flex;align-items:center;gap:10px;}
@@ -102,22 +108,16 @@ tbody tr:hover td{background:#fafafa;}
 .ia-dot.loading{background:#fbbf24;animation:pulse 1s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 .ia-body{padding:16px;}
-
-/* Chips */
 .ia-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
 .ia-chip{padding:5px 12px;border:1px solid #fa345e;border-radius:20px;font-size:10px;font-weight:700;color:#fa345e;cursor:pointer;background:#fff;font-family:'Montserrat',sans-serif;transition:all 0.15s;}
 .ia-chip:hover{background:#fa345e;color:#fff;}
-
-/* Input */
 .ia-input-row{display:flex;gap:8px;}
 .ia-input{flex:1;padding:9px 13px;border:1px solid #ddd;border-radius:8px;font-size:11px;font-family:'Montserrat',sans-serif;outline:none;}
 .ia-input:focus{border-color:#fa345e;}
-.ia-send{background:#fa345e;color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;white-space:nowrap;transition:opacity 0.15s;}
+.ia-send{background:#fa345e;color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;white-space:nowrap;}
 .ia-send:hover{opacity:0.88;}
 .ia-send:disabled{background:#ccc;cursor:not-allowed;}
-
-/* Mensajes */
-.ia-messages{margin-top:14px;display:flex;flex-direction:column;gap:12px;max-height:480px;overflow-y:auto;padding-right:2px;}
+.ia-messages{margin-top:14px;display:flex;flex-direction:column;gap:12px;max-height:480px;overflow-y:auto;}
 .ia-msg-wrap{display:flex;gap:8px;align-items:flex-start;}
 .ia-msg-wrap.user{flex-direction:row-reverse;}
 .ia-avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;}
@@ -128,8 +128,6 @@ tbody tr:hover td{background:#fafafa;}
 .ia-bubble.user{background:#fa345e;color:#fff;border-radius:12px 2px 12px 12px;}
 .ia-bubble.assistant{background:#f7f7f7;color:#222;border:1px solid #eee;border-radius:2px 12px 12px 12px;}
 .ia-bubble.thinking{background:#f7f7f7;color:#aaa;border:1px solid #eee;border-radius:2px 12px 12px 12px;font-style:italic;}
-
-/* Markdown rendering dentro de burbuja */
 .ia-bubble.assistant h1,.ia-bubble.assistant h2,.ia-bubble.assistant h3{font-size:12px;font-weight:700;color:#fa345e;margin:10px 0 5px;}
 .ia-bubble.assistant h1{font-size:13px;}
 .ia-bubble.assistant p{margin-bottom:7px;}
@@ -139,12 +137,8 @@ tbody tr:hover td{background:#fafafa;}
 .ia-bubble.assistant strong{font-weight:700;color:#333;}
 .ia-bubble.assistant em{font-style:italic;color:#555;}
 .ia-bubble.assistant hr{border:none;border-top:1px solid #eee;margin:8px 0;}
-.ia-bubble.assistant code{background:#f0f0f0;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:10px;}
 .ia-bubble.assistant blockquote{border-left:3px solid #fa345e;padding-left:10px;color:#666;margin:6px 0;}
-
 .ia-empty{text-align:center;padding:28px 16px;color:#bbb;font-size:11px;line-height:1.7;}
-.ia-empty-icon{font-size:28px;margin-bottom:8px;opacity:0.4;}
-
 .loading{text-align:center;padding:30px;color:#fa345e;font-size:12px;font-weight:600;}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid #fdd;border-top-color:#fa345e;border-radius:50%;animation:spin 0.7s linear infinite;margin-right:6px;vertical-align:middle;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -185,7 +179,7 @@ tbody tr:hover td{background:#fafafa;}
         <img class="ap-logo" src="https://estudios.apprecio.com/hubfs/logos/Apprecio-logo-rojo.png" alt="Apprecio"/>
         <div>
           <div class="ap-title">Panel operacional KAM</div>
-          <div class="ap-subtitle" id="ap-subtitle">Pedidos GC · Migración · Reversa — cargando...</div>
+          <div class="ap-subtitle" id="ap-subtitle">Solicitudes GC · Migración · Reversa — cargando...</div>
         </div>
       </div>
       <div style="text-align:right;">
@@ -196,24 +190,32 @@ tbody tr:hover td{background:#fafafa;}
     </div>
 
     <div class="tab-row">
-      <button class="tab active" onclick="showTab('pedidos',this)">Pedidos GC</button>
-      <button class="tab" onclick="showTab('migracion',this)">Migración</button>
-      <button class="tab" onclick="showTab('reversa',this)">Reversa</button>
+      <button class="tab active" onclick="showTab('gc',this)">Solicitudes GC</button>
+      <button class="tab" onclick="showTab('mig',this)">Migración</button>
+      <button class="tab" onclick="showTab('rev',this)">Reversa</button>
       <button class="tab" onclick="showTab('kam',this)">Equipo KAM</button>
-      <button class="tab" onclick="showTab('alertas',this)">Alertas</button>
+      <button class="tab" onclick="showTab('alertas',this)">Alertas <span id="alerta-badge" style="display:none;background:#fa345e;color:#fff;border-radius:10px;padding:0 5px;font-size:9px;margin-left:3px;"></span></button>
     </div>
 
-    <!-- PEDIDOS GC -->
-    <div id="s-pedidos" class="tab-section active">
-      <div id="kpi-pedidos" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
+    <!-- SOLICITUDES GC -->
+    <div id="s-gc" class="tab-section active">
+      <div id="kpi-gc" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
       <div class="charts-row">
-        <div class="ccard"><div class="sec-lbl">Subtotal por país</div><div class="legend" id="leg-pais"></div><div style="position:relative;height:160px;"><canvas id="cPais" role="img" aria-label="Subtotal por país"></canvas></div></div>
-        <div class="ccard"><div class="sec-lbl">Gift cards por cantidad de unidades</div><div class="legend" id="leg-gc"></div><div style="position:relative;height:160px;"><canvas id="cGC" role="img" aria-label="Cantidad de unidades por marca"></canvas></div></div>
+        <div class="ccard">
+          <div class="sec-lbl">Monto total por país</div>
+          <div class="legend" id="leg-gc-pais"></div>
+          <div style="position:relative;height:170px;"><canvas id="cGCPais" role="img" aria-label="Monto por país"></canvas></div>
+        </div>
+        <div class="ccard">
+          <div class="sec-lbl">Gift cards por cantidad de unidades</div>
+          <div class="legend" id="leg-gc-marca"></div>
+          <div style="position:relative;height:170px;"><canvas id="cGCMarca" role="img" aria-label="Cantidad de unidades por marca"></canvas></div>
+        </div>
       </div>
-      <div class="sec-lbl">Detalle pedidos</div>
+      <div class="sec-lbl">Detalle solicitudes</div>
       <div class="tbl-wrap"><div class="tbl-scroll"><table>
         <thead><tr><th>País</th><th>Empresa</th><th>Gift card</th><th>Fuente</th><th>Cant.</th><th>Subtotal</th><th>KAM</th><th>Fecha</th></tr></thead>
-        <tbody id="tbody-pedidos"><tr><td colspan="8" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
+        <tbody id="tbody-gc"><tr><td colspan="8" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
       </table></div></div>
       <div style="display:flex;align-items:center;gap:6px;font-size:9px;color:#5a0010;margin-top:4px;">
         <span style="width:12px;height:12px;background:#ffd6dd;border-radius:3px;display:inline-block;border:1px solid #e07080;flex-shrink:0;"></span>
@@ -222,30 +224,44 @@ tbody tr:hover td{background:#fafafa;}
     </div>
 
     <!-- MIGRACIÓN -->
-    <div id="s-migracion" class="tab-section">
-      <div id="kpi-migracion" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
+    <div id="s-mig" class="tab-section">
+      <div id="kpi-mig" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
       <div class="charts-row">
-        <div class="ccard"><div class="sec-lbl">Puntos migrados por ticket</div><div class="legend" id="leg-mig-pts"></div><div style="position:relative;height:160px;"><canvas id="cMigPts" role="img" aria-label="Puntos por ticket de migración"></canvas></div></div>
-        <div class="ccard"><div class="sec-lbl">Motivos registrados</div><ul class="motivos-list" id="motivos-mig-list"><li><span class="spinner"></span> Cargando...</li></ul></div>
+        <div class="ccard">
+          <div class="sec-lbl">Puntos migrados por país</div>
+          <div class="legend" id="leg-mig-pais"></div>
+          <div style="position:relative;height:170px;"><canvas id="cMigPais" role="img" aria-label="Puntos migrados por país"></canvas></div>
+        </div>
+        <div class="ccard">
+          <div class="sec-lbl">Motivos registrados</div>
+          <ul class="motivos-list" id="motivos-mig-list"><li><span class="spinner"></span> Cargando...</li></ul>
+        </div>
       </div>
       <div class="sec-lbl">Detalle migraciones</div>
       <div class="tbl-wrap"><div class="tbl-scroll"><table>
-        <thead><tr><th>Ticket</th><th>País</th><th>Empresa</th><th>Sucursal origen</th><th></th><th>Sucursal destino</th><th>Puntos</th><th>Motivo</th><th>KAM</th><th>Fecha</th></tr></thead>
-        <tbody id="tbody-migracion"><tr><td colspan="10" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
+        <thead><tr><th>Ticket</th><th>País</th><th>Empresa</th><th>Sucursal origen</th><th></th><th>Sucursal destino</th><th>Puntos</th><th>KAM</th><th>Fecha</th></tr></thead>
+        <tbody id="tbody-mig"><tr><td colspan="9" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
       </table></div></div>
     </div>
 
     <!-- REVERSA -->
-    <div id="s-reversa" class="tab-section">
-      <div id="kpi-reversa" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
+    <div id="s-rev" class="tab-section">
+      <div id="kpi-rev" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
       <div class="charts-row">
-        <div class="ccard"><div class="sec-lbl">Puntos reversados por ticket</div><div class="legend" id="leg-rev-pts"></div><div style="position:relative;height:160px;"><canvas id="cRevPts" role="img" aria-label="Puntos por ticket de reversa"></canvas></div></div>
-        <div class="ccard"><div class="sec-lbl">Motivos de reversa</div><ul class="motivos-list" id="motivos-rev-list"><li><span class="spinner"></span> Cargando...</li></ul></div>
+        <div class="ccard">
+          <div class="sec-lbl">Puntos reversados por país</div>
+          <div class="legend" id="leg-rev-pais"></div>
+          <div style="position:relative;height:170px;"><canvas id="cRevPais" role="img" aria-label="Puntos reversados por país"></canvas></div>
+        </div>
+        <div class="ccard">
+          <div class="sec-lbl">Motivos de reversa</div>
+          <ul class="motivos-list" id="motivos-rev-list"><li><span class="spinner"></span> Cargando...</li></ul>
+        </div>
       </div>
       <div class="sec-lbl">Detalle reversas</div>
       <div class="tbl-wrap"><div class="tbl-scroll"><table>
         <thead><tr><th>Ticket</th><th>País</th><th>Empresa</th><th>Sucursal</th><th>Puntos</th><th>Motivo</th><th>KAM</th><th>Fecha</th></tr></thead>
-        <tbody id="tbody-reversa"><tr><td colspan="8" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
+        <tbody id="tbody-rev"><tr><td colspan="8" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
       </table></div></div>
     </div>
 
@@ -253,7 +269,11 @@ tbody tr:hover td{background:#fafafa;}
     <div id="s-kam" class="tab-section">
       <div class="sec-lbl">Carga total por KAM (GC + Migración + Reversa)</div>
       <div id="kam-cards" class="kam-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
-      <div class="ccard"><div class="sec-lbl">Pedidos GC por KAM</div><div class="legend" id="leg-kam"></div><div style="position:relative;height:200px;"><canvas id="cKAM" role="img" aria-label="Pedidos y monto por KAM"></canvas></div></div>
+      <div class="ccard">
+        <div class="sec-lbl">Solicitudes GC por KAM (monto)</div>
+        <div class="legend" id="leg-kam"></div>
+        <div style="position:relative;height:200px;"><canvas id="cKAM" role="img" aria-label="Monto GC por KAM"></canvas></div>
+      </div>
     </div>
 
     <!-- ALERTAS -->
@@ -262,12 +282,12 @@ tbody tr:hover td{background:#fafafa;}
       <div id="alertas-container"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
     </div>
 
-    <!-- PANEL IA APPRECIO -->
+    <!-- PANEL IA -->
     <div class="ia-panel">
       <div class="ia-header">
         <div class="ia-header-left">
           <div class="ia-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
           </div>
           <div>
             <div class="ia-header-title">Apprecio IA — Análisis operacional</div>
@@ -293,33 +313,51 @@ tbody tr:hover td{background:#fafafa;}
           <button class="ia-send" id="ia-send-btn" onclick="enviarIA()">Analizar</button>
         </div>
         <div class="ia-messages" id="ia-messages">
-          <div class="ia-empty">
-            <div class="ia-empty-icon">◎</div>
-            Selecciona una consulta rápida o escribe tu pregunta.<br/>
-            Apprecio IA analizará los datos del panel en tiempo real.
-          </div>
+          <div class="ia-empty">Selecciona una consulta rápida o escribe tu pregunta.<br/>Apprecio IA analizará los datos del panel en tiempo real.</div>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
 <script>
+/* ══════════════ CONFIG ══════════════ */
 const WEBHOOK_IA = 'https://n8n.openip.cl/webhook/ia-apprecio';
 const DOMINIOS   = ['apprecio.com','dcanje.com'];
 const SHEET_ID   = '1nJctpXetq2EXXFu49-kyDIbthnwon2prkQsXr67MIT8';
 const GID_GC='0', GID_MIG='716997002', GID_REV='49456582';
 const PALETA=['#fa345e','#f8848f','#f5c4b3','#fdd0d8','#e24b4a','#ffb3c1','#ffeef1'];
-const KAM_MAP={'ljamasmie':'L. Jamasmie','shernandez':'S. Hernandez','bgonzalez':'B. González','fmaya':'F. Maya','scuellar':'S. Cuellar','dvillavicencio':'D. Villavicencio','dgarcia':'D. García','rmendozat':'R. Mendoza'};
+const KAM_MAP={'ljamasmie':'L. Jamasmie','shernandez':'S. Hernandez','bgonzalez':'B. González',
+  'fmaya':'F. Maya','scuellar':'S. Cuellar','dvillavicencio':'D. Villavicencio',
+  'dduran':'D. Durán','jcalzada':'J. Calzada','dallendes':'D. Allendes','dgarcia':'D. García'};
 
-const kamN=e=>{if(!e)return '—';const u=e.split('@')[0].toLowerCase();return KAM_MAP[u]||u;};
-const kamI=e=>kamN(e).split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2);
-const pPais=p=>{const cls=p==='Chile'?'p-cl':p==='Colombia'?'p-co':'p-pe';const code=p==='Chile'?'CL':p==='Colombia'?'CO':'PE';return `<span class="pill ${cls}">${code}</span>`;};
-const fmt=n=>Number(n||0).toLocaleString('es-CL');
-const fmtM=n=>{n=Number(n||0);return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(0)+'K':String(Math.round(n));};
+/* ══════════════ HELPERS ══════════════ */
+const kamN = e => { if(!e) return '—'; const u=e.split('@')[0].toLowerCase(); return KAM_MAP[u]||u; };
+const kamI = e => kamN(e).split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2);
+const pPais = p => {
+  const cls=p==='Chile'?'p-cl':p==='Colombia'?'p-co':'p-pe';
+  const code=p==='Chile'?'CL':p==='Colombia'?'CO':'PE';
+  return `<span class="pill ${cls}">${code}</span>`;
+};
 
-/* ── MARKDOWN RENDERER ── */
+/* Convierte strings con puntos de miles a número: "30.000" → 30000, "1.500.000" → 1500000 */
+const toNum = s => {
+  if(s===null||s===undefined||s==='') return 0;
+  const str = String(s).trim();
+  /* Si tiene punto y coma → coma es decimal */
+  if(str.includes(',')) return parseFloat(str.replace(/\./g,'').replace(',','.')) || 0;
+  /* Si tiene múltiples puntos → todos son separadores de miles */
+  const dots = (str.match(/\./g)||[]).length;
+  if(dots>1) return parseFloat(str.replace(/\./g,'')) || 0;
+  /* Un solo punto: si hay exactamente 3 dígitos después → miles separator */
+  if(dots===1 && /\.\d{3}$/.test(str)) return parseFloat(str.replace('.','')) || 0;
+  return parseFloat(str) || 0;
+};
+
+const fmt  = n => Math.round(Number(n)||0).toLocaleString('es-CL');
+const fmtM = n => { n=Number(n)||0; return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(0)+'K':String(Math.round(n)); };
+
+/* ══════════════ MARKDOWN ══════════════ */
 function mdToHtml(text){
   if(!text) return '';
   return text
@@ -334,14 +372,49 @@ function mdToHtml(text){
     .replace(/`(.+?)`/g,'<code>$1</code>')
     .replace(/^\d+\. (.+)$/gm,'<li>$1</li>')
     .replace(/^[\*\-] (.+)$/gm,'<li>$1</li>')
-    .replace(/(<li>.*<\/li>(\n|$))+/g, m=>`<ul>${m}</ul>`)
-    .replace(/\n\n/g,'</p><p>')
-    .replace(/^(?!<[hupb]|<li|<hr|<block)(.+)$/gm,'<p>$1</p>')
-    .replace(/<p><\/p>/g,'')
-    .trim();
+    .replace(/(<li>.*<\/li>\n?)+/g, m=>`<ul>${m}</ul>`)
+    .replace(/\n\n+/g,'</p><p>')
+    .replace(/^(?!<[hupb\/]|<li|<hr|<block)(.+)$/gm,'<p>$1</p>')
+    .replace(/<p><\/p>/g,'').trim();
 }
 
-/* AUTH */
+/* ══════════════ CSV PARSER ROBUSTO ══════════════ */
+function parseCSV(text){
+  const lines=[];
+  let cur='', inQ=false, row=[];
+  for(let i=0;i<text.length;i++){
+    const ch=text[i];
+    if(ch==='"'){ inQ=!inQ; }
+    else if(ch==='\n'&&!inQ){
+      row.push(cur.replace(/\r$/,'').trim());
+      lines.push(row); row=[]; cur='';
+    } else if(ch===','&&!inQ){
+      row.push(cur.trim()); cur='';
+    } else { cur+=ch; }
+  }
+  if(cur||row.length){ row.push(cur.trim()); lines.push(row); }
+
+  if(lines.length<2) return {headers:[],rows:[]};
+  const headers=lines[0].map(h=>h.trim());
+  const rows=lines.slice(1).map(vals=>{
+    const o={};
+    headers.forEach((h,i)=>{ o[h]=(vals[i]||'').replace(/\r/g,'').trim(); });
+    return o;
+  });
+  return {headers,rows};
+}
+
+/* Fila válida = tiene al menos País y (Empresa o Ticket) con valor real */
+function esFilaValida(r, tipo){
+  const pais=(r['País']||'').trim();
+  if(!pais) return false;
+  if(tipo==='gc') return !!(r['Panel / Empresa']||'').trim() && !!(r['Marca / Gift Card']||'').trim();
+  if(tipo==='mig') return !!(r['Panel / Empresa']||'').trim();
+  if(tipo==='rev') return !!(r['Panel / Empresa']||'').trim();
+  return true;
+}
+
+/* ══════════════ AUTH ══════════════ */
 function onGoogleLogin(r){
   const p=JSON.parse(atob(r.credential.split('.')[1]));
   if(!DOMINIOS.includes((p.email||'').split('@')[1]||'')){document.getElementById('login-error').style.display='block';return;}
@@ -354,6 +427,9 @@ function mostrarApp(u){
   document.getElementById('user-avatar').src=u.picture||u.avatar||'';
   document.getElementById('user-name').textContent=u.nombre||u.name||'';
   document.getElementById('user-email').textContent=u.email||'';
+  if(u.nombre||u.name){
+    userInitials=((u.nombre||u.name||'').split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2))||'AP';
+  }
   cargarTodo();
 }
 function cerrarSesion(){
@@ -366,7 +442,7 @@ window.addEventListener('load',()=>{
   if(raw){const s=JSON.parse(raw);if(s.expiry&&Date.now()<s.expiry)mostrarApp(s);else localStorage.removeItem('gUser');}
 });
 
-/* TABS */
+/* ══════════════ TABS ══════════════ */
 function showTab(name,el){
   document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -374,162 +450,310 @@ function showTab(name,el){
   el.classList.add('active');
 }
 
-/* FETCH CSV */
+/* ══════════════ FETCH CSV ══════════════ */
 let _dp=[],_dm=[],_dr=[];
+let _deletedGC=[], _deletedMig=[], _deletedRev=[];
 const charts={};
 
-async function fetchCSV(gid){
+async function fetchSheet(gid){
   const text=await(await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`)).text();
-  const lines=text.trim().split('\n');
-  const headers=lines[0].split(',').map(h=>h.replace(/\r/,'').trim());
-  return lines.slice(1).map(line=>{
-    const vals=[];let cur='',inQ=false;
-    for(const ch of line){if(ch==='"'){inQ=!inQ;}else if(ch===','&&!inQ){vals.push(cur.trim());cur='';}else{cur+=ch;}}
-    vals.push(cur.replace(/\r/,'').trim());
-    const o={};headers.forEach((h,i)=>o[h]=vals[i]||'');return o;
-  });
+  return parseCSV(text);
+}
+
+/* Detecta filas eliminadas comparando con snapshot anterior */
+function detectarEliminadas(prevSnap, currRows, tipo, snapKey){
+  const prev=JSON.parse(localStorage.getItem(snapKey)||'[]');
+  const currIds=new Set(currRows.map(r=>rowId(r,tipo)));
+  const deleted=prev.filter(r=>!currIds.has(rowId(r,tipo))&&esFilaValida(r,tipo));
+  /* Guardar snapshot actual */
+  localStorage.setItem(snapKey, JSON.stringify(currRows.filter(r=>esFilaValida(r,tipo))));
+  return deleted;
+}
+function rowId(r,tipo){
+  if(tipo==='gc') return `${r['País']}-${r['Panel / Empresa']}-${r['Marca / Gift Card']}-${r['Fecha']}`;
+  if(tipo==='mig') return `${r['Nº Ticket']}-${r['Panel / Empresa']}-${r['Fecha']}`;
+  if(tipo==='rev') return `${r['Nº Ticket']}-${r['Panel / Empresa']}-${r['Fecha']}`;
+  return JSON.stringify(r);
 }
 
 async function cargarTodo(){
   document.getElementById('last-update').textContent='Actualizando...';
   try{
-    [_dp,_dm,_dr]=await Promise.all([fetchCSV(GID_GC),fetchCSV(GID_MIG),fetchCSV(GID_REV)]);
-    renderPedidos(_dp);renderMigracion(_dm);renderReversa(_dr);
-    renderKAM(_dp,_dm,_dr);renderAlertas(_dp,_dm,_dr);
+    const [gc,mig,rev]=await Promise.all([fetchSheet(GID_GC),fetchSheet(GID_MIG),fetchSheet(GID_REV)]);
+
+    /* Filtrar filas válidas */
+    _dp = gc.rows.filter(r=>esFilaValida(r,'gc'));
+    _dm = mig.rows.filter(r=>esFilaValida(r,'mig'));
+    _dr = rev.rows.filter(r=>esFilaValida(r,'rev'));
+
+    /* Detectar eliminadas */
+    _deletedGC  = detectarEliminadas(null,_dp,'gc','snap_gc');
+    _deletedMig = detectarEliminadas(null,_dm,'mig','snap_mig');
+    _deletedRev = detectarEliminadas(null,_dr,'rev','snap_rev');
+
+    renderGC(_dp);
+    renderMig(_dm);
+    renderRev(_dr);
+    renderKAM(_dp,_dm,_dr);
+    renderAlertas(_dp,_dm,_dr);
+
     const now=new Date();
     document.getElementById('last-update').textContent='Actualizado: '+now.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'});
-    document.getElementById('ap-subtitle').textContent='Pedidos GC · Migración · Reversa — '+now.toLocaleDateString('es-CL',{day:'2-digit',month:'short',year:'numeric'});
+    document.getElementById('ap-subtitle').textContent='Solicitudes GC · Migración · Reversa — '+now.toLocaleDateString('es-CL',{day:'2-digit',month:'short',year:'numeric'});
   }catch(e){document.getElementById('last-update').textContent='Error al cargar';console.error(e);}
 }
 
-/* RENDERS */
-function renderPedidos(rows){
-  const totalM=rows.reduce((s,r)=>s+Number(r['Subtotal']||0),0);
-  const empresas=[...new Set(rows.map(r=>r['Panel / Empresa']))].filter(Boolean);
+/* ══════════════ RENDER GC ══════════════ */
+function renderGC(rows){
+  const totalM=rows.reduce((s,r)=>s+toNum(r['Subtotal']),0);
   const sinOC=rows.filter(r=>!r['OC']&&!r['Nº Factura']).length;
-  const gcCant={};rows.forEach(r=>{const gc=r['Marca / Gift Card'];if(gc)gcCant[gc]=(gcCant[gc]||0)+Number(r['Cantidad']||1);});
+  const gcCant={};
+  rows.forEach(r=>{const gc=(r['Marca / Gift Card']||'').trim().toUpperCase();if(gc)gcCant[gc]=(gcCant[gc]||0)+toNum(r['Cantidad']||1);});
   const topGC=Object.entries(gcCant).sort((a,b)=>b[1]-a[1])[0];
-  document.getElementById('kpi-pedidos').innerHTML=`
-    <div class="kpi"><div class="kpi-lbl">Líneas pedidas</div><div class="kpi-val">${rows.length}</div><div class="kpi-sub">registros activos</div></div>
+  const paises=[...new Set(rows.map(r=>r['País']))].filter(Boolean);
+
+  document.getElementById('kpi-gc').innerHTML=`
+    <div class="kpi"><div class="kpi-lbl">Solicitudes</div><div class="kpi-val">${rows.length}</div><div class="kpi-sub">líneas activas</div></div>
     <div class="kpi"><div class="kpi-lbl">Monto total</div><div class="kpi-val">$${fmtM(totalM)}</div><div class="kpi-sub">suma subtotales</div></div>
-    <div class="kpi"><div class="kpi-lbl">Clientes únicos</div><div class="kpi-val">${empresas.length}</div><div class="kpi-sub">empresas distintas</div></div>
+    <div class="kpi"><div class="kpi-lbl">Clientes únicos</div><div class="kpi-val">${[...new Set(rows.map(r=>r['Panel / Empresa']))].filter(Boolean).length}</div></div>
     <div class="kpi"><div class="kpi-lbl">Sin OC / factura</div><div class="kpi-val">${sinOC}</div><span class="badge b-warn">riesgo admin</span></div>
-    <div class="kpi"><div class="kpi-lbl">GC top</div><div class="kpi-val" style="font-size:13px;">${topGC?topGC[0]:'—'}</div><div class="kpi-sub">${topGC?topGC[1]+' unidades':''}</div></div>
-    <div class="kpi"><div class="kpi-lbl">Países</div><div class="kpi-val">${[...new Set(rows.map(r=>r['País']))].filter(Boolean).length}</div><div class="kpi-sub">${[...new Set(rows.map(r=>r['País']))].filter(Boolean).join(' · ')}</div></div>`;
-  const porPais={};rows.forEach(r=>{const p=r['País'];if(p)porPais[p]=(porPais[p]||0)+Number(r['Subtotal']||0);});
-  const pL=Object.keys(porPais),pD=Object.values(porPais);
-  document.getElementById('leg-pais').innerHTML=pL.map((p,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${p} $${fmtM(pD[i])}</span>`).join('');
-  draw('cPais','bar',pL,pD,PALETA.slice(0,pL.length),v=>'$'+fmtM(v));
+    <div class="kpi"><div class="kpi-lbl">GC top</div><div class="kpi-val" style="font-size:12px;">${topGC?topGC[0]:'—'}</div><div class="kpi-sub">${topGC?topGC[1]+' uds.':''}</div></div>
+    <div class="kpi"><div class="kpi-lbl">Países</div><div class="kpi-val">${paises.length}</div><div class="kpi-sub">${paises.join(' · ')}</div></div>`;
+
+  /* Gráfico barras: monto por país */
+  const porPais={};
+  rows.forEach(r=>{const p=r['País'];if(p)porPais[p]=(porPais[p]||0)+toNum(r['Subtotal']);});
+  const pL=Object.keys(porPais).sort((a,b)=>porPais[b]-porPais[a]);
+  const pD=pL.map(p=>porPais[p]);
+  document.getElementById('leg-gc-pais').innerHTML=pL.map((p,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${p} $${fmtM(pD[i])}</span>`).join('');
+  draw('cGCPais','bar',pL,pD,PALETA.slice(0,pL.length),v=>'$'+fmtM(v));
+
+  /* Gráfico donut: cantidad de unidades por marca */
   const gcL=Object.keys(gcCant).sort((a,b)=>gcCant[b]-gcCant[a]).slice(0,7);
   const gcD=gcL.map(k=>gcCant[k]);
-  document.getElementById('leg-gc').innerHTML=gcL.map((g,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${g} (${gcD[i]} uds.)</span>`).join('');
-  draw('cGC','doughnut',gcL,gcD,PALETA.slice(0,gcL.length),null,true);
-  document.getElementById('tbody-pedidos').innerHTML=rows.map(r=>{
+  document.getElementById('leg-gc-marca').innerHTML=gcL.map((g,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${g} (${gcD[i]} uds.)</span>`).join('');
+  draw('cGCMarca','doughnut',gcL,gcD,PALETA.slice(0,gcL.length),null,true);
+
+  /* Tabla */
+  document.getElementById('tbody-gc').innerHTML=rows.map(r=>{
     const esR=(r['Comentario']||'').toUpperCase().includes('REVERSA');
-    return `<tr class="${esR?'row-warn':''}"><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${r['Marca / Gift Card']||'—'}</td><td>${r['Fuente']||'—'}</td><td>${fmt(r['Cantidad']||0)}</td><td>$${fmt(r['Subtotal']||0)}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`;
+    return `<tr class="${esR?'row-warn':''}">
+      <td>${pPais(r['País'])}</td>
+      <td>${r['Panel / Empresa']||'—'}</td>
+      <td>${(r['Marca / Gift Card']||'—').toUpperCase()}</td>
+      <td>${r['Fuente']||'—'}</td>
+      <td>${fmt(toNum(r['Cantidad']||1))}</td>
+      <td>$${fmt(toNum(r['Subtotal']))}</td>
+      <td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td>
+      <td>${(r['Fecha']||'').slice(0,5)}</td>
+    </tr>`;
   }).join('');
 }
 
-function renderMigracion(rows){
-  const totalP=rows.reduce((s,r)=>s+Number(r['Total Puntos a Reversar']||0),0);
+/* ══════════════ RENDER MIGRACIÓN ══════════════ */
+function renderMig(rows){
+  const totalP=rows.reduce((s,r)=>s+toNum(r['Total Puntos a Reversar']),0);
   const paises=[...new Set(rows.map(r=>r['País']))].filter(Boolean);
   const kams=[...new Set(rows.map(r=>r['KAM Solicitante']))].filter(Boolean);
-  document.getElementById('kpi-migracion').innerHTML=`
+
+  document.getElementById('kpi-mig').innerHTML=`
     <div class="kpi"><div class="kpi-lbl">Tickets</div><div class="kpi-val">${rows.length}</div><div class="kpi-sub">migraciones</div></div>
-    <div class="kpi"><div class="kpi-lbl">Puntos migrados</div><div class="kpi-val">${fmtM(totalP)}</div></div>
-    <div class="kpi"><div class="kpi-lbl">${paises.length===1?'País':'Países'}</div><div class="kpi-val" style="font-size:14px;">${paises.join(', ')||'—'}</div></div>
+    <div class="kpi"><div class="kpi-lbl">Puntos migrados</div><div class="kpi-val">${fmtM(totalP)}</div><div class="kpi-sub">total pts</div></div>
+    <div class="kpi"><div class="kpi-lbl">Países</div><div class="kpi-val">${paises.length}</div><div class="kpi-sub">${paises.join(' · ')}</div></div>
     <div class="kpi"><div class="kpi-lbl">KAMs</div><div class="kpi-val">${kams.length}</div><div class="kpi-sub">${kams.map(k=>kamN(k)).join(', ')}</div></div>
     <div class="kpi"><div class="kpi-lbl">Empresas</div><div class="kpi-val">${[...new Set(rows.map(r=>r['Panel / Empresa']))].filter(Boolean).length}</div></div>
-    <div class="kpi"><div class="kpi-lbl">Promedio pts</div><div class="kpi-val" style="font-size:15px;">${rows.length?fmtM(Math.round(totalP/rows.length)):'0'}</div></div>`;
-  const tL=rows.map(r=>'#'+(r['Nº Ticket']||'—'));
-  const tP=rows.map(r=>Number(r['Total Puntos a Reversar']||0));
-  document.getElementById('leg-mig-pts').innerHTML=tL.map((t,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${t} — ${fmt(tP[i])} pts</span>`).join('');
-  draw('cMigPts','bar',tL,tP,PALETA.slice(0,tL.length));
+    <div class="kpi"><div class="kpi-lbl">Promedio</div><div class="kpi-val" style="font-size:15px;">${rows.length?fmtM(Math.round(totalP/rows.length)):'0'}</div><div class="kpi-sub">pts / ticket</div></div>`;
+
+  /* Barras por país */
+  const porPais={};
+  rows.forEach(r=>{const p=r['País'];if(p)porPais[p]=(porPais[p]||0)+toNum(r['Total Puntos a Reversar']);});
+  const pL=Object.keys(porPais).sort((a,b)=>porPais[b]-porPais[a]);
+  const pD=pL.map(p=>porPais[p]);
+  document.getElementById('leg-mig-pais').innerHTML=pL.map((p,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${p} ${fmtM(pD[i])} pts</span>`).join('');
+  draw('cMigPais','bar',pL,pD,PALETA.slice(0,pL.length),v=>fmtM(v)+' pts');
+
+  /* Listado motivos */
   document.getElementById('motivos-mig-list').innerHTML=rows.length
-    ?rows.map(r=>`<li><span class="mot-num">#${r['Nº Ticket']||'—'}</span><span><strong>${r['Panel / Empresa']||'—'}</strong> · ${fmt(r['Total Puntos a Reversar']||0)} pts · ${kamN(r['KAM Solicitante'])}<br/><span style="color:#888;">${r['Motivo de la Reversa']||'Sin motivo registrado'}</span></span></li>`).join('')
+    ?rows.map(r=>`<li>
+        <span class="mot-num">#${r['Nº Ticket']||'—'}</span>
+        <span><strong>${r['Panel / Empresa']||'—'}</strong> · ${fmtM(toNum(r['Total Puntos a Reversar']))} pts · ${kamN(r['KAM Solicitante'])}<br/>
+        <span style="color:#888;">${(r['Motivo de la Reversa']||'Sin motivo registrado').slice(0,120)}</span></span>
+      </li>`).join('')
     :'<li style="color:#aaa;font-size:11px;">Sin registros</li>';
-  document.getElementById('tbody-migracion').innerHTML=rows.map(r=>`<tr><td style="font-weight:700;color:#fa345e;">#${r['Nº Ticket']||'—'}</td><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${r['Nombre Panel/Sucursal Origen']||'—'}</td><td style="text-align:center;color:#fa345e;">→</td><td>${r['Nombre Panel/Sucursal Destino']||'—'}</td><td style="font-weight:700;">${fmt(r['Total Puntos a Reversar']||0)}</td><td style="color:#888;">${(r['Motivo de la Reversa']||'').slice(0,45)}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`).join('');
+
+  /* Tabla */
+  document.getElementById('tbody-mig').innerHTML=rows.map(r=>`
+    <tr>
+      <td style="font-weight:700;color:#fa345e;">#${r['Nº Ticket']||'—'}</td>
+      <td>${pPais(r['País'])}</td>
+      <td>${r['Panel / Empresa']||'—'}</td>
+      <td>${r['Nombre Panel/Sucursal Origen']||'—'}</td>
+      <td style="text-align:center;color:#fa345e;">→</td>
+      <td>${r['Nombre Panel/Sucursal Destino']||'—'}</td>
+      <td style="font-weight:700;">${fmt(toNum(r['Total Puntos a Reversar']))}</td>
+      <td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td>
+      <td>${(r['Fecha']||'').slice(0,5)}</td>
+    </tr>`).join('');
 }
 
-function renderReversa(rows){
-  const totalP=rows.reduce((s,r)=>s+Number(r['Total Puntos a Reversar']||0),0);
+/* ══════════════ RENDER REVERSA ══════════════ */
+function renderRev(rows){
+  const totalP=rows.reduce((s,r)=>s+toNum(r['Total Puntos a Reversar']),0);
   const paises=[...new Set(rows.map(r=>r['País']))].filter(Boolean);
   const kams=[...new Set(rows.map(r=>r['KAM Solicitante']))].filter(Boolean);
   const sinF=rows.filter(r=>!r['N° de Factura']).length;
-  document.getElementById('kpi-reversa').innerHTML=`
+
+  document.getElementById('kpi-rev').innerHTML=`
     <div class="kpi"><div class="kpi-lbl">Tickets reversa</div><div class="kpi-val">${rows.length}</div></div>
-    <div class="kpi"><div class="kpi-lbl">Puntos reversados</div><div class="kpi-val">${fmtM(totalP)}</div>${totalP>1000000?'<span class="badge b-red">volumen alto</span>':''}</div>
-    <div class="kpi"><div class="kpi-lbl">${paises.length===1?'País':'Países'}</div><div class="kpi-val" style="font-size:14px;">${paises.join(', ')||'—'}</div></div>
+    <div class="kpi"><div class="kpi-lbl">Puntos reversados</div><div class="kpi-val">${fmtM(totalP)}</div>${totalP>1000000?'<span class="badge b-red">vol. alto</span>':''}</div>
+    <div class="kpi"><div class="kpi-lbl">Países</div><div class="kpi-val">${paises.length}</div><div class="kpi-sub">${paises.join(' · ')}</div></div>
     <div class="kpi"><div class="kpi-lbl">KAMs</div><div class="kpi-val">${kams.length}</div><div class="kpi-sub">${kams.map(k=>kamN(k)).join(', ')}</div></div>
     <div class="kpi"><div class="kpi-lbl">Sin factura</div><div class="kpi-val">${sinF}</div><span class="badge b-warn">revisar</span></div>
     <div class="kpi"><div class="kpi-lbl">Empresas</div><div class="kpi-val">${[...new Set(rows.map(r=>r['Panel / Empresa']))].filter(Boolean).length}</div></div>`;
-  const rL=rows.map(r=>'#'+(r['Nº Ticket']||'—'));
-  const rP=rows.map(r=>Number(r['Total Puntos a Reversar']||0));
-  document.getElementById('leg-rev-pts').innerHTML=rL.map((t,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${t} — ${fmtM(rP[i])} pts</span>`).join('');
-  draw('cRevPts','bar',rL,rP,PALETA.slice(0,rL.length),v=>fmtM(v)+' pts');
+
+  /* Barras por país */
+  const porPais={};
+  rows.forEach(r=>{const p=r['País'];if(p)porPais[p]=(porPais[p]||0)+toNum(r['Total Puntos a Reversar']);});
+  const pL=Object.keys(porPais).sort((a,b)=>porPais[b]-porPais[a]);
+  const pD=pL.map(p=>porPais[p]);
+  document.getElementById('leg-rev-pais').innerHTML=pL.map((p,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${p} ${fmtM(pD[i])} pts</span>`).join('');
+  draw('cRevPais','bar',pL,pD,PALETA.slice(0,pL.length),v=>fmtM(v)+' pts');
+
+  /* Listado motivos */
   document.getElementById('motivos-rev-list').innerHTML=rows.length
-    ?rows.map(r=>`<li><span class="mot-num">#${r['Nº Ticket']||'—'}</span><span><strong>${r['Panel / Empresa']||'—'}</strong> · ${fmtM(r['Total Puntos a Reversar']||0)} pts · ${kamN(r['KAM Solicitante'])}<br/><span style="color:#888;">${r['Motivo de la Anulación']||'Sin motivo registrado'}</span></span></li>`).join('')
+    ?rows.map(r=>`<li>
+        <span class="mot-num">#${r['Nº Ticket']||'—'}</span>
+        <span><strong>${r['Panel / Empresa']||'—'}</strong> · ${fmtM(toNum(r['Total Puntos a Reversar']))} pts · ${kamN(r['KAM Solicitante'])}<br/>
+        <span style="color:#888;">${r['Motivo de la Anulación']||'Sin motivo registrado'}</span></span>
+      </li>`).join('')
     :'<li style="color:#aaa;font-size:11px;">Sin registros</li>';
-  document.getElementById('tbody-reversa').innerHTML=rows.map(r=>{
-    const pts=Number(r['Total Puntos a Reversar']||0);
-    return `<tr><td style="font-weight:700;color:#fa345e;">#${r['Nº Ticket']||'—'}</td><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${r['Nombre Panel/Sucursal Origen']||r['Panel / Empresa']||'—'}</td><td style="font-weight:700;${pts>1000000?'color:#991b1b;':''}">${fmt(pts)}</td><td style="color:#888;">${r['Motivo de la Anulación']||'—'}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`;
+
+  /* Tabla */
+  document.getElementById('tbody-rev').innerHTML=rows.map(r=>{
+    const pts=toNum(r['Total Puntos a Reversar']);
+    return `<tr>
+      <td style="font-weight:700;color:#fa345e;">#${r['Nº Ticket']||'—'}</td>
+      <td>${pPais(r['País'])}</td>
+      <td>${r['Panel / Empresa']||'—'}</td>
+      <td>${r['Nombre Panel/Sucursal Origen']||'—'}</td>
+      <td style="font-weight:700;${pts>1000000?'color:#991b1b;':''}">${fmt(pts)}</td>
+      <td style="color:#888;">${r['Motivo de la Anulación']||'—'}</td>
+      <td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td>
+      <td>${(r['Fecha']||'').slice(0,5)}</td>
+    </tr>`;
   }).join('');
 }
 
+/* ══════════════ RENDER KAM ══════════════ */
 function renderKAM(p,m,r){
   const ks={};
-  const add=(e,t,v)=>{if(!e)return;if(!ks[e])ks[e]={gc:0,gcM:0,mig:0,migP:0,rev:0,revP:0};if(t==='gc'){ks[e].gc++;ks[e].gcM+=v;}if(t==='mig'){ks[e].mig++;ks[e].migP+=v;}if(t==='rev'){ks[e].rev++;ks[e].revP+=v;}};
-  p.forEach(r=>add(r['KAM Solicitante'],'gc',Number(r['Subtotal']||0)));
-  m.forEach(r=>add(r['KAM Solicitante'],'mig',Number(r['Total Puntos a Reversar']||0)));
-  r.forEach(r=>add(r['KAM Solicitante'],'rev',Number(r['Total Puntos a Reversar']||0)));
+  const add=(e,t,v)=>{if(!e)return;if(!ks[e])ks[e]={gc:0,gcM:0,mig:0,migP:0,rev:0,revP:0};
+    if(t==='gc'){ks[e].gc++;ks[e].gcM+=v;}
+    if(t==='mig'){ks[e].mig++;ks[e].migP+=v;}
+    if(t==='rev'){ks[e].rev++;ks[e].revP+=v;}};
+  p.forEach(r=>add(r['KAM Solicitante'],'gc',toNum(r['Subtotal'])));
+  m.forEach(r=>add(r['KAM Solicitante'],'mig',toNum(r['Total Puntos a Reversar'])));
+  r.forEach(r=>add(r['KAM Solicitante'],'rev',toNum(r['Total Puntos a Reversar'])));
+
   const maxM=Math.max(...Object.values(ks).map(k=>k.gcM),1);
   document.getElementById('kam-cards').innerHTML=Object.entries(ks).map(([email,s])=>{
     const pct=Math.round((s.gcM/maxM)*100);
-    const badge=s.gcM===maxM&&s.gcM>0?'<span class="badge b-warn">Mayor carga GC</span>':s.revP>1000000?'<span class="badge b-red">Alerta reversa</span>':'<span class="badge b-ok">Normal</span>';
-    return `<div class="kam-card"><div class="kam-name">${kamN(email)}</div><div class="kam-email">${email}</div><div class="kam-stat"><span class="kam-stat-lbl">Pedidos GC</span><span class="kam-stat-val">${s.gc} · $${fmtM(s.gcM)}</span></div><div class="kam-stat"><span class="kam-stat-lbl">Migración</span><span class="kam-stat-val">${s.mig>0?s.mig+' · '+fmtM(s.migP)+' pts':'0'}</span></div><div class="kam-stat"><span class="kam-stat-lbl">Reversa</span><span class="kam-stat-val">${s.rev>0?s.rev+' · '+fmtM(s.revP)+' pts':'0'}</span></div><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;"></div></div>${badge}</div>`;
+    const badge=s.revP>1000000?'<span class="badge b-red">Alerta reversa</span>':s.gcM===maxM&&s.gcM>0?'<span class="badge b-warn">Mayor carga GC</span>':'<span class="badge b-ok">Normal</span>';
+    return `<div class="kam-card">
+      <div class="kam-name">${kamN(email)}</div>
+      <div class="kam-email">${email}</div>
+      <div class="kam-stat"><span class="kam-stat-lbl">Solicitudes GC</span><span class="kam-stat-val">${s.gc} · $${fmtM(s.gcM)}</span></div>
+      <div class="kam-stat"><span class="kam-stat-lbl">Migración</span><span class="kam-stat-val">${s.mig>0?s.mig+' · '+fmtM(s.migP)+' pts':'0'}</span></div>
+      <div class="kam-stat"><span class="kam-stat-lbl">Reversa</span><span class="kam-stat-val">${s.rev>0?s.rev+' · '+fmtM(s.revP)+' pts':'0'}</span></div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${pct}%;"></div></div>
+      ${badge}
+    </div>`;
   }).join('');
+
   const kL=Object.keys(ks).map(e=>kamN(e));
-  const kGC=Object.values(ks).map(s=>s.gc);
   const kM=Object.values(ks).map(s=>Math.round(s.gcM/1000));
-  document.getElementById('leg-kam').innerHTML='<span class="leg"><span class="dot" style="background:#fa345e;"></span>Pedidos GC</span><span class="leg"><span class="dot" style="background:#f5c4b3;"></span>Monto (miles)</span>';
-  drawMulti('cKAM',kL,[{label:'Pedidos',data:kGC,bg:'#fa345e'},{label:'Monto K',data:kM,bg:'#f5c4b3'}]);
+  document.getElementById('leg-kam').innerHTML='<span class="leg"><span class="dot" style="background:#fa345e;"></span>Monto GC (miles)</span>';
+  draw('cKAM','bar',kL,kM,PALETA.slice(0,kL.length),v=>'$'+v+'K');
 }
 
+/* ══════════════ RENDER ALERTAS ══════════════ */
 function renderAlertas(p,m,r){
   const al=[];
-  r.filter(x=>Number(x['Total Puntos a Reversar']||0)>1000000).forEach(x=>al.push({t:`Reversa de ${fmtM(Number(x['Total Puntos a Reversar']))} pts — ${x['Panel / Empresa']} (${x['País']})`,b:`Ticket #${x['Nº Ticket']}: "${x['Motivo de la Anulación']||'sin motivo'}" sin N° de factura. KAM: ${kamN(x['KAM Solicitante'])}. Requiere validación urgente.`}));
+
+  /* Reversas de alto volumen */
+  r.filter(x=>toNum(x['Total Puntos a Reversar'])>1000000).forEach(x=>al.push({
+    tipo:'danger',
+    t:`Reversa de ${fmtM(toNum(x['Total Puntos a Reversar']))} pts sin factura — ${x['Panel / Empresa']} (${x['País']})`,
+    b:`Ticket #${x['Nº Ticket']}: "${x['Motivo de la Anulación']||'sin motivo'}" sin N° de factura. KAM: ${kamN(x['KAM Solicitante'])}. Requiere validación urgente.`
+  }));
+
+  /* Sin OC */
   const sinOC=p.filter(x=>!x['OC']&&!x['Nº Factura']).length;
-  if(sinOC>0)al.push({t:`${sinOC} pedidos GC sin OC ni factura`,b:'Riesgo de trazabilidad financiera. Revisar antes del cierre de semana.'});
+  if(sinOC>0) al.push({tipo:'warn',t:`${sinOC} solicitudes GC sin OC ni factura`,b:'Riesgo de trazabilidad financiera. Revisar antes del cierre de semana.'});
+
+  /* Concentración migraciones */
   const migKams=[...new Set(m.map(x=>x['KAM Solicitante']))];
-  if(migKams.length===1&&m.length>1)al.push({t:`${kamN(migKams[0])} concentra el 100% de migraciones`,b:`${m.length} tickets gestionados por el mismo KAM. Sin respaldo ante ausencia o aumento de volumen.`});
+  if(migKams.length===1&&m.length>1) al.push({tipo:'warn',t:`${kamN(migKams[0])} concentra el 100% de migraciones`,b:`${m.length} tickets gestionados por el mismo KAM. Sin respaldo ante ausencia o aumento de volumen.`});
+
+  /* Filas con REVERSA en comentarios de GC */
   const pedR=p.filter(x=>(x['Comentario']||'').toUpperCase().includes('REVERSA'));
-  if(pedR.length>0)al.push({t:`${pedR.length} líneas con "REVERSA" en tab de Pedidos GC`,b:'Registradas como pedidos normales. Posible inconsistencia en el flujo de datos.'});
-  const kM={};p.forEach(x=>{const e=x['KAM Solicitante'];if(e)kM[e]=(kM[e]||0)+Number(x['Subtotal']||0);});
+  if(pedR.length>0) al.push({tipo:'warn',t:`${pedR.length} líneas con "REVERSA" en Solicitudes GC`,b:'Registradas como solicitudes normales pero contienen la palabra REVERSA en comentarios. Posible inconsistencia.'});
+
+  /* Concentración de monto por KAM */
+  const kM={};p.forEach(x=>{const e=x['KAM Solicitante'];if(e)kM[e]=(kM[e]||0)+toNum(x['Subtotal']);});
   const totM=Object.values(kM).reduce((a,b)=>a+b,0);
-  Object.entries(kM).forEach(([e,v])=>{if(totM>0&&v/totM>0.5)al.push({t:`${kamN(e)}: ${Math.round((v/totM)*100)}% del monto total de GC`,b:`$${fmtM(v)} de $${fmtM(totM)} gestionados por un solo KAM. Considerar redistribuir carga.`});});
+  Object.entries(kM).forEach(([e,v])=>{if(totM>0&&v/totM>0.5)al.push({tipo:'warn',t:`${kamN(e)}: ${Math.round((v/totM)*100)}% del monto total de GC`,b:`$${fmtM(v)} de $${fmtM(totM)} gestionados por un solo KAM. Considerar redistribuir carga.`});});
+
+  /* Registros eliminados del sheet */
+  const tiposElim=[
+    {lista:_deletedGC, label:'Solicitud GC', campos:(r)=>`${r['Marca / Gift Card']||''} · ${r['Panel / Empresa']||''} · $${fmtM(toNum(r['Subtotal']))} · KAM: ${kamN(r['KAM Solicitante'])} · ${r['Fecha']||''}`},
+    {lista:_deletedMig,label:'Migración',    campos:(r)=>`#${r['Nº Ticket']||'—'} · ${r['Panel / Empresa']||''} · ${fmtM(toNum(r['Total Puntos a Reversar']))} pts · KAM: ${kamN(r['KAM Solicitante'])} · ${r['Fecha']||''}`},
+    {lista:_deletedRev,label:'Reversa',      campos:(r)=>`#${r['Nº Ticket']||'—'} · ${r['Panel / Empresa']||''} · ${fmtM(toNum(r['Total Puntos a Reversar']))} pts · KAM: ${kamN(r['KAM Solicitante'])} · ${r['Fecha']||''}`}
+  ];
+  tiposElim.forEach(({lista,label,campos})=>{
+    lista.forEach(row=>{
+      al.push({
+        tipo:'deleted',
+        t:`Registro eliminado del sheet — ${label}`,
+        b:`Se eliminó del Google Sheet: ${campos(row)}`
+      });
+    });
+  });
+
+  /* Actualizar badge de alertas */
+  const badge=document.getElementById('alerta-badge');
+  if(al.length>0){badge.style.display='inline';badge.textContent=al.length;}
+  else{badge.style.display='none';}
+
   document.getElementById('alertas-container').innerHTML=al.length===0
     ?'<div style="padding:20px;text-align:center;color:#aaa;font-size:12px;">Sin alertas activas</div>'
-    :al.map(a=>`<div class="alerta-box"><div class="alerta-title">${a.t}</div><div class="alerta-body">${a.b}</div></div>`).join('');
+    :al.map(a=>`<div class="alerta-box ${a.tipo}"><div class="alerta-title">${a.tipo==='deleted'?'🗑 ':a.tipo==='danger'?'⚠️ ':'📌 '}${a.t}</div><div class="alerta-body">${a.b}</div></div>`).join('');
 }
 
-/* CHARTS */
+/* ══════════════ CHARTS ══════════════ */
 const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
 const gcC=isDark?'rgba(255,255,255,0.07)':'rgba(0,0,0,0.06)';
 const tcC=isDark?'#bbb':'#999';
+
 function draw(id,type,labels,data,colors,yFmt,donut){
   if(charts[id])charts[id].destroy();
   const opts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
-  if(type==='bar'){opts.scales={x:{ticks:{color:tcC,font:{size:9,family:'Montserrat'}},grid:{color:gcC}},y:{ticks:{color:tcC,font:{size:9,family:'Montserrat'},callback:yFmt||undefined},grid:{color:gcC}}};}
-  if(donut)opts.cutout='60%';
-  charts[id]=new Chart(document.getElementById(id),{type,data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0,borderRadius:type==='bar'?4:0}]},options:opts});
-}
-function drawMulti(id,labels,datasets){
-  if(charts[id])charts[id].destroy();
-  charts[id]=new Chart(document.getElementById(id),{type:'bar',data:{labels,datasets:datasets.map(d=>({label:d.label,data:d.data,backgroundColor:d.bg,borderRadius:4,borderWidth:0}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tcC,font:{size:9,family:'Montserrat'}},grid:{color:gcC}},y:{ticks:{color:tcC,font:{size:9,family:'Montserrat'}},grid:{color:gcC}}}}});
+  if(type==='bar'){
+    opts.scales={
+      x:{ticks:{color:tcC,font:{size:9,family:'Montserrat'},maxRotation:30},grid:{color:gcC}},
+      y:{ticks:{color:tcC,font:{size:9,family:'Montserrat'},callback:yFmt||undefined},grid:{color:gcC}}
+    };
+  }
+  if(donut) opts.cutout='60%';
+  charts[id]=new Chart(document.getElementById(id),{
+    type,
+    data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0,borderRadius:type==='bar'?4:0}]},
+    options:opts
+  });
 }
 
-/* ── IA ── */
-const iaMsgs=[];
+/* ══════════════ IA ══════════════ */
+let iaMsgs=[];
 let userInitials='AP';
 
 function setStatus(estado,txt){
@@ -539,16 +763,16 @@ function setStatus(estado,txt){
 }
 
 function buildCtx(){
-  const rp=_dp.map(r=>`[GC] ${r['País']}|${r['Panel / Empresa']}|${r['Marca / Gift Card']}|cant:${r['Cantidad']}|sub:${r['Subtotal']}|KAM:${r['KAM Solicitante']}|fecha:${r['Fecha']}|com:${r['Comentario']||''}`).join('\n');
-  const rm=_dm.map(r=>`[MIG] #${r['Nº Ticket']}|${r['País']}|${r['Panel / Empresa']}|${r['Nombre Panel/Sucursal Origen']}→${r['Nombre Panel/Sucursal Destino']}|pts:${r['Total Puntos a Reversar']}|motivo:${r['Motivo de la Reversa']}|KAM:${r['KAM Solicitante']}|${r['Fecha']}`).join('\n');
-  const rr=_dr.map(r=>`[REV] #${r['Nº Ticket']}|${r['País']}|${r['Panel / Empresa']}|pts:${r['Total Puntos a Reversar']}|motivo:${r['Motivo de la Anulación']}|factura:${r['N° de Factura']||'sin factura'}|KAM:${r['KAM Solicitante']}|${r['Fecha']}`).join('\n');
+  const rp=_dp.map(r=>`[GC] ${r['País']}|${r['Panel / Empresa']}|${(r['Marca / Gift Card']||'').toUpperCase()}|cant:${toNum(r['Cantidad'])}|sub:${toNum(r['Subtotal'])}|KAM:${kamN(r['KAM Solicitante'])}|${r['Fecha']}`).join('\n');
+  const rm=_dm.map(r=>`[MIG] #${r['Nº Ticket']}|${r['País']}|${r['Panel / Empresa']}|${r['Nombre Panel/Sucursal Origen']}→${r['Nombre Panel/Sucursal Destino']}|pts:${toNum(r['Total Puntos a Reversar'])}|motivo:${(r['Motivo de la Reversa']||'').slice(0,100)}|KAM:${kamN(r['KAM Solicitante'])}|${r['Fecha']}`).join('\n');
+  const rr=_dr.map(r=>`[REV] #${r['Nº Ticket']}|${r['País']}|${r['Panel / Empresa']}|pts:${toNum(r['Total Puntos a Reversar'])}|motivo:${r['Motivo de la Anulación']||''}|factura:${r['N° de Factura']||'sin factura'}|KAM:${kamN(r['KAM Solicitante'])}|${r['Fecha']}`).join('\n');
   return `Eres el asistente de análisis operacional de Apprecio. Tu nombre es "Apprecio IA". Nunca menciones que usas llama, Ollama, modelos de lenguaje ni ninguna tecnología subyacente. Simplemente eres Apprecio IA.
 
-Analiza los datos operacionales del equipo KAM y responde en español de forma concisa, directa y accionable. Usa listas, títulos y formato markdown cuando sea útil. No repitas los datos crudos, interprétalos y da recomendaciones concretas.
+Analiza los datos operacionales del equipo KAM y responde en español de forma concisa, directa y accionable. Usa listas y formato markdown. No repitas datos crudos, interprétalos y da recomendaciones concretas.
 
-KAMs: ljamasmie=L.Jamasmie, shernandez=S.Hernandez, bgonzalez=B.González, fmaya=F.Maya, scuellar=S.Cuellar, dvillavicencio=D.Villavicencio
+KAMs: ${Object.entries(KAM_MAP).map(([k,v])=>`${k}=${v}`).join(', ')}
 
-=== PEDIDOS GIFT CARDS ===
+=== SOLICITUDES GIFT CARDS ===
 ${rp||'Sin datos'}
 
 === MIGRACIONES DE PUNTOS ===
@@ -558,34 +782,19 @@ ${rm||'Sin datos'}
 ${rr||'Sin datos'}`;
 }
 
-function addMsg(role, text, isHtml=false){
+function addMsg(role,text,isHtml=false){
   const div=document.getElementById('ia-messages');
   const empty=div.querySelector('.ia-empty');
   if(empty)empty.remove();
-
   const wrap=document.createElement('div');
   wrap.className=`ia-msg-wrap ${role==='user'?'user':''}`;
-
   const avatar=document.createElement('div');
   avatar.className=`ia-avatar ${role==='user'?'user-av':'ai'}`;
-
-  if(role==='user'){
-    avatar.textContent=userInitials;
-  } else if(role==='assistant'){
-    avatar.innerHTML=`<img src="https://estudios.apprecio.com/hubfs/logos/Apprecio-logo-rojo.png" alt="IA"/>`;
-  } else {
-    avatar.innerHTML=`<img src="https://estudios.apprecio.com/hubfs/logos/Apprecio-logo-rojo.png" alt="IA"/>`;
-  }
-
+  if(role==='user'){avatar.textContent=userInitials;}
+  else{avatar.innerHTML=`<img src="https://estudios.apprecio.com/hubfs/logos/Apprecio-logo-rojo.png" alt="IA"/>`;}
   const bubble=document.createElement('div');
   bubble.className=`ia-bubble ${role==='user'?'user':role==='thinking'?'thinking':'assistant'}`;
-
-  if(isHtml){
-    bubble.innerHTML=text;
-  } else {
-    bubble.textContent=text;
-  }
-
+  if(isHtml){bubble.innerHTML=text;}else{bubble.textContent=text;}
   wrap.appendChild(avatar);
   wrap.appendChild(bubble);
   div.appendChild(wrap);
@@ -597,36 +806,25 @@ async function enviarIA(){
   const input=document.getElementById('ia-input');
   const q=input.value.trim();
   if(!q)return;
-  if(_dp.length===0&&_dm.length===0&&_dr.length===0){
-    addMsg('assistant','Primero actualiza los datos usando el botón "Actualizar datos".');
-    return;
-  }
+  if(!_dp.length&&!_dm.length&&!_dr.length){addMsg('assistant','Primero actualiza los datos usando el botón "Actualizar datos".');return;}
   input.value='';
   document.getElementById('ia-send-btn').disabled=true;
   setStatus('loading','Analizando...');
   addMsg('user',q);
-
-  const thinkingBubble=addMsg('thinking','Apprecio IA está analizando los datos...');
+  const thinkBubble=addMsg('thinking','Apprecio IA está analizando los datos...');
   iaMsgs.push({role:'user',content:q});
-
   try{
-    const resp=await fetch(WEBHOOK_IA,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({system:buildCtx(),message:q,history:iaMsgs.slice(-6)})
-    });
+    const resp=await fetch(WEBHOOK_IA,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:buildCtx(),message:q,history:iaMsgs.slice(-6)})});
     if(!resp.ok) throw new Error('HTTP '+resp.status);
     const data=await resp.json();
     const txt=data.reply||data.text||data.content||data.output||(Array.isArray(data)&&data[0]&&(data[0].reply||data[0].text||data[0].output))||JSON.stringify(data);
-
-    thinkingBubble.parentElement.remove();
-    addMsg('assistant', mdToHtml(txt), true);
+    thinkBubble.parentElement.remove();
+    addMsg('assistant',mdToHtml(txt),true);
     iaMsgs.push({role:'assistant',content:txt});
     setStatus('ok','Análisis completado');
     setTimeout(()=>setStatus('ok','Listo'),3000);
-
   }catch(e){
-    thinkingBubble.parentElement.remove();
+    thinkBubble.parentElement.remove();
     setStatus('','Error de conexión');
     addMsg('assistant','No se pudo conectar con Apprecio IA. Verifica que el workflow esté activo en n8n.');
     console.error(e);
@@ -635,16 +833,6 @@ async function enviarIA(){
 }
 
 function pq(t){document.getElementById('ia-input').value=t;enviarIA();}
-
-window.addEventListener('load',()=>{
-  const raw=localStorage.getItem('gUser');
-  if(raw){
-    const s=JSON.parse(raw);
-    if(s.nombre){
-      userInitials=s.nombre.split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2);
-    }
-  }
-});
 </script>
 </body>
 </html>
