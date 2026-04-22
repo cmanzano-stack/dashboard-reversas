@@ -419,8 +419,17 @@ let _kamStats={};
 let _selectedKAM=null;
 
 async function fetchSheet(gid){
-  const text=await(await fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`)).text();
-  return parseCSV(text);
+  const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
+  try{
+    const resp=await fetch(url);
+    if(!resp.ok) throw new Error(`HTTP ${resp.status} — verifica que el sheet esté compartido como público`);
+    const text=await resp.text();
+    if(text.trim().startsWith('<!')) throw new Error('El sheet devolvió HTML — no está compartido públicamente');
+    return parseCSV(text);
+  }catch(e){
+    console.error('Error cargando sheet gid='+gid+':', e.message);
+    throw e;
+  }
 }
 
 function rowId(r,tipo){
@@ -451,7 +460,19 @@ async function cargarTodo(){
     const now=new Date();
     document.getElementById('last-update').textContent='Actualizado: '+now.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'});
     document.getElementById('ap-subtitle').textContent='Solicitudes GC · Migración · Reversa — '+now.toLocaleDateString('es-CL',{day:'2-digit',month:'short',year:'numeric'});
-  }catch(e){document.getElementById('last-update').textContent='Error al cargar';console.error(e);}
+  }catch(e){
+    const msg=e.message||'Error desconocido';
+    document.getElementById('last-update').textContent='Error: '+msg.slice(0,60);
+    console.error('cargarTodo error:',e);
+    // Mostrar alerta en el dashboard
+    ['kpi-gc','kpi-mig','kpi-rev'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el)el.innerHTML=`<div style="grid-column:1/-1;padding:16px;background:#fee2e2;border-radius:8px;font-size:11px;color:#991b1b;font-weight:600;">
+        Error al cargar datos: ${msg}<br/><br/>
+        Verifica que el Google Sheet esté compartido como <strong>"Cualquier persona con el enlace puede ver"</strong>
+      </div>`;
+    });
+  }
 }
 
 /* ══ RENDER GC con gráfico COMBINADO ══ */
