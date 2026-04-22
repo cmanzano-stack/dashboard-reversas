@@ -10,6 +10,8 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Montserrat',sans-serif;background:#f9f9f9;color:#222;}
+
+/* LOGIN */
 #login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;}
 .login-box{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.10);padding:48px 40px 40px;max-width:420px;width:100%;text-align:center;}
 .login-logo{max-width:160px;margin-bottom:24px;}
@@ -18,13 +20,18 @@ body{font-family:'Montserrat',sans-serif;background:#f9f9f9;color:#222;}
 .login-error{display:none;background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;border-radius:8px;padding:12px 16px;font-size:13px;margin-top:16px;}
 .login-footer{font-size:11px;color:#aaa;margin-top:24px;}
 .g_id_signin{display:flex;justify-content:center;}
-#btn-logout{background:none;border:1px solid #ccc;color:#666;padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Montserrat',sans-serif;}
-#btn-logout:hover{background:#f5f5f5;border-color:#fa345e;color:#fa345e;}
+
+/* APP */
+#app-screen{display:none;}
 #user-bar{background:#fff;border-bottom:1px solid #eee;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
 #user-bar-info{display:flex;align-items:center;gap:10px;}
-
+#user-avatar{width:32px;height:32px;border-radius:50%;border:2px solid #fa345e;}
 #user-name{font-size:13px;font-weight:700;color:#333;}
 #user-email{font-size:11px;color:#888;}
+#btn-logout{background:none;border:1px solid #ccc;color:#666;padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Montserrat',sans-serif;}
+#btn-logout:hover{background:#f5f5f5;border-color:#fa345e;color:#fa345e;}
+
+/* DASHBOARD */
 .dash{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem;}
 .ap-header{display:flex;align-items:center;justify-content:space-between;padding-bottom:1rem;border-bottom:2px solid #fa345e;margin-bottom:1.25rem;}
 .ap-logo-area{display:flex;align-items:center;gap:10px;}
@@ -35,11 +42,15 @@ body{font-family:'Montserrat',sans-serif;background:#f9f9f9;color:#222;}
 .refresh-btn{background:none;border:1px solid #fa345e;color:#fa345e;padding:4px 10px;border-radius:7px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;}
 .refresh-btn:hover{background:#fef2f3;}
 .last-update{font-size:9px;color:#aaa;margin-top:3px;text-align:right;}
+
+/* TABS */
 .tab-row{display:flex;gap:6px;margin-bottom:1.25rem;flex-wrap:wrap;}
 .tab{padding:6px 13px;font-size:11px;font-weight:700;border:1px solid #fa345e;border-radius:8px;cursor:pointer;background:#fff;color:#fa345e;font-family:'Montserrat',sans-serif;transition:background 0.15s;}
 .tab.active{background:#fa345e;color:#fff;}
 .tab-section{display:none;}
 .tab-section.active{display:block;}
+
+/* KPIs */
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1.25rem;}
 .kpi{background:#f5f5f5;border-radius:8px;padding:11px 13px;}
 .kpi-lbl{font-size:9px;font-weight:700;color:#888;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:5px;}
@@ -49,19 +60,25 @@ body{font-family:'Montserrat',sans-serif;background:#f9f9f9;color:#222;}
 .b-warn{background:#fff3cd;color:#856404;border:1px solid #ffc107;}
 .b-ok{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;}
 .b-red{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;}
+
+/* CHARTS */
 .charts-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.25rem;}
 .ccard{background:#fff;border:1px solid #eee;border-radius:12px;padding:13px;}
 .sec-lbl{font-size:10px;font-weight:700;color:#888;margin-bottom:9px;letter-spacing:0.05em;text-transform:uppercase;}
 .legend{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px;}
 .leg{display:flex;align-items:center;gap:4px;font-size:9px;color:#888;}
 .dot{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+
+/* MOTIVOS */
 .motivos-list{list-style:none;padding:0;max-height:260px;overflow-y:auto;}
 .motivos-list li{padding:8px 10px;border-bottom:1px solid #f5f5f5;font-size:11px;color:#333;line-height:1.4;display:flex;gap:8px;align-items:flex-start;}
 .motivos-list li:last-child{border-bottom:none;}
 .mot-num{background:#fef2f3;color:#fa345e;border:1px solid #fdd;font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
+
+/* TABLAS */
 .tbl-wrap{background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;margin-bottom:1rem;}
 .tbl-scroll{overflow-x:auto;}
-table{width:100%;border-collapse:collapse;font-size:11px;min-width:500px;}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:400px;}
 thead th{background:#fa345e;color:#fff;font-weight:700;padding:7px 9px;text-align:left;font-size:9px;letter-spacing:0.05em;font-family:'Montserrat',sans-serif;white-space:nowrap;}
 tbody td{padding:7px 9px;border-bottom:1px solid #f0f0f0;font-size:10px;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 tbody tr:last-child td{border-bottom:none;}
@@ -69,12 +86,15 @@ tbody tr:hover td{background:#fafafa;}
 .row-warn td{background:#ffd6dd;color:#5a0010;}
 .row-warn:hover td{background:#ffbfca;}
 .row-warn .pill,.row-warn .av{background:#f5a0b0!important;color:#5a0010!important;border-color:#e07080!important;}
+
+/* PILLS / AVATARES */
 .pill{font-size:8px;font-weight:700;padding:2px 5px;border-radius:8px;}
 .p-cl{background:#fef2f3;color:#c0143c;}
 .p-pe{background:#fef2f3;color:#c0143c;}
 .p-co{background:#fff8e1;color:#7a5900;}
 .av{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:#fef2f3;color:#fa345e;border:1px solid #fdd;vertical-align:middle;margin-right:3px;}
-/* KAM interactivo */
+
+/* KAM */
 .kam-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:1.25rem;}
 .kam-card{background:#fff;border:1.5px solid #eee;border-radius:12px;padding:11px 13px;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s;}
 .kam-card:hover{border-color:#f8848f;box-shadow:0 2px 8px rgba(250,52,94,0.1);}
@@ -86,11 +106,12 @@ tbody tr:hover td{background:#fafafa;}
 .kam-stat-lbl{color:#888;}
 .kam-stat-val{font-weight:700;color:#222;}
 .bar-bg{height:3px;background:#eee;border-radius:2px;margin-top:7px;}
-.bar-fill{height:3px;background:#fa345e;border-radius:2px;transition:width 0.4s ease;}
-/* Panel detalle KAM */
+.bar-fill{height:3px;background:#fa345e;border-radius:2px;}
+
+/* KAM DETALLE */
 .kam-detail{background:#fff;border:1.5px solid #fa345e;border-radius:12px;padding:16px;margin-bottom:1.25rem;display:none;}
 .kam-detail.visible{display:block;}
-.kam-detail-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+.kam-detail-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
 .kam-detail-name{font-size:15px;font-weight:700;color:#fa345e;}
 .kam-detail-email{font-size:10px;color:#aaa;margin-top:2px;}
 .kam-detail-kpis{display:flex;gap:10px;flex-wrap:wrap;}
@@ -99,6 +120,8 @@ tbody tr:hover td{background:#fafafa;}
 .kam-kpi-val{font-size:16px;font-weight:700;color:#222;}
 .kam-close{background:none;border:1px solid #eee;color:#888;padding:4px 10px;border-radius:6px;font-size:10px;cursor:pointer;font-family:'Montserrat',sans-serif;}
 .kam-close:hover{border-color:#fa345e;color:#fa345e;}
+
+/* ALERTAS */
 .alerta-box{border-radius:10px;padding:11px 13px;margin-bottom:10px;border:1px solid;}
 .alerta-box.danger{background:#fff5f7;border-color:#fdd;}
 .alerta-box.warn{background:#fffbea;border-color:#f0c040;}
@@ -108,6 +131,7 @@ tbody tr:hover td{background:#fafafa;}
 .alerta-box.warn .alerta-title{color:#856404;}
 .alerta-box.deleted .alerta-title{color:#666;}
 .alerta-body{font-size:10px;color:#666;line-height:1.5;}
+
 /* IA */
 .ia-panel{background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;margin-top:1.5rem;}
 .ia-header{background:#fa345e;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
@@ -152,11 +176,12 @@ tbody tr:hover td{background:#fafafa;}
 .loading{text-align:center;padding:30px;color:#fa345e;font-size:12px;font-weight:600;}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid #fdd;border-top-color:#fa345e;border-radius:50%;animation:spin 0.7s linear infinite;margin-right:6px;vertical-align:middle;}
 @keyframes spin{to{transform:rotate(360deg);}}
-@media(max-width:600px){.charts-row{grid-template-columns:1fr;}.kpi-grid{grid-template-columns:1fr 1fr;}.ia-input-row{flex-direction:column;}.ia-header{flex-direction:column;align-items:flex-start;}.kam-detail-header{flex-direction:column;}}
+@media(max-width:600px){.charts-row{grid-template-columns:1fr;}.kpi-grid{grid-template-columns:1fr 1fr;}.login-box{padding:32px 20px 28px;}.ia-input-row{flex-direction:column;}.ia-header{flex-direction:column;align-items:flex-start;}.kam-detail-header{flex-direction:column;}}
 </style>
 </head>
 <body>
 
+<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
     <img src="https://estudios.apprecio.com/hubfs/logos/Apprecio-logo-rojo.png" class="login-logo" alt="Apprecio"/>
@@ -172,217 +197,235 @@ tbody tr:hover td{background:#fafafa;}
   </div>
 </div>
 
-<div id="app-screen" style="display:none;">
-<div id="user-bar">
-  <div id="user-bar-info">
-    <img id="user-avatar" src="" alt="avatar" style="width:32px;height:32px;border-radius:50%;border:2px solid #fa345e;"/>
-    <div><div id="user-name"></div><div id="user-email"></div></div>
-  </div>
-  <button id="btn-logout" onclick="cerrarSesion()">Cerrar sesión</button>
-</div>
-
-<div class="dash">
-  <div class="ap-header">
-    <div class="ap-logo-area">
-      <img class="ap-logo" src="https://estudios.apprecio.com/hubfs/logos/Apprecio-logo-rojo.png" alt="Apprecio"/>
-      <div>
-        <div class="ap-title">Panel operacional KAM</div>
-        <div class="ap-subtitle" id="ap-subtitle">Solicitudes GC · Migración · Reversa — cargando...</div>
-      </div>
+<!-- APP -->
+<div id="app-screen">
+  <div id="user-bar">
+    <div id="user-bar-info">
+      <img id="user-avatar" src="" alt="avatar"/>
+      <div><div id="user-name"></div><div id="user-email"></div></div>
     </div>
-    <div style="text-align:right;">
-      <span class="ap-badge">Preview</span><br/>
-      <button class="refresh-btn" style="margin-top:6px;" onclick="cargarTodo()">↻ Actualizar datos</button>
-      <div class="last-update" id="last-update"></div>
-    </div>
+    <button id="btn-logout" onclick="cerrarSesion()">Cerrar sesión</button>
   </div>
 
-  <div class="tab-row">
-    <button class="tab active" onclick="showTab('gc',this)">Solicitudes GC</button>
-    <button class="tab" onclick="showTab('mig',this)">Migración</button>
-    <button class="tab" onclick="showTab('rev',this)">Reversa</button>
-    <button class="tab" onclick="showTab('kam',this)">Equipo KAM</button>
-    <button class="tab" onclick="showTab('alertas',this)">Alertas <span id="alerta-badge" style="display:none;background:#fa345e;color:#fff;border-radius:10px;padding:0 5px;font-size:9px;margin-left:3px;"></span></button>
-  </div>
-
-  <!-- SOLICITUDES GC -->
-  <div id="s-gc" class="tab-section active">
-    <div id="kpi-gc" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
-    <div class="charts-row">
-      <div class="ccard">
-        <div class="sec-lbl">Monto total por país</div>
-        <div class="legend" id="leg-gc-pais"></div>
-        <div style="position:relative;height:180px;"><canvas id="cGCPais" role="img" aria-label="Monto por país"></canvas></div>
-      </div>
-      <div class="ccard">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
-          <div class="sec-lbl" style="margin:0;">Top 8 gift cards — unidades y monto</div>
-          <span id="gc-total-badge" style="font-size:9px;color:#888;background:#f5f5f5;padding:2px 8px;border-radius:10px;white-space:nowrap;"></span>
-        </div>
-        <div class="legend">
-          <span class="leg"><span class="dot" style="background:#fa345e;"></span>Unidades (barras)</span>
-          <span class="leg"><span class="dot" style="width:20px;height:3px;border-radius:2px;background:#c0143c;"></span>Monto $K (línea)</span>
-        </div>
-        <div style="position:relative;height:180px;"><canvas id="cGCCombo" role="img" aria-label="Top 8 gift cards por unidades y monto"></canvas></div>
-      </div>
-    </div>
-
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
-      <div class="sec-lbl" style="margin:0;">Ranking completo de gift cards</div>
-      <span id="gc-ranking-count" style="font-size:9px;color:#888;"></span>
-    </div>
-    <div class="tbl-wrap" style="margin-bottom:1rem;">
-      <table style="min-width:0;width:100%;">
-        <thead><tr>
-          <th style="width:32px;">#</th>
-          <th>Gift card</th>
-          <th style="width:160px;">Unidades</th>
-          <th style="width:90px;text-align:right;">Monto</th>
-          <th style="width:70px;text-align:right;">% monto</th>
-        </tr></thead>
-        <tbody id="tbody-gc-ranking"></tbody>
-      </table>
-    </div>
-
-    <div class="sec-lbl">Detalle solicitudes</div>
-    <div class="tbl-wrap"><div class="tbl-scroll"><table>
-      <thead><tr><th>País</th><th>Empresa</th><th>Gift card</th><th>Fuente</th><th>Cant.</th><th>Subtotal</th><th>KAM</th><th>Fecha</th></tr></thead>
-      <tbody id="tbody-gc"><tr><td colspan="8" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
-    </table></div></div>
-    <div style="display:flex;align-items:center;gap:6px;font-size:9px;color:#5a0010;margin-top:4px;">
-      <span style="width:12px;height:12px;background:#ffd6dd;border-radius:3px;display:inline-block;border:1px solid #e07080;flex-shrink:0;"></span>
-      Filas rosadas = comentario REVERSA en el registro
-    </div>
-  </div>
-
-  <!-- MIGRACIÓN -->
-  <div id="s-mig" class="tab-section">
-    <div id="kpi-mig" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
-    <div class="charts-row">
-      <div class="ccard"><div class="sec-lbl">Puntos migrados por país</div><div class="legend" id="leg-mig-pais"></div><div style="position:relative;height:180px;"><canvas id="cMigPais" role="img" aria-label="Puntos migrados por país"></canvas></div></div>
-      <div class="ccard"><div class="sec-lbl">Motivos registrados</div><ul class="motivos-list" id="motivos-mig-list"><li><span class="spinner"></span> Cargando...</li></ul></div>
-    </div>
-    <div class="sec-lbl">Detalle migraciones</div>
-    <div class="tbl-wrap"><div class="tbl-scroll"><table>
-      <thead><tr><th>Ticket</th><th>País</th><th>Empresa</th><th>Sucursal origen</th><th></th><th>Sucursal destino</th><th>Puntos</th><th>KAM</th><th>Fecha</th></tr></thead>
-      <tbody id="tbody-mig"><tr><td colspan="9" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
-    </table></div></div>
-  </div>
-
-  <!-- REVERSA -->
-  <div id="s-rev" class="tab-section">
-    <div id="kpi-rev" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
-    <div class="charts-row">
-      <div class="ccard"><div class="sec-lbl">Puntos reversados por país</div><div class="legend" id="leg-rev-pais"></div><div style="position:relative;height:180px;"><canvas id="cRevPais" role="img" aria-label="Puntos reversados por país"></canvas></div></div>
-      <div class="ccard"><div class="sec-lbl">Motivos de reversa</div><ul class="motivos-list" id="motivos-rev-list"><li><span class="spinner"></span> Cargando...</li></ul></div>
-    </div>
-    <div class="sec-lbl">Detalle reversas</div>
-    <div class="tbl-wrap"><div class="tbl-scroll"><table>
-      <thead><tr><th>Ticket</th><th>País</th><th>Empresa</th><th>Sucursal</th><th>Puntos</th><th>Motivo</th><th>KAM</th><th>Fecha</th></tr></thead>
-      <tbody id="tbody-rev"><tr><td colspan="8" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
-    </table></div></div>
-  </div>
-
-  <!-- EQUIPO KAM -->
-  <div id="s-kam" class="tab-section">
-    <div class="sec-lbl" style="margin-bottom:6px;">Selecciona un KAM para ver su detalle</div>
-    <div style="font-size:9px;color:#aaa;margin-bottom:12px;">Haz clic en una card para filtrar el gráfico y ver todas sus solicitudes</div>
-    <div id="kam-cards" class="kam-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
-
-    <!-- Panel detalle KAM seleccionado -->
-    <div class="kam-detail" id="kam-detail">
-      <div class="kam-detail-header">
+  <div class="dash">
+    <div class="ap-header">
+      <div class="ap-logo-area">
+        <img class="ap-logo" src="https://estudios.apprecio.com/hubfs/logos/Apprecio-logo-rojo.png" alt="Apprecio"/>
         <div>
-          <div class="kam-detail-name" id="kam-detail-name">—</div>
-          <div class="kam-detail-email" id="kam-detail-email">—</div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <div class="kam-detail-kpis" id="kam-detail-kpis"></div>
-          <button class="kam-close" onclick="deseleccionarKAM()">✕ Cerrar</button>
+          <div class="ap-title">Panel operacional KAM</div>
+          <div class="ap-subtitle" id="ap-subtitle">Solicitudes GC · Migración · Reversa — cargando...</div>
         </div>
       </div>
-      <div class="sec-lbl">Actividad del KAM — GC · Migración · Reversa</div>
-      <div style="position:relative;height:200px;margin-bottom:14px;"><canvas id="cKAMdetalle" role="img" aria-label="Actividad del KAM seleccionado"></canvas></div>
-      <div class="sec-lbl">Todas las solicitudes</div>
+      <div style="text-align:right;">
+        <span class="ap-badge">Uso interno</span><br/>
+        <button class="refresh-btn" style="margin-top:6px;" onclick="cargarTodo()">↻ Actualizar datos</button>
+        <div class="last-update" id="last-update"></div>
+      </div>
+    </div>
+
+    <div class="tab-row">
+      <button class="tab active" onclick="showTab('gc',this)">Solicitudes GC</button>
+      <button class="tab" onclick="showTab('mig',this)">Migración</button>
+      <button class="tab" onclick="showTab('rev',this)">Reversa</button>
+      <button class="tab" onclick="showTab('kam',this)">Equipo KAM</button>
+      <button class="tab" onclick="showTab('alertas',this)">Alertas <span id="alerta-badge" style="display:none;background:#fa345e;color:#fff;border-radius:10px;padding:0 5px;font-size:9px;margin-left:3px;"></span></button>
+    </div>
+
+    <!-- SOLICITUDES GC -->
+    <div id="s-gc" class="tab-section active">
+      <div id="kpi-gc" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
+      <div class="charts-row">
+        <div class="ccard">
+          <div class="sec-lbl">Monto total por país</div>
+          <div class="legend" id="leg-gc-pais"></div>
+          <div style="position:relative;height:180px;"><canvas id="cGCPais" role="img" aria-label="Monto por país"></canvas></div>
+        </div>
+        <div class="ccard">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
+            <div class="sec-lbl" style="margin:0;">Top 8 gift cards</div>
+            <span id="gc-total-badge" style="font-size:9px;color:#888;background:#f5f5f5;padding:2px 8px;border-radius:10px;white-space:nowrap;"></span>
+          </div>
+          <div class="legend">
+            <span class="leg"><span class="dot" style="background:#fa345e;"></span>Unidades (barras)</span>
+            <span class="leg"><span class="dot" style="width:18px;height:3px;border-radius:2px;background:#c0143c;"></span>Monto $K (línea)</span>
+          </div>
+          <div style="position:relative;height:180px;"><canvas id="cGCCombo" role="img" aria-label="Top 8 gift cards por unidades y monto"></canvas></div>
+        </div>
+      </div>
+
+      <!-- RANKING COMPLETO -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
+        <div class="sec-lbl" style="margin:0;">Ranking completo de gift cards</div>
+        <span id="gc-ranking-count" style="font-size:9px;color:#888;"></span>
+      </div>
+      <div class="tbl-wrap" style="margin-bottom:1.25rem;">
+        <table style="min-width:0;">
+          <thead><tr>
+            <th style="width:32px;">#</th>
+            <th>Gift card</th>
+            <th>Unidades</th>
+            <th style="width:90px;text-align:right;">Monto</th>
+            <th style="width:65px;text-align:right;">% monto</th>
+          </tr></thead>
+          <tbody id="tbody-gc-ranking"></tbody>
+        </table>
+      </div>
+
+      <div class="sec-lbl">Detalle solicitudes</div>
       <div class="tbl-wrap"><div class="tbl-scroll"><table>
-        <thead><tr><th>Tipo</th><th>País</th><th>Empresa</th><th>Detalle</th><th>Monto / Pts</th><th>Fecha</th></tr></thead>
-        <tbody id="tbody-kam-detalle"></tbody>
+        <thead><tr><th>País</th><th>Empresa</th><th>Gift card</th><th>Fuente</th><th>Cant.</th><th>Subtotal</th><th>KAM</th><th>Fecha</th></tr></thead>
+        <tbody id="tbody-gc"><tr><td colspan="8" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
+      </table></div></div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:9px;color:#5a0010;margin-top:4px;">
+        <span style="width:12px;height:12px;background:#ffd6dd;border-radius:3px;display:inline-block;border:1px solid #e07080;flex-shrink:0;"></span>
+        Filas rosadas = comentario REVERSA en el registro
+      </div>
+    </div>
+
+    <!-- MIGRACIÓN -->
+    <div id="s-mig" class="tab-section">
+      <div id="kpi-mig" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
+      <div class="charts-row">
+        <div class="ccard"><div class="sec-lbl">Puntos migrados por país</div><div class="legend" id="leg-mig-pais"></div><div style="position:relative;height:180px;"><canvas id="cMigPais" role="img" aria-label="Puntos migrados por país"></canvas></div></div>
+        <div class="ccard"><div class="sec-lbl">Motivos registrados</div><ul class="motivos-list" id="motivos-mig-list"><li><span class="spinner"></span> Cargando...</li></ul></div>
+      </div>
+      <div class="sec-lbl">Detalle migraciones</div>
+      <div class="tbl-wrap"><div class="tbl-scroll"><table>
+        <thead><tr><th>Ticket</th><th>País</th><th>Empresa</th><th>Sucursal origen</th><th></th><th>Sucursal destino</th><th>Puntos</th><th>KAM</th><th>Fecha</th></tr></thead>
+        <tbody id="tbody-mig"><tr><td colspan="9" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
       </table></div></div>
     </div>
 
-    <!-- Gráfico general (se oculta cuando hay KAM seleccionado) -->
-    <div id="kam-general" class="ccard">
-      <div class="sec-lbl">Monto GC por KAM — vista general</div>
-      <div class="legend" id="leg-kam"></div>
-      <div style="position:relative;height:200px;"><canvas id="cKAM" role="img" aria-label="Monto GC por KAM"></canvas></div>
+    <!-- REVERSA -->
+    <div id="s-rev" class="tab-section">
+      <div id="kpi-rev" class="kpi-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
+      <div class="charts-row">
+        <div class="ccard"><div class="sec-lbl">Puntos reversados por país</div><div class="legend" id="leg-rev-pais"></div><div style="position:relative;height:180px;"><canvas id="cRevPais" role="img" aria-label="Puntos reversados por país"></canvas></div></div>
+        <div class="ccard"><div class="sec-lbl">Motivos de reversa</div><ul class="motivos-list" id="motivos-rev-list"><li><span class="spinner"></span> Cargando...</li></ul></div>
+      </div>
+      <div class="sec-lbl">Detalle reversas</div>
+      <div class="tbl-wrap"><div class="tbl-scroll"><table>
+        <thead><tr><th>Ticket</th><th>País</th><th>Empresa</th><th>Sucursal</th><th>Puntos</th><th>Motivo</th><th>KAM</th><th>Fecha</th></tr></thead>
+        <tbody id="tbody-rev"><tr><td colspan="8" class="loading"><span class="spinner"></span>Cargando...</td></tr></tbody>
+      </table></div></div>
     </div>
-  </div>
 
-  <!-- ALERTAS -->
-  <div id="s-alertas" class="tab-section">
-    <div class="sec-lbl">Alertas operacionales activas</div>
-    <div id="alertas-container"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
-  </div>
+    <!-- EQUIPO KAM -->
+    <div id="s-kam" class="tab-section">
+      <div class="sec-lbl" style="margin-bottom:4px;">Selecciona un KAM para ver su detalle</div>
+      <div style="font-size:9px;color:#aaa;margin-bottom:12px;">Haz clic en una card para ver su actividad y todas sus solicitudes</div>
+      <div id="kam-cards" class="kam-grid"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
 
-  <!-- PANEL IA -->
-  <div class="ia-panel">
-    <div class="ia-header">
-      <div class="ia-header-left">
-        <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
-        <div>
-          <div class="ia-header-title">Apprecio IA — Análisis operacional</div>
-          <div class="ia-header-sub">Analiza los datos del panel y genera recomendaciones para el equipo</div>
+      <div class="kam-detail" id="kam-detail">
+        <div class="kam-detail-header">
+          <div>
+            <div class="kam-detail-name" id="kam-detail-name">—</div>
+            <div class="kam-detail-email" id="kam-detail-email">—</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;">
+            <div class="kam-detail-kpis" id="kam-detail-kpis"></div>
+            <button class="kam-close" onclick="deseleccionarKAM()">✕ Cerrar</button>
+          </div>
+        </div>
+        <div class="sec-lbl">Actividad — GC · Migración · Reversa</div>
+        <div style="position:relative;height:200px;margin-bottom:14px;"><canvas id="cKAMdetalle" role="img" aria-label="Actividad del KAM seleccionado"></canvas></div>
+        <div class="sec-lbl">Todas las solicitudes</div>
+        <div class="tbl-wrap"><div class="tbl-scroll"><table>
+          <thead><tr><th>Tipo</th><th>País</th><th>Empresa</th><th>Detalle</th><th>Monto / Pts</th><th>Fecha</th></tr></thead>
+          <tbody id="tbody-kam-detalle"></tbody>
+        </table></div></div>
+      </div>
+
+      <div id="kam-general" class="ccard">
+        <div class="sec-lbl">Monto GC por KAM — vista general</div>
+        <div class="legend" id="leg-kam"></div>
+        <div style="position:relative;height:200px;"><canvas id="cKAM" role="img" aria-label="Monto GC por KAM"></canvas></div>
+      </div>
+    </div>
+
+    <!-- ALERTAS -->
+    <div id="s-alertas" class="tab-section">
+      <div class="sec-lbl">Alertas operacionales activas</div>
+      <div id="alertas-container"><div class="loading"><span class="spinner"></span>Cargando...</div></div>
+    </div>
+
+    <!-- PANEL IA -->
+    <div class="ia-panel">
+      <div class="ia-header">
+        <div class="ia-header-left">
+          <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+          <div>
+            <div class="ia-header-title">Apprecio IA — Análisis operacional</div>
+            <div class="ia-header-sub">Analiza los datos del panel y genera recomendaciones para el equipo</div>
+          </div>
+        </div>
+        <div class="ia-status-row"><div class="ia-dot" id="ia-dot"></div><span id="ia-status-txt">Listo</span></div>
+      </div>
+      <div class="ia-body">
+        <div class="ia-chips">
+          <button class="ia-chip" onclick="pq('¿Cuál es el KAM con mayor carga operacional y qué recomendarías para balancear el equipo?')">Carga por KAM</button>
+          <button class="ia-chip" onclick="pq('Analiza los motivos de migración registrados e identifica patrones para prevenirlos.')">Motivos migración</button>
+          <button class="ia-chip" onclick="pq('Analiza las reversas y dime si hay riesgos operacionales o financieros que requieran atención urgente.')">Riesgo en reversas</button>
+          <button class="ia-chip" onclick="pq('¿Qué gift cards tienen mayor demanda en unidades y qué implica para la gestión de stock?')">Demanda de GC</button>
+          <button class="ia-chip" onclick="pq('Genera un resumen ejecutivo del estado operacional actual para compartir con el equipo de liderazgo.')">Resumen ejecutivo</button>
+          <button class="ia-chip" onclick="pq('¿Qué acciones prioritarias recomendarías para esta semana basándote en los datos disponibles?')">Plan de acción</button>
+        </div>
+        <div class="ia-input-row">
+          <input class="ia-input" id="ia-input" type="text" placeholder="Consulta los datos del panel con Apprecio IA..." onkeydown="if(event.key==='Enter')enviarIA()"/>
+          <button class="ia-send" id="ia-send-btn" onclick="enviarIA()">Analizar</button>
+        </div>
+        <div class="ia-messages" id="ia-messages">
+          <div class="ia-empty">Selecciona una consulta rápida o escribe tu pregunta.<br/>Apprecio IA analizará los datos del panel en tiempo real.</div>
         </div>
       </div>
-      <div class="ia-status-row"><div class="ia-dot" id="ia-dot"></div><span id="ia-status-txt">Listo</span></div>
     </div>
-    <div class="ia-body">
-      <div class="ia-chips">
-        <button class="ia-chip" onclick="pq('¿Cuál es el KAM con mayor carga operacional y qué recomendarías para balancear el equipo?')">Carga por KAM</button>
-        <button class="ia-chip" onclick="pq('Analiza los motivos de migración registrados e identifica patrones para prevenirlos.')">Motivos migración</button>
-        <button class="ia-chip" onclick="pq('Analiza las reversas y dime si hay riesgos operacionales o financieros que requieran atención urgente.')">Riesgo en reversas</button>
-        <button class="ia-chip" onclick="pq('¿Qué gift cards tienen mayor demanda en unidades y qué implica para la gestión de stock?')">Demanda de GC</button>
-        <button class="ia-chip" onclick="pq('Genera un resumen ejecutivo del estado operacional actual para compartir con el equipo de liderazgo.')">Resumen ejecutivo</button>
-        <button class="ia-chip" onclick="pq('¿Qué acciones prioritarias recomendarías para esta semana basándote en los datos disponibles?')">Plan de acción</button>
-      </div>
-      <div class="ia-input-row">
-        <input class="ia-input" id="ia-input" type="text" placeholder="Consulta los datos del panel con Apprecio IA..." onkeydown="if(event.key==='Enter')enviarIA()"/>
-        <button class="ia-send" id="ia-send-btn" onclick="enviarIA()">Analizar</button>
-      </div>
-      <div class="ia-messages" id="ia-messages">
-        <div class="ia-empty">Selecciona una consulta rápida o escribe tu pregunta.<br/>Apprecio IA analizará los datos del panel en tiempo real.</div>
-      </div>
-    </div>
-  </div>
-</div>
+  </div><!-- /dash -->
+</div><!-- /app-screen -->
 
 <script>
+/* ══ CONFIG ══ */
 const WEBHOOK_IA='https://n8n.openip.cl/webhook/ia-apprecio';
+const DOMINIOS=['apprecio.com','dcanje.com'];
 const SHEET_ID='1nJctpXetq2EXXFu49-kyDIbthnwon2prkQsXr67MIT8';
-const GID_GC='0',GID_MIG='716997002',GID_REV='49456582';
+const GID_GC='0', GID_MIG='716997002', GID_REV='49456582';
 const PALETA=['#fa345e','#f8848f','#f5c4b3','#fdd0d8','#e24b4a','#ffb3c1','#ffeef1'];
-const KAM_MAP={'ljamasmie':'L. Jamasmie','shernandez':'S. Hernandez','bgonzalez':'B. González',
+const KAM_MAP={
+  'ljamasmie':'L. Jamasmie','shernandez':'S. Hernandez','bgonzalez':'B. González',
   'fmaya':'F. Maya','scuellar':'S. Cuellar','dvillavicencio':'D. Villavicencio',
-  'dduran':'D. Durán','jcalzada':'J. Calzada','dallendes':'D. Allendes','dgarcia':'D. García'};
+  'dduran':'D. Durán','jcalzada':'J. Calzada','dallendes':'D. Allendes','dgarcia':'D. García'
+};
 
+/* ══ HELPERS ══ */
 const kamN=e=>{if(!e)return '—';const u=e.split('@')[0].toLowerCase();return KAM_MAP[u]||u;};
 const kamI=e=>kamN(e).split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2);
 const pPais=p=>{const cls=p==='Chile'?'p-cl':p==='Colombia'?'p-co':'p-pe';const code=p==='Chile'?'CL':p==='Colombia'?'CO':'PE';return `<span class="pill ${cls}">${code}</span>`;};
-const toNum=s=>{if(!s&&s!==0)return 0;const str=String(s).trim();if(str.includes(','))return parseFloat(str.replace(/\./g,'').replace(',','.'))||0;const dots=(str.match(/\./g)||[]).length;if(dots>1)return parseFloat(str.replace(/\./g,''))||0;if(dots===1&&/\.\d{3}$/.test(str))return parseFloat(str.replace('.',''))||0;return parseFloat(str)||0;};
+const toNum=s=>{
+  if(!s&&s!==0)return 0;
+  const str=String(s).trim().replace(/\s/g,'');
+  if(!str)return 0;
+  if(str.includes(','))return parseFloat(str.replace(/\./g,'').replace(',','.'))||0;
+  const dots=(str.match(/\./g)||[]).length;
+  if(dots>1)return parseFloat(str.replace(/\./g,''))||0;
+  if(dots===1&&/\.\d{3}$/.test(str))return parseFloat(str.replace('.',''))||0;
+  return parseFloat(str)||0;
+};
 const fmt=n=>Math.round(Number(n)||0).toLocaleString('es-CL');
 const fmtM=n=>{n=Number(n)||0;return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(0)+'K':String(Math.round(n));};
 
-function mdToHtml(text){
-  if(!text)return '';
-  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+/* ══ MARKDOWN ══ */
+function mdToHtml(t){
+  if(!t)return '';
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h1>$1</h1>')
     .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>')
-    .replace(/^---$/gm,'<hr/>').replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>').replace(/`(.+?)`/g,'<code>$1</code>')
+    .replace(/^---$/gm,'<hr/>').replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>')
     .replace(/^\d+\. (.+)$/gm,'<li>$1</li>').replace(/^[\*\-] (.+)$/gm,'<li>$1</li>')
-    .replace(/(<li>.*<\/li>\n?)+/g,m=>`<ul>${m}</ul>`).replace(/\n\n+/g,'</p><p>')
-    .replace(/^(?!<[hupb\/]|<li|<hr|<block)(.+)$/gm,'<p>$1</p>').replace(/<p><\/p>/g,'').trim();
+    .replace(/(<li>.*<\/li>\n?)+/g,m=>`<ul>${m}</ul>`)
+    .replace(/\n\n+/g,'</p><p>').replace(/^(?!<[hupb\/]|<li|<hr|<block)(.+)$/gm,'<p>$1</p>')
+    .replace(/<p><\/p>/g,'').trim();
 }
 
+/* ══ CSV PARSER ══ */
 function parseCSV(text){
   const lines=[];let cur='',inQ=false,row=[];
   for(let i=0;i<text.length;i++){
@@ -395,7 +438,9 @@ function parseCSV(text){
   if(cur||row.length){row.push(cur.trim());lines.push(row);}
   if(lines.length<2)return{headers:[],rows:[]};
   const headers=lines[0].map(h=>h.trim());
-  const rows=lines.slice(1).map(vals=>{const o={};headers.forEach((h,i)=>{o[h]=(vals[i]||'').replace(/\r/g,'').trim();});return o;});
+  const rows=lines.slice(1).map(vals=>{
+    const o={};headers.forEach((h,i)=>{o[h]=(vals[i]||'').replace(/\r/g,'').trim();});return o;
+  });
   return{headers,rows};
 }
 
@@ -405,6 +450,51 @@ function esFilaValida(r,tipo){
   return !!(r['Panel / Empresa']||'').trim();
 }
 
+/* ══ AUTH ══ */
+let userInitials='AP';
+
+function onGoogleLogin(response){
+  const p=JSON.parse(atob(response.credential.split('.')[1]));
+  const email=p.email||'';
+  const dominio=email.split('@')[1]||'';
+  if(!DOMINIOS.includes(dominio)){
+    document.getElementById('login-error').style.display='block';
+    return;
+  }
+  const expiry=Date.now()+7*24*60*60*1000;
+  localStorage.setItem('gUser',JSON.stringify({nombre:p.name,email:p.email,avatar:p.picture,expiry}));
+  mostrarApp(p);
+}
+
+function mostrarApp(u){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('app-screen').style.display='block';
+  document.getElementById('user-avatar').src=u.picture||u.avatar||'';
+  document.getElementById('user-name').textContent=u.nombre||u.name||'';
+  document.getElementById('user-email').textContent=u.email||'';
+  userInitials=((u.nombre||u.name||'').split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2))||'AP';
+  cargarTodo();
+}
+
+function cerrarSesion(){
+  localStorage.removeItem('gUser');
+  document.getElementById('app-screen').style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+  document.getElementById('login-error').style.display='none';
+}
+
+window.addEventListener('load',()=>{
+  const raw=localStorage.getItem('gUser');
+  if(raw){
+    try{
+      const saved=JSON.parse(raw);
+      if(saved.expiry&&Date.now()<saved.expiry){mostrarApp(saved);return;}
+    }catch(e){}
+    localStorage.removeItem('gUser');
+  }
+});
+
+/* ══ TABS ══ */
 function showTab(name,el){
   document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -412,24 +502,19 @@ function showTab(name,el){
   el.classList.add('active');
 }
 
+/* ══ FETCH ══ */
 let _dp=[],_dm=[],_dr=[];
 let _deletedGC=[],_deletedMig=[],_deletedRev=[];
 const charts={};
 let _kamStats={};
-let _selectedKAM=null;
 
 async function fetchSheet(gid){
   const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
-  try{
-    const resp=await fetch(url);
-    if(!resp.ok) throw new Error(`HTTP ${resp.status} — verifica que el sheet esté compartido como público`);
-    const text=await resp.text();
-    if(text.trim().startsWith('<!')) throw new Error('El sheet devolvió HTML — no está compartido públicamente');
-    return parseCSV(text);
-  }catch(e){
-    console.error('Error cargando sheet gid='+gid+':', e.message);
-    throw e;
-  }
+  const resp=await fetch(url);
+  if(!resp.ok)throw new Error(`HTTP ${resp.status}`);
+  const text=await resp.text();
+  if(text.trim().startsWith('<!'))throw new Error('Sheet no es público — compártelo como "Cualquier persona con el enlace puede ver"');
+  return parseCSV(text);
 }
 
 function rowId(r,tipo){
@@ -461,21 +546,12 @@ async function cargarTodo(){
     document.getElementById('last-update').textContent='Actualizado: '+now.toLocaleTimeString('es-CL',{hour:'2-digit',minute:'2-digit'});
     document.getElementById('ap-subtitle').textContent='Solicitudes GC · Migración · Reversa — '+now.toLocaleDateString('es-CL',{day:'2-digit',month:'short',year:'numeric'});
   }catch(e){
-    const msg=e.message||'Error desconocido';
-    document.getElementById('last-update').textContent='Error: '+msg.slice(0,60);
-    console.error('cargarTodo error:',e);
-    // Mostrar alerta en el dashboard
-    ['kpi-gc','kpi-mig','kpi-rev'].forEach(id=>{
-      const el=document.getElementById(id);
-      if(el)el.innerHTML=`<div style="grid-column:1/-1;padding:16px;background:#fee2e2;border-radius:8px;font-size:11px;color:#991b1b;font-weight:600;">
-        Error al cargar datos: ${msg}<br/><br/>
-        Verifica que el Google Sheet esté compartido como <strong>"Cualquier persona con el enlace puede ver"</strong>
-      </div>`;
-    });
+    console.error('cargarTodo:',e);
+    document.getElementById('last-update').textContent='Error al cargar: '+e.message.slice(0,50);
   }
 }
 
-/* ══ RENDER GC con gráfico COMBINADO ══ */
+/* ══ RENDER GC ══ */
 function renderGC(rows){
   const totalM=rows.reduce((s,r)=>s+toNum(r['Subtotal']),0);
   const sinOC=rows.filter(r=>!r['OC']&&!r['Nº Factura']).length;
@@ -484,8 +560,9 @@ function renderGC(rows){
     const gc=(r['Marca / Gift Card']||'').trim().toUpperCase();
     if(gc){gcCant[gc]=(gcCant[gc]||0)+toNum(r['Cantidad']||1);gcMonto[gc]=(gcMonto[gc]||0)+toNum(r['Subtotal']);}
   });
-  const topGC=Object.entries(gcCant).sort((a,b)=>b[1]-a[1])[0];
   const paises=[...new Set(rows.map(r=>r['País']))].filter(Boolean);
+  const topGC=Object.entries(gcCant).sort((a,b)=>b[1]-a[1])[0];
+
   document.getElementById('kpi-gc').innerHTML=`
     <div class="kpi"><div class="kpi-lbl">Solicitudes</div><div class="kpi-val">${rows.length}</div><div class="kpi-sub">líneas activas</div></div>
     <div class="kpi"><div class="kpi-lbl">Monto total</div><div class="kpi-val">$${fmtM(totalM)}</div></div>
@@ -497,67 +574,35 @@ function renderGC(rows){
   /* Barras por país */
   const porPais={};rows.forEach(r=>{const p=r['País'];if(p)porPais[p]=(porPais[p]||0)+toNum(r['Subtotal']);});
   const pL=Object.keys(porPais).sort((a,b)=>porPais[b]-porPais[a]);
-  const pD=pL.map(p=>porPais[p]);
-  document.getElementById('leg-gc-pais').innerHTML=pL.map((p,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${p} $${fmtM(pD[i])}</span>`).join('');
-  draw('cGCPais','bar',pL,pD,PALETA.slice(0,pL.length),v=>'$'+fmtM(v));
+  document.getElementById('leg-gc-pais').innerHTML=pL.map((p,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${p} $${fmtM(porPais[p])}</span>`).join('');
+  draw('cGCPais','bar',pL,pL.map(p=>porPais[p]),PALETA.slice(0,pL.length),v=>'$'+fmtM(v));
 
-  /* Gráfico COMBINADO: barras cantidad + línea monto */
-  const gcL=Object.keys(gcCant).sort((a,b)=>gcCant[b]-gcCant[a]).slice(0,8);
+  /* Badge total GC */
+  const gcTodos=Object.keys(gcCant).sort((a,b)=>gcCant[b]-gcCant[a]);
+  const totalGCdist=gcTodos.length;
+  document.getElementById('gc-total-badge').textContent=totalGCdist+' GC en total';
+  document.getElementById('gc-ranking-count').textContent=totalGCdist+' marcas distintas';
+
+  /* Gráfico combinado TOP 8 */
+  const gcL=gcTodos.slice(0,8);
   const gcCantD=gcL.map(k=>gcCant[k]);
   const gcMontoD=gcL.map(k=>Math.round(toNum(gcMonto[k])/1000));
-  /* Badge total GC + ranking */
-  const totalGCdist=Object.keys(gcCant).length;
-  const badge=document.getElementById('gc-total-badge');
-  if(badge) badge.textContent=totalGCdist+' gift cards en total';
-  const rankCount=document.getElementById('gc-ranking-count');
-  if(rankCount) rankCount.textContent=totalGCdist+' marcas distintas';
-
-  /* Tabla ranking completo */
-  const gcTodos=Object.keys(gcCant).sort((a,b)=>gcCant[b]-gcCant[a]);
-  const montoTotalGC=gcTodos.reduce((s,k)=>s+toNum(gcMonto[k]),0);
-  const maxCant=gcCant[gcTodos[0]]||1;
-  const rankEl=document.getElementById('tbody-gc-ranking');
-  if(rankEl) rankEl.innerHTML=gcTodos.map((gc,i)=>{
-    const cant=gcCant[gc];
-    const monto=toNum(gcMonto[gc]);
-    const pct=montoTotalGC>0?Math.round((monto/montoTotalGC)*100):0;
-    const barW=Math.round((cant/maxCant)*100);
-    const isTop=i<8;
-    return `<tr style="${isTop?'':'opacity:0.75;}">
-      <td style="font-weight:700;color:${isTop?'#fa345e':'#aaa'};font-size:10px;">${i+1}</td>
-      <td style="font-weight:${isTop?'700':'400'};font-size:10px;">${gc}</td>
-      <td><div style="display:flex;align-items:center;gap:6px;"><div style="flex:1;background:#f5f5f5;border-radius:3px;height:6px;"><div style="width:${barW}%;background:${isTop?'#fa345e':'#ddd'};height:6px;border-radius:3px;"></div></div><span style="font-size:9px;color:#888;white-space:nowrap;min-width:40px;">${cant} uds.</span></div></td>
-      <td style="text-align:right;font-size:10px;font-weight:700;">$${fmtM(monto)}</td>
-      <td style="text-align:right;font-size:9px;color:#888;">${pct}%</td>
-    </tr>`;
-  }).join('');
-
   if(charts['cGCCombo'])charts['cGCCombo'].destroy();
-  const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
-  const gcC=isDark?'rgba(255,255,255,0.07)':'rgba(0,0,0,0.06)';
-  const tcC=isDark?'#bbb':'#999';
   charts['cGCCombo']=new Chart(document.getElementById('cGCCombo'),{
     type:'bar',
-    data:{
-      labels:gcL,
-      datasets:[
-        {type:'bar',label:'Unidades',data:gcCantD,backgroundColor:'#fa345e',borderRadius:4,borderWidth:0,yAxisID:'y',order:2},
-        {type:'line',label:'Monto $K',data:gcMontoD,borderColor:'#c0143c',backgroundColor:'rgba(0,0,0,0)',borderWidth:2.5,pointBackgroundColor:'#c0143c',pointBorderColor:'#fff',pointBorderWidth:2,pointRadius:5,tension:0.3,fill:false,yAxisID:'y2',order:1}
-      ]
-    },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false}},
+    data:{labels:gcL,datasets:[
+      {type:'bar',label:'Unidades',data:gcCantD,backgroundColor:'#fa345e',borderRadius:4,borderWidth:0,yAxisID:'y',order:2},
+      {type:'line',label:'Monto $K',data:gcMontoD,borderColor:'#c0143c',backgroundColor:'rgba(0,0,0,0)',borderWidth:2.5,pointBackgroundColor:'#c0143c',pointBorderColor:'#fff',pointBorderWidth:2,pointRadius:5,tension:0.3,fill:false,yAxisID:'y2',order:1}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
       scales:{
         x:{ticks:{color:tcC,font:{size:9,family:'Montserrat'},maxRotation:30},grid:{color:gcC}},
         y:{position:'left',ticks:{color:tcC,font:{size:9,family:'Montserrat'},callback:v=>v+' uds'},grid:{color:gcC}},
-        y2:{position:'right',ticks:{color:'#f8848f',font:{size:9,family:'Montserrat'},callback:v=>'$'+v+'K'},grid:{display:false}}
-      }
-    }
+        y2:{position:'right',ticks:{color:'#c0143c',font:{size:9,family:'Montserrat'},callback:v=>'$'+v+'K'},grid:{display:false}}
+      }}
   });
 
-  /* Tabla ranking completo */
-  const gcTodos=Object.keys(gcCant).sort((a,b)=>gcCant[b]-gcCant[a]);
+  /* Ranking completo */
   const montoTotalGC=gcTodos.reduce((s,k)=>s+toNum(gcMonto[k]),0);
   const maxCant=gcCant[gcTodos[0]]||1;
   document.getElementById('tbody-gc-ranking').innerHTML=gcTodos.map((gc,i)=>{
@@ -566,15 +611,15 @@ function renderGC(rows){
     const pct=montoTotalGC>0?Math.round((monto/montoTotalGC)*100):0;
     const barW=Math.round((cant/maxCant)*100);
     const isTop=i<8;
-    return `<tr style="${isTop?'':'opacity:0.75;'}">
-      <td style="font-weight:700;color:${isTop?'#fa345e':'#aaa'};font-size:10px;">${i+1}</td>
-      <td style="font-weight:${isTop?'700':'400'};font-size:10px;">${gc}</td>
+    return `<tr>
+      <td style="font-weight:700;color:${isTop?'#fa345e':'#bbb'};font-size:10px;">${i+1}</td>
+      <td style="font-weight:${isTop?'700':'400'};font-size:10px;color:${isTop?'#222':'#888'};">${gc}</td>
       <td>
         <div style="display:flex;align-items:center;gap:6px;">
-          <div style="flex:1;background:#f5f5f5;border-radius:3px;height:6px;">
-            <div style="width:${barW}%;background:${isTop?'#fa345e':'#ddd'};height:6px;border-radius:3px;"></div>
+          <div style="flex:1;background:#f5f5f5;border-radius:3px;height:5px;">
+            <div style="width:${barW}%;background:${isTop?'#fa345e':'#ddd'};height:5px;border-radius:3px;"></div>
           </div>
-          <span style="font-size:9px;color:#888;white-space:nowrap;min-width:40px;">${cant} uds.</span>
+          <span style="font-size:9px;color:#888;white-space:nowrap;min-width:42px;">${cant} uds.</span>
         </div>
       </td>
       <td style="text-align:right;font-size:10px;font-weight:700;">$${fmtM(monto)}</td>
@@ -582,12 +627,14 @@ function renderGC(rows){
     </tr>`;
   }).join('');
 
+  /* Tabla detalle */
   document.getElementById('tbody-gc').innerHTML=rows.map(r=>{
     const esR=(r['Comentario']||'').toUpperCase().includes('REVERSA');
     return `<tr class="${esR?'row-warn':''}"><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${(r['Marca / Gift Card']||'—').toUpperCase()}</td><td>${r['Fuente']||'—'}</td><td>${fmt(toNum(r['Cantidad']||1))}</td><td>$${fmt(toNum(r['Subtotal']))}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`;
   }).join('');
 }
 
+/* ══ RENDER MIG ══ */
 function renderMig(rows){
   const totalP=rows.reduce((s,r)=>s+toNum(r['Total Puntos a Reversar']),0);
   const paises=[...new Set(rows.map(r=>r['País']))].filter(Boolean);
@@ -601,15 +648,15 @@ function renderMig(rows){
     <div class="kpi"><div class="kpi-lbl">Promedio</div><div class="kpi-val" style="font-size:15px;">${rows.length?fmtM(Math.round(totalP/rows.length)):'0'}</div><div class="kpi-sub">pts / ticket</div></div>`;
   const porPais={};rows.forEach(r=>{const p=r['País'];if(p)porPais[p]=(porPais[p]||0)+toNum(r['Total Puntos a Reversar']);});
   const pL=Object.keys(porPais).sort((a,b)=>porPais[b]-porPais[a]);
-  const pD=pL.map(p=>porPais[p]);
-  document.getElementById('leg-mig-pais').innerHTML=pL.map((p,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${p} ${fmtM(pD[i])} pts</span>`).join('');
-  draw('cMigPais','bar',pL,pD,PALETA.slice(0,pL.length),v=>fmtM(v)+' pts');
+  document.getElementById('leg-mig-pais').innerHTML=pL.map((p,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${p} ${fmtM(porPais[p])} pts</span>`).join('');
+  draw('cMigPais','bar',pL,pL.map(p=>porPais[p]),PALETA.slice(0,pL.length),v=>fmtM(v)+' pts');
   document.getElementById('motivos-mig-list').innerHTML=rows.length
     ?rows.map(r=>`<li><span class="mot-num">#${r['Nº Ticket']||'—'}</span><span><strong>${r['Panel / Empresa']||'—'}</strong> · ${fmtM(toNum(r['Total Puntos a Reversar']))} pts · ${kamN(r['KAM Solicitante'])}<br/><span style="color:#888;">${(r['Motivo de la Reversa']||'Sin motivo').slice(0,120)}</span></span></li>`).join('')
     :'<li style="color:#aaa;font-size:11px;">Sin registros</li>';
   document.getElementById('tbody-mig').innerHTML=rows.map(r=>`<tr><td style="font-weight:700;color:#fa345e;">#${r['Nº Ticket']||'—'}</td><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${r['Nombre Panel/Sucursal Origen']||'—'}</td><td style="text-align:center;color:#fa345e;">→</td><td>${r['Nombre Panel/Sucursal Destino']||'—'}</td><td style="font-weight:700;">${fmt(toNum(r['Total Puntos a Reversar']))}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`).join('');
 }
 
+/* ══ RENDER REV ══ */
 function renderRev(rows){
   const totalP=rows.reduce((s,r)=>s+toNum(r['Total Puntos a Reversar']),0);
   const paises=[...new Set(rows.map(r=>r['País']))].filter(Boolean);
@@ -624,9 +671,8 @@ function renderRev(rows){
     <div class="kpi"><div class="kpi-lbl">Empresas</div><div class="kpi-val">${[...new Set(rows.map(r=>r['Panel / Empresa']))].filter(Boolean).length}</div></div>`;
   const porPais={};rows.forEach(r=>{const p=r['País'];if(p)porPais[p]=(porPais[p]||0)+toNum(r['Total Puntos a Reversar']);});
   const pL=Object.keys(porPais).sort((a,b)=>porPais[b]-porPais[a]);
-  const pD=pL.map(p=>porPais[p]);
-  document.getElementById('leg-rev-pais').innerHTML=pL.map((p,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${p} ${fmtM(pD[i])} pts</span>`).join('');
-  draw('cRevPais','bar',pL,pD,PALETA.slice(0,pL.length),v=>fmtM(v)+' pts');
+  document.getElementById('leg-rev-pais').innerHTML=pL.map((p,i)=>`<span class="leg"><span class="dot" style="background:${PALETA[i]};"></span>${p} ${fmtM(porPais[p])} pts</span>`).join('');
+  draw('cRevPais','bar',pL,pL.map(p=>porPais[p]),PALETA.slice(0,pL.length),v=>fmtM(v)+' pts');
   document.getElementById('motivos-rev-list').innerHTML=rows.length
     ?rows.map(r=>`<li><span class="mot-num">#${r['Nº Ticket']||'—'}</span><span><strong>${r['Panel / Empresa']||'—'}</strong> · ${fmtM(toNum(r['Total Puntos a Reversar']))} pts · ${kamN(r['KAM Solicitante'])}<br/><span style="color:#888;">${r['Motivo de la Anulación']||'Sin motivo'}</span></span></li>`).join('')
     :'<li style="color:#aaa;font-size:11px;">Sin registros</li>';
@@ -636,13 +682,16 @@ function renderRev(rows){
   }).join('');
 }
 
-/* ══ RENDER KAM INTERACTIVO ══ */
+/* ══ RENDER KAM ══ */
 function renderKAM(p,m,r){
   _kamStats={};
-  const add=(e,t,v,row)=>{if(!e)return;if(!_kamStats[e])_kamStats[e]={gc:0,gcM:0,mig:0,migP:0,rev:0,revP:0,rowsGC:[],rowsMig:[],rowsRev:[]};
+  const add=(e,t,v,row)=>{
+    if(!e)return;
+    if(!_kamStats[e])_kamStats[e]={gc:0,gcM:0,mig:0,migP:0,rev:0,revP:0,rowsGC:[],rowsMig:[],rowsRev:[]};
     if(t==='gc'){_kamStats[e].gc++;_kamStats[e].gcM+=v;_kamStats[e].rowsGC.push(row);}
     if(t==='mig'){_kamStats[e].mig++;_kamStats[e].migP+=v;_kamStats[e].rowsMig.push(row);}
-    if(t==='rev'){_kamStats[e].rev++;_kamStats[e].revP+=v;_kamStats[e].rowsRev.push(row);}};
+    if(t==='rev'){_kamStats[e].rev++;_kamStats[e].revP+=v;_kamStats[e].rowsRev.push(row);}
+  };
   p.forEach(row=>add(row['KAM Solicitante'],'gc',toNum(row['Subtotal']),row));
   m.forEach(row=>add(row['KAM Solicitante'],'mig',toNum(row['Total Puntos a Reversar']),row));
   r.forEach(row=>add(row['KAM Solicitante'],'rev',toNum(row['Total Puntos a Reversar']),row));
@@ -651,7 +700,8 @@ function renderKAM(p,m,r){
   document.getElementById('kam-cards').innerHTML=Object.entries(_kamStats).map(([email,s])=>{
     const pct=Math.round((s.gcM/maxM)*100);
     const badge=s.revP>1000000?'<span class="badge b-red">Alerta reversa</span>':s.gcM===maxM&&s.gcM>0?'<span class="badge b-warn">Mayor carga GC</span>':'<span class="badge b-ok">Normal</span>';
-    return `<div class="kam-card" id="kc-${email}" onclick="seleccionarKAM('${email}')">
+    const safeId='kc-'+email.replace(/[@.]/g,'_');
+    return `<div class="kam-card" id="${safeId}" onclick="seleccionarKAM('${email}')">
       <div class="kam-name">${kamN(email)}</div>
       <div class="kam-email">${email}</div>
       <div class="kam-stat"><span class="kam-stat-lbl">GC</span><span class="kam-stat-val">${s.gc} · $${fmtM(s.gcM)}</span></div>
@@ -662,7 +712,6 @@ function renderKAM(p,m,r){
     </div>`;
   }).join('');
 
-  /* Gráfico general */
   const kL=Object.keys(_kamStats).map(e=>kamN(e));
   const kM=Object.values(_kamStats).map(s=>Math.round(s.gcM/1000));
   document.getElementById('leg-kam').innerHTML='<span class="leg"><span class="dot" style="background:#fa345e;"></span>Monto GC (miles)</span>';
@@ -670,20 +719,13 @@ function renderKAM(p,m,r){
 }
 
 function seleccionarKAM(email){
-  /* Deseleccionar anterior */
   document.querySelectorAll('.kam-card').forEach(c=>c.classList.remove('selected'));
-  document.getElementById('kc-'+email)?.classList.add('selected');
-  _selectedKAM=email;
+  const safeId='kc-'+email.replace(/[@.]/g,'_');
+  document.getElementById(safeId)?.classList.add('selected');
+  const s=_kamStats[email];if(!s)return;
 
-  const s=_kamStats[email];
-  if(!s)return;
-
-  /* Mostrar panel detalle, ocultar gráfico general */
   document.getElementById('kam-general').style.display='none';
-  const det=document.getElementById('kam-detail');
-  det.classList.add('visible');
-
-  /* Header */
+  document.getElementById('kam-detail').classList.add('visible');
   document.getElementById('kam-detail-name').textContent=kamN(email);
   document.getElementById('kam-detail-email').textContent=email;
   document.getElementById('kam-detail-kpis').innerHTML=`
@@ -692,76 +734,67 @@ function seleccionarKAM(email){
     <div class="kam-kpi"><div class="kam-kpi-lbl">Migración</div><div class="kam-kpi-val">${s.mig}</div></div>
     <div class="kam-kpi"><div class="kam-kpi-lbl">Reversa</div><div class="kam-kpi-val">${s.rev}</div></div>`;
 
-  /* Gráfico de actividad del KAM */
   if(charts['cKAMdetalle'])charts['cKAMdetalle'].destroy();
-  const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
-  const gcC=isDark?'rgba(255,255,255,0.07)':'rgba(0,0,0,0.06)';
-  const tcC=isDark?'#bbb':'#999';
   charts['cKAMdetalle']=new Chart(document.getElementById('cKAMdetalle'),{
     type:'bar',
-    data:{
-      labels:['Solicitudes GC','Migraciones','Reversas'],
-      datasets:[
-        {label:'Cantidad',data:[s.gc,s.mig,s.rev],backgroundColor:['#fa345e','#f8848f','#f5c4b3'],borderRadius:6,borderWidth:0,yAxisID:'y',order:2},
-        {type:'line',label:'Monto/Pts $K',data:[Math.round(s.gcM/1000),Math.round(s.migP/1000),Math.round(s.revP/1000)],borderColor:'#c0143c',backgroundColor:'rgba(0,0,0,0)',borderWidth:2.5,pointBackgroundColor:'#c0143c',pointBorderColor:'#fff',pointBorderWidth:2,pointRadius:5,tension:0.3,fill:false,yAxisID:'y2',order:1}
-      ]
-    },
-    options:{
-      responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    data:{labels:['Solicitudes GC','Migraciones','Reversas'],datasets:[
+      {label:'Cantidad',data:[s.gc,s.mig,s.rev],backgroundColor:['#fa345e','#f8848f','#f5c4b3'],borderRadius:6,borderWidth:0,yAxisID:'y',order:2},
+      {type:'line',label:'Monto/Pts $K',data:[Math.round(s.gcM/1000),Math.round(s.migP/1000),Math.round(s.revP/1000)],borderColor:'#c0143c',backgroundColor:'rgba(0,0,0,0)',borderWidth:2.5,pointBackgroundColor:'#c0143c',pointBorderColor:'#fff',pointBorderWidth:2,pointRadius:5,tension:0.3,fill:false,yAxisID:'y2',order:1}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
       scales:{
         x:{ticks:{color:tcC,font:{size:10,family:'Montserrat'}},grid:{color:gcC}},
         y:{position:'left',ticks:{color:tcC,font:{size:9,family:'Montserrat'},callback:v=>v+' ops'},grid:{color:gcC},beginAtZero:true},
-        y2:{position:'right',ticks:{color:'#888',font:{size:9,family:'Montserrat'},callback:v=>'$'+v+'K'},grid:{display:false},beginAtZero:true}
-      }
-    }
+        y2:{position:'right',ticks:{color:'#c0143c',font:{size:9,family:'Montserrat'},callback:v=>'$'+v+'K'},grid:{display:false},beginAtZero:true}
+      }}
   });
-
-  /* Tabla unificada de todas las solicitudes */
-  const filas=[];
-  s.rowsGC.forEach(r=>filas.push({tipo:'GC',tipoCls:'p-co',pais:r['País'],empresa:r['Panel / Empresa'],detalle:(r['Marca / Gift Card']||'').toUpperCase(),val:toNum(r['Subtotal']),fecha:r['Fecha'],esRev:(r['Comentario']||'').toUpperCase().includes('REVERSA')}));
-  s.rowsMig.forEach(r=>filas.push({tipo:'MIG',tipoCls:'p-cl',pais:r['País'],empresa:r['Panel / Empresa'],detalle:`#${r['Nº Ticket']} → ${r['Nombre Panel/Sucursal Destino']||'—'}`,val:toNum(r['Total Puntos a Reversar']),fecha:r['Fecha'],esRev:false}));
-  s.rowsRev.forEach(r=>filas.push({tipo:'REV',tipoCls:'p-pe',pais:r['País'],empresa:r['Panel / Empresa'],detalle:`#${r['Nº Ticket']} · ${r['Motivo de la Anulación']||'—'}`,val:toNum(r['Total Puntos a Reversar']),fecha:r['Fecha'],esRev:false}));
-  filas.sort((a,b)=>new Date(b.fecha.split('-').reverse().join('-'))-new Date(a.fecha.split('-').reverse().join('-')));
 
   const tipoBadge={
     'GC':'<span style="background:#fef2f3;color:#fa345e;border:1px solid #fdd;font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;">GC</span>',
     'MIG':'<span style="background:#e0f2fe;color:#075985;border:1px solid #7dd3fc;font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;">MIG</span>',
     'REV':'<span style="background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;">REV</span>'
   };
-
+  const filas=[];
+  s.rowsGC.forEach(r=>filas.push({tipo:'GC',pais:r['País'],empresa:r['Panel / Empresa'],detalle:(r['Marca / Gift Card']||'').toUpperCase(),val:toNum(r['Subtotal']),fecha:r['Fecha'],esRev:(r['Comentario']||'').toUpperCase().includes('REVERSA')}));
+  s.rowsMig.forEach(r=>filas.push({tipo:'MIG',pais:r['País'],empresa:r['Panel / Empresa'],detalle:`#${r['Nº Ticket']} → ${r['Nombre Panel/Sucursal Destino']||'—'}`,val:toNum(r['Total Puntos a Reversar']),fecha:r['Fecha'],esRev:false}));
+  s.rowsRev.forEach(r=>filas.push({tipo:'REV',pais:r['País'],empresa:r['Panel / Empresa'],detalle:`#${r['Nº Ticket']} · ${r['Motivo de la Anulación']||'—'}`,val:toNum(r['Total Puntos a Reversar']),fecha:r['Fecha'],esRev:false}));
+  filas.sort((a,b)=>{
+    const da=a.fecha.split('-').reverse().join('-');
+    const db=b.fecha.split('-').reverse().join('-');
+    return new Date(db)-new Date(da);
+  });
   document.getElementById('tbody-kam-detalle').innerHTML=filas.map(f=>`
     <tr class="${f.esRev?'row-warn':''}">
-      <td>${tipoBadge[f.tipo]}</td>
-      <td>${pPais(f.pais)}</td>
-      <td>${f.empresa||'—'}</td>
-      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">${f.detalle}</td>
+      <td>${tipoBadge[f.tipo]}</td><td>${pPais(f.pais)}</td><td>${f.empresa||'—'}</td>
+      <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;">${f.detalle}</td>
       <td style="font-weight:700;">$${fmt(f.val)}</td>
       <td>${(f.fecha||'').slice(0,5)}</td>
     </tr>`).join('');
 
-  /* Scroll al detalle */
-  det.scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('kam-detail').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function deseleccionarKAM(){
-  _selectedKAM=null;
   document.querySelectorAll('.kam-card').forEach(c=>c.classList.remove('selected'));
   document.getElementById('kam-detail').classList.remove('visible');
   document.getElementById('kam-general').style.display='block';
 }
 
+/* ══ RENDER ALERTAS ══ */
 function renderAlertas(p,m,r){
   const al=[];
-  r.filter(x=>toNum(x['Total Puntos a Reversar'])>1000000).forEach(x=>al.push({tipo:'danger',t:`Reversa de ${fmtM(toNum(x['Total Puntos a Reversar']))} pts — ${x['Panel / Empresa']} (${x['País']})`,b:`Ticket #${x['Nº Ticket']}: sin N° de factura. KAM: ${kamN(x['KAM Solicitante'])}. Requiere validación urgente.`}));
+  r.filter(x=>toNum(x['Total Puntos a Reversar'])>1000000).forEach(x=>al.push({tipo:'danger',
+    t:`Reversa de ${fmtM(toNum(x['Total Puntos a Reversar']))} pts — ${x['Panel / Empresa']} (${x['País']})`,
+    b:`Ticket #${x['Nº Ticket']}: sin N° de factura. KAM: ${kamN(x['KAM Solicitante'])}. Requiere validación urgente.`}));
   const sinOC=p.filter(x=>!x['OC']&&!x['Nº Factura']).length;
   if(sinOC>0)al.push({tipo:'warn',t:`${sinOC} solicitudes GC sin OC ni factura`,b:'Riesgo de trazabilidad financiera. Revisar antes del cierre de semana.'});
   const migKams=[...new Set(m.map(x=>x['KAM Solicitante']))];
-  if(migKams.length===1&&m.length>1)al.push({tipo:'warn',t:`${kamN(migKams[0])} concentra el 100% de migraciones`,b:`${m.length} tickets por el mismo KAM. Sin respaldo ante ausencia.`});
+  if(migKams.length===1&&m.length>1)al.push({tipo:'warn',t:`${kamN(migKams[0])} concentra el 100% de migraciones`,b:`${m.length} tickets gestionados por el mismo KAM.`});
   const pedR=p.filter(x=>(x['Comentario']||'').toUpperCase().includes('REVERSA'));
   if(pedR.length>0)al.push({tipo:'warn',t:`${pedR.length} líneas con "REVERSA" en Solicitudes GC`,b:'Posible inconsistencia en el flujo de datos.'});
   const kM={};p.forEach(x=>{const e=x['KAM Solicitante'];if(e)kM[e]=(kM[e]||0)+toNum(x['Subtotal']);});
   const totM=Object.values(kM).reduce((a,b)=>a+b,0);
-  Object.entries(kM).forEach(([e,v])=>{if(totM>0&&v/totM>0.5)al.push({tipo:'warn',t:`${kamN(e)}: ${Math.round((v/totM)*100)}% del monto total de GC`,b:`$${fmtM(v)} de $${fmtM(totM)} por un solo KAM.`});});
+  Object.entries(kM).forEach(([e,v])=>{if(totM>0&&v/totM>0.5)al.push({tipo:'warn',t:`${kamN(e)}: ${Math.round((v/totM)*100)}% del monto total de GC`,b:`$${fmtM(v)} de $${fmtM(totM)} gestionados por un solo KAM.`});});
   const tiposElim=[
     {lista:_deletedGC,label:'Solicitud GC',campos:r=>`${r['Marca / Gift Card']||''} · ${r['Panel / Empresa']||''} · $${fmtM(toNum(r['Subtotal']))} · ${r['Fecha']||''}`},
     {lista:_deletedMig,label:'Migración',campos:r=>`#${r['Nº Ticket']||'—'} · ${r['Panel / Empresa']||''} · ${fmtM(toNum(r['Total Puntos a Reversar']))} pts · ${r['Fecha']||''}`},
@@ -775,7 +808,7 @@ function renderAlertas(p,m,r){
     :al.map(a=>`<div class="alerta-box ${a.tipo}"><div class="alerta-title">${a.tipo==='deleted'?'🗑 ':a.tipo==='danger'?'⚠️ ':'📌 '}${a.t}</div><div class="alerta-body">${a.b}</div></div>`).join('');
 }
 
-/* CHARTS */
+/* ══ CHARTS ══ */
 const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
 const gcC=isDark?'rgba(255,255,255,0.07)':'rgba(0,0,0,0.06)';
 const tcC=isDark?'#bbb':'#999';
@@ -787,7 +820,7 @@ function draw(id,type,labels,data,colors,yFmt,donut){
   charts[id]=new Chart(document.getElementById(id),{type,data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0,borderRadius:type==='bar'?4:0}]},options:opts});
 }
 
-/* IA */
+/* ══ IA ══ */
 const iaMsgs=[];
 function setStatus(e,t){const d=document.getElementById('ia-dot');d.className='ia-dot'+(e==='ok'?' ok':e==='loading'?' loading':'');document.getElementById('ia-status-txt').textContent=t;}
 function buildCtx(){
@@ -801,7 +834,7 @@ function addMsg(role,text,isHtml=false){
   const empty=div.querySelector('.ia-empty');if(empty)empty.remove();
   const wrap=document.createElement('div');wrap.className=`ia-msg-wrap ${role==='user'?'user':''}`;
   const av=document.createElement('div');av.className=`ia-avatar ${role==='user'?'user-av':'ai'}`;
-  if(role==='user'){av.textContent='KAM';}else{av.innerHTML=`<img src="https://estudios.apprecio.com/hubfs/logos/Apprecio-logo-rojo.png" alt="IA"/>`;}
+  if(role==='user'){av.textContent=userInitials;}else{av.innerHTML=`<img src="https://estudios.apprecio.com/hubfs/logos/Apprecio-logo-rojo.png" alt="IA"/>`;}
   const bubble=document.createElement('div');bubble.className=`ia-bubble ${role==='user'?'user':role==='thinking'?'thinking':'assistant'}`;
   if(isHtml){bubble.innerHTML=text;}else{bubble.textContent=text;}
   wrap.appendChild(av);wrap.appendChild(bubble);div.appendChild(wrap);div.scrollTop=div.scrollHeight;return bubble;
@@ -823,35 +856,6 @@ async function enviarIA(){
   document.getElementById('ia-send-btn').disabled=false;
 }
 function pq(t){document.getElementById('ia-input').value=t;enviarIA();}
-
-/* AUTH */
-const DOMINIOS=['apprecio.com','dcanje.com'];
-function onGoogleLogin(r){
-  const p=JSON.parse(atob(r.credential.split('.')[1]));
-  if(!DOMINIOS.includes((p.email||'').split('@')[1]||'')){document.getElementById('login-error').style.display='block';return;}
-  localStorage.setItem('gUser',JSON.stringify({nombre:p.name,email:p.email,avatar:p.picture,expiry:Date.now()+7*864e5}));
-  mostrarApp(p);
-}
-function mostrarApp(u){
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('app-screen').style.display='block';
-  document.getElementById('user-avatar').src=u.picture||u.avatar||'';
-  document.getElementById('user-name').textContent=u.nombre||u.name||'';
-  document.getElementById('user-email').textContent=u.email||'';
-  userInitials=((u.nombre||u.name||'').split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2))||'AP';
-  cargarTodo();
-}
-function cerrarSesion(){
-  localStorage.removeItem('gUser');
-  document.getElementById('app-screen').style.display='none';
-  document.getElementById('login-screen').style.display='flex';
-}
-window.addEventListener('load',()=>{
-  const raw=localStorage.getItem('gUser');
-  if(raw){const s=JSON.parse(raw);if(s.expiry&&Date.now()<s.expiry)mostrarApp(s);else localStorage.removeItem('gUser');}
-  else{document.getElementById('login-screen').style.display='flex';document.getElementById('app-screen').style.display='none';}
-});
 </script>
-</div><!-- /app-screen -->
 </body>
 </html>
