@@ -75,6 +75,34 @@ body{font-family:'Montserrat',sans-serif;background:#f9f9f9;color:#222;}
 .motivos-list li:last-child{border-bottom:none;}
 .mot-num{background:#fef2f3;color:#fa345e;border:1px solid #fdd;font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
 
+/* ── DATE FILTER BAR ── */
+.date-filter-bar{
+  display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+  background:#fff;border:1px solid #eee;border-radius:10px;
+  padding:9px 13px;margin-bottom:1rem;
+}
+.date-filter-bar label{font-size:10px;font-weight:700;color:#888;white-space:nowrap;}
+.date-input{
+  border:1px solid #ddd;border-radius:6px;padding:4px 8px;
+  font-size:11px;font-family:'Montserrat',sans-serif;color:#333;
+  outline:none;cursor:pointer;
+}
+.date-input:focus{border-color:#fa345e;}
+.date-sep{font-size:10px;color:#bbb;}
+.date-quick{display:flex;gap:5px;flex-wrap:wrap;}
+.dq-btn{
+  padding:3px 9px;font-size:9px;font-weight:700;border:1px solid #ddd;
+  border-radius:6px;cursor:pointer;background:#f9f9f9;color:#666;
+  font-family:'Montserrat',sans-serif;transition:all 0.12s;white-space:nowrap;
+}
+.dq-btn:hover{border-color:#fa345e;color:#fa345e;background:#fef2f3;}
+.dq-btn.active{background:#fa345e;color:#fff;border-color:#fa345e;}
+.date-filter-count{
+  margin-left:auto;font-size:9px;font-weight:700;color:#fa345e;
+  background:#fef2f3;border:1px solid #fdd;border-radius:8px;
+  padding:3px 9px;white-space:nowrap;
+}
+
 /* TABLAS */
 .tbl-wrap{background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;margin-bottom:1rem;}
 .tbl-scroll{overflow-x:auto;}
@@ -176,7 +204,7 @@ tbody tr:hover td{background:#fafafa;}
 .loading{text-align:center;padding:30px;color:#fa345e;font-size:12px;font-weight:600;}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid #fdd;border-top-color:#fa345e;border-radius:50%;animation:spin 0.7s linear infinite;margin-right:6px;vertical-align:middle;}
 @keyframes spin{to{transform:rotate(360deg);}}
-@media(max-width:600px){.charts-row{grid-template-columns:1fr;}.kpi-grid{grid-template-columns:1fr 1fr;}.login-box{padding:32px 20px 28px;}.ia-input-row{flex-direction:column;}.ia-header{flex-direction:column;align-items:flex-start;}.kam-detail-header{flex-direction:column;}}
+@media(max-width:600px){.charts-row{grid-template-columns:1fr;}.kpi-grid{grid-template-columns:1fr 1fr;}.login-box{padding:32px 20px 28px;}.ia-input-row{flex-direction:column;}.ia-header{flex-direction:column;align-items:flex-start;}.kam-detail-header{flex-direction:column;}.date-filter-bar{flex-direction:column;align-items:flex-start;}.date-filter-count{margin-left:0;}}
 </style>
 </head>
 <body>
@@ -271,6 +299,21 @@ tbody tr:hover td{background:#fafafa;}
         </table>
       </div>
 
+      <!-- FILTRO FECHA GC -->
+      <div class="date-filter-bar" id="dfbar-gc">
+        <label>📅 Período:</label>
+        <input type="date" class="date-input" id="df-gc-desde"/>
+        <span class="date-sep">→</span>
+        <input type="date" class="date-input" id="df-gc-hasta"/>
+        <div class="date-quick">
+          <button class="dq-btn active" data-scope="gc" data-preset="7d" onclick="applyPreset('gc','7d',this)">Última semana</button>
+          <button class="dq-btn" data-scope="gc" data-preset="30d" onclick="applyPreset('gc','30d',this)">30 días</button>
+          <button class="dq-btn" data-scope="gc" data-preset="90d" onclick="applyPreset('gc','90d',this)">90 días</button>
+          <button class="dq-btn" data-scope="gc" data-preset="all" onclick="applyPreset('gc','all',this)">Todo</button>
+        </div>
+        <span class="date-filter-count" id="df-gc-count">— registros</span>
+      </div>
+
       <div class="sec-lbl">Detalle solicitudes</div>
       <div class="tbl-wrap"><div class="tbl-scroll"><table>
         <thead><tr><th>País</th><th>Empresa</th><th>Gift card</th><th>Fuente</th><th>Cant.</th><th>Subtotal</th><th>KAM</th><th>Fecha</th></tr></thead>
@@ -289,6 +332,22 @@ tbody tr:hover td{background:#fafafa;}
         <div class="ccard"><div class="sec-lbl">Puntos migrados por país</div><div class="legend" id="leg-mig-pais"></div><div style="position:relative;height:180px;"><canvas id="cMigPais" role="img" aria-label="Puntos migrados por país"></canvas></div></div>
         <div class="ccard"><div class="sec-lbl">Motivos registrados</div><ul class="motivos-list" id="motivos-mig-list"><li><span class="spinner"></span> Cargando...</li></ul></div>
       </div>
+
+      <!-- FILTRO FECHA MIG -->
+      <div class="date-filter-bar" id="dfbar-mig">
+        <label>📅 Período:</label>
+        <input type="date" class="date-input" id="df-mig-desde"/>
+        <span class="date-sep">→</span>
+        <input type="date" class="date-input" id="df-mig-hasta"/>
+        <div class="date-quick">
+          <button class="dq-btn active" data-scope="mig" data-preset="7d" onclick="applyPreset('mig','7d',this)">Última semana</button>
+          <button class="dq-btn" data-scope="mig" data-preset="30d" onclick="applyPreset('mig','30d',this)">30 días</button>
+          <button class="dq-btn" data-scope="mig" data-preset="90d" onclick="applyPreset('mig','90d',this)">90 días</button>
+          <button class="dq-btn" data-scope="mig" data-preset="all" onclick="applyPreset('mig','all',this)">Todo</button>
+        </div>
+        <span class="date-filter-count" id="df-mig-count">— registros</span>
+      </div>
+
       <div class="sec-lbl">Detalle migraciones</div>
       <div class="tbl-wrap"><div class="tbl-scroll"><table>
         <thead><tr><th>Ticket</th><th>País</th><th>Empresa</th><th>Sucursal origen</th><th></th><th>Sucursal destino</th><th>Puntos</th><th>KAM</th><th>Fecha</th></tr></thead>
@@ -303,6 +362,22 @@ tbody tr:hover td{background:#fafafa;}
         <div class="ccard"><div class="sec-lbl">Puntos reversados por país</div><div class="legend" id="leg-rev-pais"></div><div style="position:relative;height:180px;"><canvas id="cRevPais" role="img" aria-label="Puntos reversados por país"></canvas></div></div>
         <div class="ccard"><div class="sec-lbl">Motivos de reversa</div><ul class="motivos-list" id="motivos-rev-list"><li><span class="spinner"></span> Cargando...</li></ul></div>
       </div>
+
+      <!-- FILTRO FECHA REV -->
+      <div class="date-filter-bar" id="dfbar-rev">
+        <label>📅 Período:</label>
+        <input type="date" class="date-input" id="df-rev-desde"/>
+        <span class="date-sep">→</span>
+        <input type="date" class="date-input" id="df-rev-hasta"/>
+        <div class="date-quick">
+          <button class="dq-btn active" data-scope="rev" data-preset="7d" onclick="applyPreset('rev','7d',this)">Última semana</button>
+          <button class="dq-btn" data-scope="rev" data-preset="30d" onclick="applyPreset('rev','30d',this)">30 días</button>
+          <button class="dq-btn" data-scope="rev" data-preset="90d" onclick="applyPreset('rev','90d',this)">90 días</button>
+          <button class="dq-btn" data-scope="rev" data-preset="all" onclick="applyPreset('rev','all',this)">Todo</button>
+        </div>
+        <span class="date-filter-count" id="df-rev-count">— registros</span>
+      </div>
+
       <div class="sec-lbl">Detalle reversas</div>
       <div class="tbl-wrap"><div class="tbl-scroll"><table>
         <thead><tr><th>Ticket</th><th>País</th><th>Empresa</th><th>Sucursal</th><th>Puntos</th><th>Motivo</th><th>KAM</th><th>Fecha</th></tr></thead>
@@ -411,6 +486,94 @@ const toNum=s=>{
 };
 const fmt=n=>Math.round(Number(n)||0).toLocaleString('es-CL');
 const fmtM=n=>{n=Number(n)||0;return n>=1000000?(n/1000000).toFixed(1)+'M':n>=1000?(n/1000).toFixed(0)+'K':String(Math.round(n));};
+
+/* ══ DATE FILTER HELPERS ══ */
+// Formato de fecha en los datos: DD-MM o DD-MM-AA o DD/MM/YYYY etc.
+// Normaliza cualquier fecha del sheet a un objeto Date (o null)
+function parseFechaRow(s){
+  if(!s)return null;
+  s=s.trim();
+  // Formato DD-MM (sin año) → asumir año actual
+  let m=s.match(/^(\d{1,2})[\/\-](\d{1,2})$/);
+  if(m){const y=new Date().getFullYear();return new Date(y,+m[2]-1,+m[1]);}
+  // DD-MM-YY o DD/MM/YY
+  m=s.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2})$/);
+  if(m){const y=2000++m[3];return new Date(y,+m[2]-1,+m[1]);}
+  // DD-MM-YYYY o DD/MM/YYYY
+  m=s.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
+  if(m){return new Date(+m[3],+m[2]-1,+m[1]);}
+  // YYYY-MM-DD
+  m=s.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
+  if(m){return new Date(+m[1],+m[2]-1,+m[3]);}
+  return null;
+}
+
+function isoDate(d){
+  // Devuelve YYYY-MM-DD para un objeto Date
+  const mm=String(d.getMonth()+1).padStart(2,'0');
+  const dd=String(d.getDate()).padStart(2,'0');
+  return `${d.getFullYear()}-${mm}-${dd}`;
+}
+
+const _dfInited={};
+function initDateFilter(scope){
+  // Set default dates every time (keeps values fresh after cargarTodo)
+  const today=new Date();today.setHours(0,0,0,0);
+  const since=new Date(today);since.setDate(today.getDate()-6);
+  if(!_dfInited[scope]){
+    document.getElementById('df-'+scope+'-desde').value=isoDate(since);
+    document.getElementById('df-'+scope+'-hasta').value=isoDate(today);
+  }
+  // Wire events only once
+  if(_dfInited[scope])return;
+  _dfInited[scope]=true;
+  ['desde','hasta'].forEach(t=>{
+    document.getElementById('df-'+scope+'-'+t).addEventListener('change',()=>{
+      document.querySelectorAll('#s-'+scope+' .dq-btn').forEach(b=>b.classList.remove('active'));
+      renderTablaFiltrada(scope);
+    });
+  });
+}
+
+
+
+function applyPreset(scope,preset,btn){
+  // Deactivate sibling preset buttons
+  document.querySelectorAll('#s-'+scope+' .dq-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const today=new Date();today.setHours(0,0,0,0);
+  if(preset==='all'){
+    document.getElementById('df-'+scope+'-desde').value='';
+    document.getElementById('df-'+scope+'-hasta').value='';
+  } else {
+    const dias={'7d':6,'30d':29,'90d':89}[preset];
+    const desde=new Date(today);desde.setDate(today.getDate()-dias);
+    document.getElementById('df-'+scope+'-desde').value=isoDate(desde);
+    document.getElementById('df-'+scope+'-hasta').value=isoDate(today);
+  }
+  renderTablaFiltrada(scope);
+}
+
+function renderTablaFiltrada(scope){
+  if(scope==='gc')renderGCTabla(_dp);
+  else if(scope==='mig')renderMigTabla(_dm);
+  else if(scope==='rev')renderRevTabla(_dr);
+}
+
+function filterRowsByDate(rows,scope){
+  const desdeVal=document.getElementById(`df-${scope}-desde`).value;
+  const hastaVal=document.getElementById(`df-${scope}-hasta`).value;
+  if(!desdeVal&&!hastaVal)return rows;// sin filtro
+  const desde=desdeVal?new Date(desdeVal+'T00:00:00'):null;
+  const hasta=hastaVal?new Date(hastaVal+'T23:59:59'):null;
+  return rows.filter(r=>{
+    const d=parseFechaRow(r['Fecha']);
+    if(!d)return true;// sin fecha → mostrar igual
+    if(desde&&d<desde)return false;
+    if(hasta&&d>hasta)return false;
+    return true;
+  });
+}
 
 /* ══ MARKDOWN ══ */
 function mdToHtml(t){
@@ -551,8 +714,16 @@ async function cargarTodo(){
   }
 }
 
+/* ══ RE-RENDER TABLAS (por scope) ══ */
+function renderTabla(scope){
+  if(scope==='gc')renderGCTabla(_dp);
+  else if(scope==='mig')renderMigTabla(_dm);
+  else if(scope==='rev')renderRevTabla(_dr);
+}
+
 /* ══ RENDER GC ══ */
 function renderGC(rows){
+  // KPIs y gráficos usan TODOS los datos (sin filtro de fecha)
   const totalM=rows.reduce((s,r)=>s+toNum(r['Subtotal']),0);
   const sinOC=rows.filter(r=>!r['OC']&&!r['Nº Factura']).length;
   const gcCant={},gcMonto={};
@@ -602,7 +773,7 @@ function renderGC(rows){
       }}
   });
 
-  /* Ranking completo */
+  /* Ranking completo (sin filtro) */
   const montoTotalGC=gcTodos.reduce((s,k)=>s+toNum(gcMonto[k]),0);
   const maxCant=gcCant[gcTodos[0]]||1;
   document.getElementById('tbody-gc-ranking').innerHTML=gcTodos.map((gc,i)=>{
@@ -627,11 +798,20 @@ function renderGC(rows){
     </tr>`;
   }).join('');
 
-  /* Tabla detalle */
-  document.getElementById('tbody-gc').innerHTML=rows.map(r=>{
-    const esR=(r['Comentario']||'').toUpperCase().includes('REVERSA');
-    return `<tr class="${esR?'row-warn':''}"><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${(r['Marca / Gift Card']||'—').toUpperCase()}</td><td>${r['Fuente']||'—'}</td><td>${fmt(toNum(r['Cantidad']||1))}</td><td>$${fmt(toNum(r['Subtotal']))}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`;
-  }).join('');
+  // Renderizar tabla detalle con filtro aplicado
+  initDateFilter('gc');
+  renderGCTabla(rows);
+}
+
+function renderGCTabla(rows){
+  const filtered=filterRowsByDate(rows,'gc');
+  document.getElementById('df-gc-count').textContent=`${filtered.length} de ${rows.length} registros`;
+  document.getElementById('tbody-gc').innerHTML=filtered.length===0
+    ?`<tr><td colspan="8" style="text-align:center;padding:20px;color:#aaa;font-size:11px;">Sin registros en el período seleccionado</td></tr>`
+    :filtered.map(r=>{
+      const esR=(r['Comentario']||'').toUpperCase().includes('REVERSA');
+      return `<tr class="${esR?'row-warn':''}"><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${(r['Marca / Gift Card']||'—').toUpperCase()}</td><td>${r['Fuente']||'—'}</td><td>${fmt(toNum(r['Cantidad']||1))}</td><td>$${fmt(toNum(r['Subtotal']))}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`;
+    }).join('');
 }
 
 /* ══ RENDER MIG ══ */
@@ -653,7 +833,16 @@ function renderMig(rows){
   document.getElementById('motivos-mig-list').innerHTML=rows.length
     ?rows.map(r=>`<li><span class="mot-num">#${r['Nº Ticket']||'—'}</span><span><strong>${r['Panel / Empresa']||'—'}</strong> · ${fmtM(toNum(r['Total Puntos a Reversar']))} pts · ${kamN(r['KAM Solicitante'])}<br/><span style="color:#888;">${(r['Motivo de la Reversa']||'Sin motivo').slice(0,120)}</span></span></li>`).join('')
     :'<li style="color:#aaa;font-size:11px;">Sin registros</li>';
-  document.getElementById('tbody-mig').innerHTML=rows.map(r=>`<tr><td style="font-weight:700;color:#fa345e;">#${r['Nº Ticket']||'—'}</td><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${r['Nombre Panel/Sucursal Origen']||'—'}</td><td style="text-align:center;color:#fa345e;">→</td><td>${r['Nombre Panel/Sucursal Destino']||'—'}</td><td style="font-weight:700;">${fmt(toNum(r['Total Puntos a Reversar']))}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`).join('');
+  initDateFilter('mig');
+  renderMigTabla(rows);
+}
+
+function renderMigTabla(rows){
+  const filtered=filterRowsByDate(rows,'mig');
+  document.getElementById('df-mig-count').textContent=`${filtered.length} de ${rows.length} registros`;
+  document.getElementById('tbody-mig').innerHTML=filtered.length===0
+    ?`<tr><td colspan="9" style="text-align:center;padding:20px;color:#aaa;font-size:11px;">Sin registros en el período seleccionado</td></tr>`
+    :filtered.map(r=>`<tr><td style="font-weight:700;color:#fa345e;">#${r['Nº Ticket']||'—'}</td><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${r['Nombre Panel/Sucursal Origen']||'—'}</td><td style="text-align:center;color:#fa345e;">→</td><td>${r['Nombre Panel/Sucursal Destino']||'—'}</td><td style="font-weight:700;">${fmt(toNum(r['Total Puntos a Reversar']))}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`).join('');
 }
 
 /* ══ RENDER REV ══ */
@@ -676,10 +865,19 @@ function renderRev(rows){
   document.getElementById('motivos-rev-list').innerHTML=rows.length
     ?rows.map(r=>`<li><span class="mot-num">#${r['Nº Ticket']||'—'}</span><span><strong>${r['Panel / Empresa']||'—'}</strong> · ${fmtM(toNum(r['Total Puntos a Reversar']))} pts · ${kamN(r['KAM Solicitante'])}<br/><span style="color:#888;">${r['Motivo de la Anulación']||'Sin motivo'}</span></span></li>`).join('')
     :'<li style="color:#aaa;font-size:11px;">Sin registros</li>';
-  document.getElementById('tbody-rev').innerHTML=rows.map(r=>{
-    const pts=toNum(r['Total Puntos a Reversar']);
-    return `<tr><td style="font-weight:700;color:#fa345e;">#${r['Nº Ticket']||'—'}</td><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${r['Nombre Panel/Sucursal Origen']||'—'}</td><td style="font-weight:700;${pts>1000000?'color:#991b1b;':''}">${fmt(pts)}</td><td style="color:#888;">${r['Motivo de la Anulación']||'—'}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`;
-  }).join('');
+  initDateFilter('rev');
+  renderRevTabla(rows);
+}
+
+function renderRevTabla(rows){
+  const filtered=filterRowsByDate(rows,'rev');
+  document.getElementById('df-rev-count').textContent=`${filtered.length} de ${rows.length} registros`;
+  document.getElementById('tbody-rev').innerHTML=filtered.length===0
+    ?`<tr><td colspan="8" style="text-align:center;padding:20px;color:#aaa;font-size:11px;">Sin registros en el período seleccionado</td></tr>`
+    :filtered.map(r=>{
+      const pts=toNum(r['Total Puntos a Reversar']);
+      return `<tr><td style="font-weight:700;color:#fa345e;">#${r['Nº Ticket']||'—'}</td><td>${pPais(r['País'])}</td><td>${r['Panel / Empresa']||'—'}</td><td>${r['Nombre Panel/Sucursal Origen']||'—'}</td><td style="font-weight:700;${pts>1000000?'color:#991b1b;':''}">${fmt(pts)}</td><td style="color:#888;">${r['Motivo de la Anulación']||'—'}</td><td><span class="av">${kamI(r['KAM Solicitante'])}</span>${kamN(r['KAM Solicitante'])}</td><td>${(r['Fecha']||'').slice(0,5)}</td></tr>`;
+    }).join('');
 }
 
 /* ══ RENDER KAM ══ */
